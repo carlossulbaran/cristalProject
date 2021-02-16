@@ -1,7 +1,4 @@
-# practicas
-Apendiendo a usar github
+# Proyecto
 
 
-
-
-Soy un codigo de practica 
+Proyecto de Grado
