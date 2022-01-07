@@ -193,7 +193,7 @@ def map(x, in_min, in_max, out_min, out_max):
 		return mapped  
 
 #Funcion para actualizar la posicion de cristal en el HMI
-def actualizar_pos(ubicacion):
+def actualizar_pos(ubicacion,posicion_muestras):
     ubicacion[0] = map(ubicacion[0],0,ancho,10,ancho*30)
     ubicacion[1] = map(ubicacion[1],0,largo,largo*30,20)
 
@@ -209,7 +209,39 @@ def actualizar_pos(ubicacion):
 
     pg.draw.rect(screen1,(239,127,26),(ubicacion[0],ubicacion[1],10,10))
 
+    #Dibujar las muestras en el mapa
+    for a in posicion_muestras:
+        a[0] = map(a[0],0,ancho,10,ancho*30)
+        a[1] = map(a[1],0,largo,largo*30,20)
+
+        pg.draw.rect(screen1,(0,0,128),(a[0],a[1],2,2))
+
     pg.display.flip()
+
+#Funcion para crear los puntos de muestras
+def muestras(cantidad,ancho,largo):
+    posicion_muestras = np.zeros((cantidad*ancho, 2))
+
+    x=ancho/cantidad 
+    valorx=x
+
+    y = largo/cantidad 
+    valory = y
+    for a in np.arange(posicion_muestras.shape[0]):
+        posicion_muestras[a,0] = valorx
+        posicion_muestras[a,1] = valory
+
+        valory = valory + y
+
+        if valory > largo:
+
+            valorx = valorx + x
+            valory = y
+
+    return posicion_muestras
+
+    
+    print(posicion_muestras)
 
 #Funcion para ir creando el mapa de trabajo
 def mapa_trabajo(ancho,largo,ubicacion):
@@ -217,7 +249,9 @@ def mapa_trabajo(ancho,largo,ubicacion):
     # initialize the pygame module
     pg.init()
     
-    actualizar_pos(ubicacion)
+    posicion_muestras = muestras(10,ancho,largo)
+
+    actualizar_pos(ubicacion,posicion_muestras)
 
     running = True
      
