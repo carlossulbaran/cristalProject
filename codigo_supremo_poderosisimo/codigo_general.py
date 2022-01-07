@@ -2,7 +2,7 @@
 import pygame as pg
 import serial,time
 import numpy as np
-
+import math as mt
 #Funciones
 
 #Funcion para el HMI inicialretorna el ancho y largo del mapa
@@ -197,7 +197,7 @@ def actualizar_pos(ubicacion,posicion_muestras):
     ubicacion[0] = map(ubicacion[0],0,ancho,10,ancho*30)
     ubicacion[1] = map(ubicacion[1],0,largo,largo*30,20)
 
-    print(ubicacion)
+    #print(ubicacion)
     # create a surface on screen that has the size of 240 x 180
     screen1 = pg.display.set_mode((500,500))
 
@@ -240,11 +240,9 @@ def muestras(cantidad,ancho,largo):
 
     return posicion_muestras
 
-    
-    print(posicion_muestras)
 
 #Funcion para ir creando el mapa de trabajo
-def mapa_trabajo(ancho,largo,ubicacion):
+def mapa_trabajo(ang,ancho,largo,ubicacion):
     
     # initialize the pygame module
     pg.init()
@@ -252,6 +250,9 @@ def mapa_trabajo(ancho,largo,ubicacion):
     posicion_muestras = muestras(10,ancho,largo)
 
     actualizar_pos(ubicacion,posicion_muestras)
+
+    angulo(ang,ubicacion, posicion_muestras)
+
 
     running = True
      
@@ -267,13 +268,59 @@ def mapa_trabajo(ancho,largo,ubicacion):
             #update the screen
             pg.display.flip()
 
+#Funcion para convertir la velocidad y la velocidad angular en velocidad de las ruedas
+def twistToVel(vel_li,vel_angu):
+        w = 0.33        #Distancia entre ruedas
+        r = 0.038       #Radio de las ruedas
+		
+        dx = vel_li     #dx = v lineal
+        dr = vel_angu   #dr = v angular
+        right = (2.0 * dx + dr * w) / (2*r)
+        left = (2.0 * dx - dr * w) / (2*r)
+		##!!!!!
+		#Se debe mapear las velocidades para enviar la info al arduino
+        ##!!!!!
+
+#Funcion para calcular el angulo de error
+def angulo(ang,ubicacion, posicion_muestras):
+    #ang debe ser la orientacion del robot leida por los nodos de la IMU
+
+    #obj es la matriz homogenea para 2 dimenciones (x,y) teniendo el giro en Z 
+    #obj es la postura del robot
+    obj = np.array([[-mt.sin(ang),mt.cos(ang),ubicacion[0]],[mt.cos(ang),mt.sin(ang),ubicacion[1]],[0,0,1]])
+    obj = np.linalg.inv(obj)
+
+    #Target (seria bueno que se le pregunte al usuario el target de manera manual)
+    tar = np.array([[posicion_muestras[0,0]],[posicion_muestras[0,1]],[1]])
+
+
+    #Calcular la posicion del target con respecto al robot
+    pos = obj @ tar
+
+    #print(obj)
+    #print("La posicion del target con respecto al robot es: (x: %s , y: %s) " %(pos[0,0],pos[1,0]))
+
+    #Se calcula el angulo de error (angulo que necesitamos rotar)
+    ang_gi_rad = mt.atan2(pos[1,0],pos[0,0])
+    ang_gi = ang_gi_rad* (180/3.14)
+
+    print(ang_gi_rad)
+
+    
 #Llamado a las funciones
 
 #ubicacion inicial del robot
+
 ubicacion = np.array([0,0])
+
 #dimensiones del mapa
 #ancho, largo = HMI()
 
+
+#borrar ancho y largo ya que se supone que vienen de la funcion HMI()
 ancho = 10
 largo = 10
-mapa_trabajo(ancho,largo,ubicacion)
+#angulo inicial del robot
+ang=0
+
+mapa_trabajo(ang,ancho,largo,ubicacion)
