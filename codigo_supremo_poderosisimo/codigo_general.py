@@ -250,8 +250,9 @@ def mapa_trabajo(ang,ancho,largo,ubicacion):
 
     actualizar_pos(ubicacion,posicion_muestras)
 
-    angulo(ang,ubicacion, posicion_muestras)
+    ang_gi_rad = angulo(ang,ubicacion, posicion_muestras)
 
+    calculo_velocidades(ang_gi_rad,ubicacion,posicion_muestras)
 
     running = True
      
@@ -303,9 +304,20 @@ def angulo(ang,ubicacion, posicion_muestras):
     ang_gi_rad = mt.atan2(pos[1,0],pos[0,0])
     ang_gi = ang_gi_rad* (180/3.14)
 
-    print(ang_gi_rad)
+    return ang_gi_rad
 
+#calcula la velocidad lineal y angular del robot
+def calculo_velocidades(angulo_gi_rad,ubicacion,posicion_muestras):
+    #calcular distancia para la velocidad 
+    print(angulo_gi_rad)
+    d = mt.sqrt(((posicion_muestras[0,0]-ubicacion[0])**2)+((posicion_muestras[0,1]-ubicacion[1])**2))
+
+    vel_gi = angulo_gi_rad
+    vel_li = d
     
+    return vel_li, vel_gi
+
+
 #Llamado a las funciones
 
 #ubicacion inicial del robot
