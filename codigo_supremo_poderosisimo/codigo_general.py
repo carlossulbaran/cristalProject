@@ -240,7 +240,6 @@ def muestras(cantidad,ancho,largo):
 
     return posicion_muestras
 
-
 #Funcion para ir creando el mapa de trabajo
 def mapa_trabajo(ang,ancho,largo,ubicacion):
     
