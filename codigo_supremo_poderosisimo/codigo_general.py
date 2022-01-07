@@ -1,14 +1,12 @@
-
-
+#importar la libreria
+import pygame as pg
+import serial,time
+import numpy as np
 
 #Funciones
 
 #Funcion para el HMI inicialretorna el ancho y largo del mapa
-
 def HMI():
-    #importar la libreria
-    import pygame as pg
-
     # initialize the pygame module
     pg.init()
     # create a surface on screen that has the size of 240 x 180
@@ -151,5 +149,97 @@ def HMI():
 
     ancho = int(ancho)
 
+    pg.quit()
     return ancho, largo
 
+#Funcion para recibir la informacion del arduino
+def arduino_rec_info():
+    #!/usr/bin/env python
+    # -*- coding: utf-8 -*-
+    # lsusb to check device name
+    #dmesg | grep "tty" to find port name
+
+
+    valor = np.array([0,0,0])
+
+    if __name__ == '__main__':
+        
+        print('Running. Press CTRL-C to exit.')
+        with serial.Serial("/dev/ttyACM0", 9600, timeout=1) as arduino:
+            time.sleep(0.1) #wait for serial to open
+            if arduino.isOpen():
+                print("{} connected!".format(arduino.port))
+                try:
+                    while True:
+                        #cmd=input("Enter command : ")
+                        #arduino.write(cmd.encode())
+                        #time.sleep(0.1) #wait for arduino to answer
+                        while arduino.inWaiting()==0: pass
+                        if  arduino.inWaiting()>0: 
+                            answer=arduino.readline()
+
+                    valor = np.fromstring(answer, dtype=int, sep=',')
+
+
+                    print(valor)
+                #time.sleep(0.1)
+                            #arduino.flushInput() #remove data after reading
+                except KeyboardInterrupt:
+                    print("KeyboardInterrupt has been caught.")
+
+#Funcion para mapear los valores
+def map(x, in_min, in_max, out_min, out_max):
+		mapped =  int((x-in_min) * (out_max-out_min) / (in_max-in_min) + out_min)
+		return mapped  
+
+#Funcion para actualizar la posicion de cristal en el HMI
+def actualizar_pos(ubicacion):
+    ubicacion[0] = map(ubicacion[0],0,ancho,10,ancho*30)
+    ubicacion[1] = map(ubicacion[1],0,largo,largo*30,20)
+
+    print(ubicacion)
+    # create a surface on screen that has the size of 240 x 180
+    screen1 = pg.display.set_mode((500,500))
+
+    screen1.fill((0, 0, 0))
+
+    #dibujar el contorno del mapa
+
+    pg.draw.rect(screen1,(255,255,255),(10,10,ancho*30,largo*30),1)
+
+    pg.draw.rect(screen1,(239,127,26),(ubicacion[0],ubicacion[1],10,10))
+
+    pg.display.flip()
+
+#Funcion para ir creando el mapa de trabajo
+def mapa_trabajo(ancho,largo,ubicacion):
+    
+    # initialize the pygame module
+    pg.init()
+    
+    actualizar_pos(ubicacion)
+
+    running = True
+     
+    # main loop
+    while running:
+        # event handling, gets all event from the event queue
+        for event in pg.event.get():
+            # only do something if the event is of type QUIT
+            if event.type == pg.QUIT:
+                # change the value to False, to exit the main loop
+                running = False
+
+            #update the screen
+            pg.display.flip()
+
+#Llamado a las funciones
+
+#ubicacion inicial del robot
+ubicacion = np.array([0,0])
+#dimensiones del mapa
+#ancho, largo = HMI()
+
+ancho = 10
+largo = 10
+mapa_trabajo(ancho,largo,ubicacion)
