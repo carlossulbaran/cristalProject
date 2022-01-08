@@ -194,6 +194,27 @@ def arduino_rec_info():
                 except KeyboardInterrupt:
                     print("KeyboardInterrupt has been caught.")
 
+#Funcion para enviarla informacion al arduino
+def arduino_env_info(msg):
+    if __name__ == '__main__':
+    
+    msg = str(msg)
+
+    print('Running. Press CTRL-C to exit.')
+    with serial.Serial("/dev/ttyACM0", 9600, timeout=1) as arduino:
+        time.sleep(0.1) #wait for serial to open
+        if arduino.isOpen():
+            print("{} connected!".format(arduino.port))
+            try:
+                while True:
+                    cmd=input("Enter command : ")
+                    arduino.write(msg.encode())
+                    #time.sleep(0.1) #wait for arduino to answer
+
+            except KeyboardInterrupt:
+                print("KeyboardInterrupt has been caught.")
+
+
 #Funcion para mapear los valores
 def map(x, in_min, in_max, out_min, out_max):
 		mapped =  int((x-in_min) * (out_max-out_min) / (in_max-in_min) + out_min)
@@ -324,6 +345,9 @@ def calculo_velocidades(angulo_gi_rad,ubicacion,posicion_muestras):
     
     return vel_li, vel_gi
 
+#Manda el angulo de movimiento al servo usando PCA al servo 15 especificamente
+def servo(ang_servo):
+    kit.servo[15].angle = ang_servo
 
 #Llamado a las funciones
 
@@ -343,4 +367,4 @@ ang=0
 
 #mapa_trabajo(ang,ancho,largo,ubicacion)
 
-kit.servo[15].angle = 180
+arduino_env_info(1)

@@ -4,15 +4,31 @@ int distance; // variable for the distance measurement
 
 int lectura[3]; //lectura de los sensores
 
-
+String msg; // mensaje recibido
+int msg1; // mensaje recibido int
 void setup() {
-
+  
+  //pines para sensores
   pinMode(10, OUTPUT); // Sets the trigPin as an OUTPUT
   pinMode(14, INPUT); // Sets the echoPin as an INPUT
   pinMode(11, OUTPUT); // Sets the trigPin as an OUTPUT
   pinMode(15, INPUT); // Sets the echoPin as an INPUT
   pinMode(12, OUTPUT); // Sets the trigPin as an OUTPUT
   pinMode(16, INPUT); // Sets the echoPin as an INPUT
+
+  //pines para motores traseros
+  pinMode(9, OUTPUT);
+  pinMode(8, OUTPUT);
+  pinMode(7, OUTPUT);
+  pinMode(6, OUTPUT);
+
+  //pines para motores delanteros
+  pinMode(5, OUTPUT);
+  pinMode(4, OUTPUT);
+  pinMode(3, OUTPUT);
+  pinMode(2, OUTPUT);
+
+
   
   Serial.begin(9600); // // Serial Communication is starting with 9600 of baudrate speed
 
@@ -20,6 +36,14 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
+
+msg1 = readSerialPort();
+
+if (msg1 == 1){
+
+  digitalWrite(9, HIGH);
+  
+}
 
 for(int i = 10; i<13; i++){
 lectura[i-10] = leersonido(i,i+4);
@@ -32,6 +56,20 @@ void sendData(int msg0,int msg1,int msg2) {
   //write data
   Serial.println((String)msg0+","+(String)msg1+","+(String)msg2);
 } 
+
+
+int readSerialPort() {
+  msg = "";
+  if (Serial.available()) {
+    delay(10);
+    while (Serial.available() > 0) {
+      msg += (char)Serial.read();
+      msg1 = msg.toFloat();
+      return msg1;
+    }
+    Serial.flush();
+  }
+}
 
 int leersonido(int trigPin,int echoPin){
 
