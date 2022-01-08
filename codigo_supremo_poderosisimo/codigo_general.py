@@ -3,6 +3,13 @@ import pygame as pg
 import serial,time
 import numpy as np
 import math as mt
+import adafruit_pca9685 as PCA
+from adafruit_servokit import ServoKit
+import adafruit_motor.servo
+
+#Inicializar pca
+kit = ServoKit(channels=16)
+
 #Funciones
 
 #Funcion para el HMI inicialretorna el ancho y largo del mapa
@@ -309,7 +316,7 @@ def angulo(ang,ubicacion, posicion_muestras):
 #calcula la velocidad lineal y angular del robot
 def calculo_velocidades(angulo_gi_rad,ubicacion,posicion_muestras):
     #calcular distancia para la velocidad 
-    print(angulo_gi_rad)
+    #print(angulo_gi_rad)
     d = mt.sqrt(((posicion_muestras[0,0]-ubicacion[0])**2)+((posicion_muestras[0,1]-ubicacion[1])**2))
 
     vel_gi = angulo_gi_rad
@@ -334,4 +341,6 @@ largo = 10
 #angulo inicial del robot
 ang=0
 
-mapa_trabajo(ang,ancho,largo,ubicacion)
+#mapa_trabajo(ang,ancho,largo,ubicacion)
+
+kit.servo[15].angle = 180
