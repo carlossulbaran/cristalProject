@@ -195,10 +195,10 @@ def arduino_rec_info():
                         if  arduino.inWaiting()>0: 
                             answer=arduino.readline()
 
-                    valor = np.fromstring(answer, dtype=int, sep=',')
+                        valor = np.fromstring(answer, dtype=int, sep=',')
 
 
-                    print(valor)
+                        return valor
                 #time.sleep(0.1)
                             #arduino.flushInput() #remove data after reading
                 except KeyboardInterrupt:
@@ -378,7 +378,7 @@ def sensar():
 
     npk = np.array([[0],[0],[0]])
 
-    while npk == [[0],[0],[0]]:
+    while npk[0]+npk[1]+npk[2] == 0:
         npk = arduino_rec_info()
 
     desactivar()
