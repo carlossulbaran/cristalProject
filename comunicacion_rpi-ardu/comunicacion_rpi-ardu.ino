@@ -44,6 +44,26 @@ if (msg1 == 1){
   digitalWrite(9, HIGH);
   
 }
+else if (msg1 == 2){
+  digitalWrite(6, HIGH);
+  
+  }
+else if (msg1 == 3){
+  digitalWrite(5, HIGH);
+  
+  }
+else if (msg1 == 4){
+  digitalWrite(2, HIGH);
+  
+  }
+else {
+  digitalWrite(9, LOW);
+  digitalWrite(6, LOW);
+  digitalWrite(5, LOW);
+  digitalWrite(2, LOW);
+  
+  }
+
 
 for(int i = 10; i<13; i++){
 lectura[i-10] = leersonido(i,i+4);

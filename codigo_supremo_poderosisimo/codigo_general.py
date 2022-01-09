@@ -206,7 +206,7 @@ def arduino_env_info(msg):
                 print("{} connected!".format(arduino.port))
                 try:
                     while True:
-                        cmd=input("Enter command : ")
+                        #cmd=input("Enter command : ")
                         arduino.write(msg.encode())
                         #time.sleep(0.1) #wait for arduino to answer
 
@@ -366,4 +366,4 @@ ang=0
 
 #mapa_trabajo(ang,ancho,largo,ubicacion)
 
-arduino_env_info(1)
+arduino_env_info(4)
