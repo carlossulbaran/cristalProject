@@ -10,7 +10,16 @@ gpio.setmode(gpio.BOARD)
 gpio.setup(7, gpio.OUT)
 gpio.setup(11, gpio.OUT)
 
+
+import board
+import busio
 import adafruit_pca9685 as PCA
+
+i2c = busio.I2C(board.SCL, board.SDA)
+pca = PCA.PCA9685(i2c)
+pca.frequency = 60
+servo = pca.channels[15]
+
 #from adafruit_servokit import ServoKit
 #import adafruit_motor.servo
 
@@ -357,7 +366,7 @@ def calculo_velocidades(angulo_gi_rad,ubicacion,posicion_muestras):
 
 #Manda el angulo de movimiento al servo usando PCA al servo 15 especificamente
 def servo(ang_servo):
-    kit.servo[15].angle = ang_servo
+    servo.duty_cycle = ang_servo
 
 #extender el brazo del sensor
 def activar():
@@ -399,7 +408,4 @@ ang=0
 
 #arduino_env_info(4)
 
-servo(80)
-time.sleep(3)
-
-sensar()
+servo(200)
