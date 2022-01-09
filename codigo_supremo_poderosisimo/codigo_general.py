@@ -13,7 +13,8 @@ import RPi.GPIO as gpio
 
 #Inicializar pines
 gpio.setmode(gpio.BOARD)
-gpio.setup(12, gpio.OUT)
+gpio.setup(9, gpio.OUT)
+gpio.setup(13, gpio.OUT)
 
 
 
