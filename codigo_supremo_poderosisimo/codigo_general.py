@@ -13,8 +13,8 @@ import RPi.GPIO as gpio
 
 #Inicializar pines
 gpio.setmode(gpio.BOARD)
-gpio.setup(9, gpio.OUT)
-gpio.setup(13, gpio.OUT)
+gpio.setup(7, gpio.OUT)
+gpio.setup(11, gpio.OUT)
 
 
 
@@ -358,12 +358,12 @@ def servo(ang_servo):
 
 #extender el brazo del sensor
 def activar():
-    gpio.output(9, True)
-    gpio.output(13, True)
+    gpio.output(7, True)
+    gpio.output(11, True)
 
 def desactivar():
-    gpio.output(9, False)
-    gpio.output(13, False)
+    gpio.output(7, False)
+    gpio.output(11, False)
 
 #Llamado a las funciones
 
