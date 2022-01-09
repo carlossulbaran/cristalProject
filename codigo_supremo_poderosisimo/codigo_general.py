@@ -254,7 +254,7 @@ def map(x, in_min, in_max, out_min, out_max):
 		return mapped  
 
 #Funcion para actualizar la posicion de cristal en el HMI
-def actualizar_pos(ubicacion,posicion_muestras):
+def actualizar_pos(ubicacion,posicion_muestras,ancho,largo):
     ubicacion[0] = map(ubicacion[0],0,ancho,10,ancho*30)
     ubicacion[1] = map(ubicacion[1],0,largo,largo*30,20)
 
@@ -307,7 +307,7 @@ def mapa_trabajo(posicion_muestras,ubicacion):
     # initialize the pygame module
     pg.init()
     
-    actualizar_pos(ubicacion,posicion_muestras)
+    actualizar_pos(ubicacion,posicion_muestras,ancho,largo)
 
     running = True
      
