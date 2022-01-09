@@ -380,6 +380,7 @@ def sensar():
 
     while (npk[0]+npk[1]+npk[2] == 0) or (npk[0] == 255) or (npk[1] ==255) (npk[2] ==255):
         npk = arduino_rec_info()
+        print(npk)
 
     desactivar()
     time.sleep(3)
