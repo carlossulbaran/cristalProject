@@ -4,20 +4,14 @@ import serial,time
 import numpy as np
 import math as mt
 import RPi.GPIO as gpio
-import board
-import busio
-import adafruit_pca9685
-i2c = busio.I2C(board.SCL, board.SDA)
-pca = adafruit_pca9685.PCA9685(i2c)
 
-pca.frequency = 60
-led_channel = pca.channels[14]
+from adafruit_servokit import ServoKit
 
 
 #Inicializar pca
 kit = ServoKit(channels=16)
-kit.servo[15].actuation_range = 180
-kit.servo[15].set_pulse_width_range(125, 512)
+#kit.servo[15].actuation_range = 180
+#kit.servo[15].set_pulse_width_range(125, 512)
 
 #Inicializar pines
 
@@ -362,7 +356,7 @@ def calculo_velocidades(angulo_gi_rad,ubicacion,posicion_muestras):
 
 #Manda el angulo de movimiento al servo usando PCA al servo 15 especificamente
 def servo(ang_servo):
-    kit.servo[15].angle = ang_servo
+    kit.servo[13].angle = ang_servo
 
 #extender el brazo del sensor
 def activar():
@@ -409,7 +403,7 @@ ang=0
 #servo(20)
 time.sleep(3)
 
-led_channel.duty_cycle = 200
 
+servo(50)
 
 #sensar()
