@@ -302,7 +302,7 @@ def muestras(cantidad,ancho,largo):
     return posicion_muestras
 
 #Funcion para ir creando el mapa de trabajo
-def mapa_trabajo(posicion_muestras,ubicacion):
+def mapa_trabajo(ubicacion,posicion_muestras,ancho,largo):
     
     # initialize the pygame module
     pg.init()
@@ -413,4 +413,4 @@ def sensar():
 
 ancho,largo,posicion_muestras,ubicacion = inicializar()
 
-mapa_trabajo(ubicacion,posicion_muestras)
+mapa_trabajo(ubicacion,posicion_muestras,ancho,largo)
