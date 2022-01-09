@@ -11,11 +11,10 @@ gpio.setup(7, gpio.OUT)
 gpio.setup(11, gpio.OUT)
 
 
-import board
 import busio
 import adafruit_pca9685 as PCA
 
-i2c = busio.I2C(board.SCL, board.SDA)
+i2c = busio.I2C(3, 5)
 pca = PCA.PCA9685(i2c)
 pca.frequency = 60
 servo = pca.channels[15]
