@@ -385,7 +385,8 @@ def sensar():
     time.sleep(3)
     servo(100)
     time.sleep(3)
-    print("listo")
+    
+    print(npk)
 
 #Llamado a las funciones
 
