@@ -5,27 +5,17 @@ import numpy as np
 import math as mt
 import RPi.GPIO as gpio
 
-#Inicializar pines
-gpio.setmode(gpio.BOARD)
-gpio.setup(7, gpio.OUT)
-gpio.setup(11, gpio.OUT)
-
-
-import busio
 import adafruit_pca9685 as PCA
-
-i2c = busio.I2C(3, 5)
-pca = PCA.PCA9685(i2c)
-pca.frequency = 60
-servo = pca.channels[15]
-
-#from adafruit_servokit import ServoKit
-#import adafruit_motor.servo
+from adafruit_servokit import ServoKit
+import adafruit_motor.servo
 
 #Inicializar pca
 kit = ServoKit(channels=16)
 
+#Inicializar pines
 
+gpio.setup(4, gpio.OUT)
+gpio.setup(17, gpio.OUT)
 
 
 
@@ -365,7 +355,7 @@ def calculo_velocidades(angulo_gi_rad,ubicacion,posicion_muestras):
 
 #Manda el angulo de movimiento al servo usando PCA al servo 15 especificamente
 def servo(ang_servo):
-    servo.duty_cycle = ang_servo
+    kit.servo[15].angle = ang_servo
 
 #extender el brazo del sensor
 def activar():
@@ -407,4 +397,7 @@ ang=0
 
 #arduino_env_info(4)
 
-servo(200)
+servo(80)
+time.sleep(3)
+
+sensar()
