@@ -378,14 +378,14 @@ def sensar():
 
     npk = np.array([[0],[0],[0]])
 
-    while npk[0]+npk[1]+npk[2] == 0:
+    while (npk[0]+npk[1]+npk[2] == 0) or (npk[0] == 255) or (npk[1] ==255) (npk[2] ==255):
         npk = arduino_rec_info()
 
     desactivar()
     time.sleep(3)
     servo(100)
     time.sleep(3)
-    
+
     print(npk)
 
 #Llamado a las funciones
