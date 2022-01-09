@@ -22,6 +22,25 @@ gpio.setup(17, gpio.OUT)
 
 #Funciones
 
+#Inicializar el sistema
+def inicializar():
+    servo(120)
+    time.sleep(3)
+    desactivar()
+    time.sleep(3)
+
+    ubicacion = np.array([0,0])
+
+    ancho, largo = HMI()
+
+    posicion_muestras = muestras(10,ancho,largo)
+
+    
+
+    print("inicializacion completa")
+
+    return ancho,largo,posicion_muestras,ubicacion
+
 #Funcion para el HMI inicialretorna el ancho y largo del mapa
 def HMI():
     # initialize the pygame module
@@ -194,7 +213,7 @@ def arduino_rec_info():
                         #time.sleep(0.1) #wait for arduino to answer
                         while arduino.inWaiting()==0: pass
                         if  arduino.inWaiting()>0: 
-                            #Leer 10 veces el sensor para esperar estabilizacion
+                            
                             answer=arduino.readline()
                             cont = cont + 1
 
@@ -202,7 +221,8 @@ def arduino_rec_info():
                         valor = np.fromstring(answer, dtype=int, sep=',')
                         print(valor)
 
-                        if cont == 10:
+                        #Leer 5 veces el sensor para esperar estabilizacion
+                        if cont == 5:
                             return valor
                 #time.sleep(0.1)
                             #arduino.flushInput() #remove data after reading
@@ -227,7 +247,6 @@ def arduino_env_info(msg):
 
                 except KeyboardInterrupt:
                     print("KeyboardInterrupt has been caught.")
-
 
 #Funcion para mapear los valores
 def map(x, in_min, in_max, out_min, out_max):
@@ -283,18 +302,12 @@ def muestras(cantidad,ancho,largo):
     return posicion_muestras
 
 #Funcion para ir creando el mapa de trabajo
-def mapa_trabajo(ang,ancho,largo,ubicacion):
+def mapa_trabajo(posicion_muestras,ubicacion):
     
     # initialize the pygame module
     pg.init()
     
-    posicion_muestras = muestras(10,ancho,largo)
-
     actualizar_pos(ubicacion,posicion_muestras)
-
-    ang_gi_rad = angulo(ang,ubicacion, posicion_muestras)
-
-    calculo_velocidades(ang_gi_rad,ubicacion,posicion_muestras)
 
     running = True
      
@@ -397,27 +410,7 @@ def sensar():
 
 #Llamado a las funciones
 
-#ubicacion inicial del robot
 
-ubicacion = np.array([0,0])
+ancho,largo,posicion_muestras,ubicacion = inicializar()
 
-#dimensiones del mapa
-#ancho, largo = HMI()
-
-
-#borrar ancho y largo ya que se supone que vienen de la funcion HMI()
-ancho = 10
-largo = 10
-#angulo inicial del robot
-ang=0
-
-#mapa_trabajo(ang,ancho,largo,ubicacion)
-
-#arduino_env_info(4)
-servo(120)
-time.sleep(3)
-desactivar()
-time.sleep(3)
-
-
-sensar()
+mapa_trabajo(ubicacion,posicion_muestras)
