@@ -381,7 +381,7 @@ def sensar():
     time.sleep(3)
 
 
-    npk = np.array([[0,0,0]])
+    npk = np.array([0,0,0])
 
     while (npk[0]+npk[1]+npk[2] == 0) or (npk[0] == 255) or (npk[1] ==255) (npk[2] ==255):
         
