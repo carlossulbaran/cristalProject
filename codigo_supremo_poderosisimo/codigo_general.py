@@ -201,7 +201,7 @@ def arduino_rec_info():
 
                         valor = np.fromstring(answer, dtype=int, sep=',')
                         print(valor)
-                        
+
                         if cont == 10:
                             return valor
                 #time.sleep(0.1)
@@ -384,8 +384,10 @@ def sensar():
     npk = np.array([[0],[0],[0]])
 
     while (npk[0]+npk[1]+npk[2] == 0) or (npk[0] == 255) or (npk[1] ==255) (npk[2] ==255):
+        
+        
         npk = arduino_rec_info()
-        print(npk)
+        print(npk.shape)
 
     desactivar()
     time.sleep(3)
