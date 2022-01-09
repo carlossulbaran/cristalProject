@@ -399,5 +399,3 @@ ang=0
 
 servo(50)
 time.sleep(3)
-
-sensar()
