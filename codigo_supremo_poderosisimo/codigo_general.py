@@ -370,13 +370,13 @@ def desactivar():
 
 #tomar una medicion
 def sensar():
-    servo(80)
+    servo(30)
     time.sleep(3)
     activar()
     time.sleep(3)
     desactivar()
     time.sleep(3)
-    servo(20)
+    servo(100)
     time.sleep(3)
     print("listo")
 
@@ -400,11 +400,7 @@ ang=0
 
 #arduino_env_info(4)
 
-while True:
-    servo(20)
-    time.sleep(3)
+servo(100)
+time.sleep(3)
 
-    servo(50)
-    time.sleep(3)
-
-#sensar()
+sensar()
