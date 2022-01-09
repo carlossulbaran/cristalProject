@@ -200,7 +200,8 @@ def arduino_rec_info():
 
 
                         valor = np.fromstring(answer, dtype=int, sep=',')
-
+                        print(valor)
+                        
                         if cont == 10:
                             return valor
                 #time.sleep(0.1)
