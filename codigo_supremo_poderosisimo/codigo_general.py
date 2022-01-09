@@ -376,7 +376,7 @@ def sensar():
     time.sleep(3)
 
 
-    npk = np.array([[0],[0],[0]]]
+    npk = np.array([[0],[0],[0]])
 
     while npk == [[0],[0],[0]]:
         npk = arduino_rec_info()
