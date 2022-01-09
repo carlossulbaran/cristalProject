@@ -4,12 +4,12 @@ import serial,time
 import numpy as np
 import math as mt
 import RPi.GPIO as gpio
-#import adafruit_pca9685 as PCA
-#from adafruit_servokit import ServoKit
-#import adafruit_motor.servo
+import adafruit_pca9685 as PCA
+from adafruit_servokit import ServoKit
+import adafruit_motor.servo
 
 #Inicializar pca
-#kit = ServoKit(channels=16)
+kit = ServoKit(channels=16)
 
 #Inicializar pines
 gpio.setmode(gpio.BOARD)
@@ -368,6 +368,7 @@ def desactivar():
 
 #tomar una medicion
 def sensar():
+    servo(20)
     activar()
     time.sleep(3)
     desactivar()
@@ -393,4 +394,6 @@ ang=0
 
 #arduino_env_info(4)
 
+servo(80)
+time.sleep(2)
 sensar()
