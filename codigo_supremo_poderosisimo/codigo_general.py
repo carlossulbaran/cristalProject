@@ -193,7 +193,10 @@ def arduino_rec_info():
                         #time.sleep(0.1) #wait for arduino to answer
                         while arduino.inWaiting()==0: pass
                         if  arduino.inWaiting()>0: 
-                            answer=arduino.readline()
+                            #Leer 10 veces el sensor para esperar estabilizacion
+                            for a in np.arange(10):
+                                answer=arduino.readline()
+                                time.sleep(1)
 
                         valor = np.fromstring(answer, dtype=int, sep=',')
 
