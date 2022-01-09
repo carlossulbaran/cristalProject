@@ -197,22 +197,21 @@ def arduino_rec_info():
 #Funcion para enviarla informacion al arduino
 def arduino_env_info(msg):
     if __name__ == '__main__':
-    
-    msg = str(msg)
+        msg = str(msg)
 
-    print('Running. Press CTRL-C to exit.')
-    with serial.Serial("/dev/ttyACM0", 9600, timeout=1) as arduino:
-        time.sleep(0.1) #wait for serial to open
-        if arduino.isOpen():
-            print("{} connected!".format(arduino.port))
-            try:
-                while True:
-                    cmd=input("Enter command : ")
-                    arduino.write(msg.encode())
-                    #time.sleep(0.1) #wait for arduino to answer
+        print('Running. Press CTRL-C to exit.')
+        with serial.Serial("/dev/ttyACM0", 9600, timeout=1) as arduino:
+            time.sleep(0.1) #wait for serial to open
+            if arduino.isOpen():
+                print("{} connected!".format(arduino.port))
+                try:
+                    while True:
+                        cmd=input("Enter command : ")
+                        arduino.write(msg.encode())
+                        #time.sleep(0.1) #wait for arduino to answer
 
-            except KeyboardInterrupt:
-                print("KeyboardInterrupt has been caught.")
+                except KeyboardInterrupt:
+                    print("KeyboardInterrupt has been caught.")
 
 
 #Funcion para mapear los valores
