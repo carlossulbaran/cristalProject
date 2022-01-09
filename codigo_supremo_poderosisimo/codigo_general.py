@@ -3,12 +3,19 @@ import pygame as pg
 import serial,time
 import numpy as np
 import math as mt
-import adafruit_pca9685 as PCA
-from adafruit_servokit import ServoKit
-import adafruit_motor.servo
+import RPi.GPIO as gpio
+#import adafruit_pca9685 as PCA
+#from adafruit_servokit import ServoKit
+#import adafruit_motor.servo
 
 #Inicializar pca
-kit = ServoKit(channels=16)
+#kit = ServoKit(channels=16)
+
+#Inicializar pines
+gpio.setmode(gpio.BOARD)
+gpio.setup(12, gpio.OUT)
+
+
 
 #Funciones
 
@@ -348,6 +355,15 @@ def calculo_velocidades(angulo_gi_rad,ubicacion,posicion_muestras):
 def servo(ang_servo):
     kit.servo[15].angle = ang_servo
 
+#extender el brazo del sensor
+def activar():
+    gpio.output(9, True)
+    gpio.output(13, True)
+
+def desactivar():
+    gpio.output(9, False)
+    gpio.output(13, False)
+
 #Llamado a las funciones
 
 #ubicacion inicial del robot
@@ -366,4 +382,9 @@ ang=0
 
 #mapa_trabajo(ang,ancho,largo,ubicacion)
 
-arduino_env_info(4)
+#arduino_env_info(4)
+
+activar()
+time.sleep(3)
+desactivar()
+time.sleep(3)
