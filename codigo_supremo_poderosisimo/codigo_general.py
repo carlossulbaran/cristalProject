@@ -361,9 +361,17 @@ def activar():
     gpio.output(7, True)
     gpio.output(11, True)
 
+#retraer el brazo
 def desactivar():
     gpio.output(7, False)
     gpio.output(11, False)
+
+#tomar una medicion
+def sensar():
+    activar()
+    time.sleep(3)
+    desactivar()
+    time.sleep(3)
 
 #Llamado a las funciones
 
@@ -385,7 +393,4 @@ ang=0
 
 #arduino_env_info(4)
 
-activar()
-time.sleep(3)
-desactivar()
-time.sleep(3)
+sensar()
