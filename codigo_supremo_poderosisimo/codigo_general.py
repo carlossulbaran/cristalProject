@@ -359,13 +359,13 @@ def servo(ang_servo):
 
 #extender el brazo del sensor
 def activar():
-    gpio.output(7, True)
-    gpio.output(11, True)
+    gpio.output(4, True)
+    gpio.output(17, True)
 
 #retraer el brazo
 def desactivar():
-    gpio.output(7, False)
-    gpio.output(11, False)
+    gpio.output(4, False)
+    gpio.output(17, False)
 
 #tomar una medicion
 def sensar():
