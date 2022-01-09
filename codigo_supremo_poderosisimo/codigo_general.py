@@ -374,6 +374,13 @@ def sensar():
     time.sleep(3)
     activar()
     time.sleep(3)
+
+
+    npk = np.array([[0],[0],[0]]]
+
+    while npk == [[0],[0],[0]]:
+        npk = arduino_rec_info()
+
     desactivar()
     time.sleep(3)
     servo(100)
@@ -399,8 +406,5 @@ ang=0
 #mapa_trabajo(ang,ancho,largo,ubicacion)
 
 #arduino_env_info(4)
-
-servo(100)
-time.sleep(3)
 
 sensar()

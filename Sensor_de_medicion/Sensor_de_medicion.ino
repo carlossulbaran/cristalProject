@@ -6,7 +6,9 @@ const byte fos[] = {0x01, 0x03, 0x00,0x1f,0x00, 0x01, 0xb5, 0xcc};
 const byte pota[] = {0x01, 0x03, 0x00,0x20,0x00, 0x01, 0x85, 0xc0};
 
 byte values[11];
-SoftwareSerial mod(10,11);
+SoftwareSerial mod(50,51);
+
+int npk[3] = {0,0,0};
 
 void setup() {
   
@@ -22,17 +24,14 @@ void loop() {
   p = fosforo();
   delay(250);
   k = potasio();
-  delay(250);
   
-  Serial.print("N: ");
-  Serial.println(n);
+  npk[0] = n;
+  npk[1] = p;
+  npk[2] = k;
+
+  Serial.flush();
   
-  Serial.print("P: ");
-  Serial.println(p);
-  
-  Serial.print("K: ");
-  Serial.println(k);
-  Serial.println();
+  Serial.println((String)npk[0]+","+(String)npk[1]+","+(String)npk[2]);
   delay(3000);
 }
 
