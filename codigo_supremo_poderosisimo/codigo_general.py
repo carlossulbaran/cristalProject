@@ -383,7 +383,7 @@ def sensar():
 
     npk = np.array([0,0,0])
 
-    while (((npk[0]+npk[1]+npk[2]) == 0) or (npk[0] == 255) or (npk[1] ==255) (npk[2] ==255)):
+    while (((npk[0]+npk[1]+npk[2]) == 0) or (npk[0] == 255) or (npk[1] == 255) or (npk[2] == 255)):
         
         npk = arduino_rec_info()
         
@@ -414,7 +414,7 @@ ang=0
 #mapa_trabajo(ang,ancho,largo,ubicacion)
 
 #arduino_env_info(4)
-servo(80)
+servo(120)
 time.sleep(3)
 desactivar()
 time.sleep(3)
