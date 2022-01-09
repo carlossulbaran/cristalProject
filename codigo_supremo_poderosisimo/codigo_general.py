@@ -11,8 +11,8 @@ gpio.setup(7, gpio.OUT)
 gpio.setup(11, gpio.OUT)
 
 import adafruit_pca9685 as PCA
-#from adafruit_servokit import ServoKit
-import adafruit_motor.servo
+from adafruit_servokit import ServoKit
+#import adafruit_motor.servo
 
 #Inicializar pca
 kit = ServoKit(channels=16)
