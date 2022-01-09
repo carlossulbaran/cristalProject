@@ -398,7 +398,7 @@ ang=0
 #mapa_trabajo(ang,ancho,largo,ubicacion)
 
 #arduino_env_info(4)
-
-
+servo(80)
+time.sleep(3)
 
 sensar()
