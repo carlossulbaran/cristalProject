@@ -369,10 +369,12 @@ def desactivar():
 #tomar una medicion
 def sensar():
     servo(20)
+    time.sleep(3)
     activar()
     time.sleep(3)
     desactivar()
     time.sleep(3)
+    print("listo")
 
 #Llamado a las funciones
 
@@ -395,5 +397,6 @@ ang=0
 #arduino_env_info(4)
 
 servo(80)
-time.sleep(2)
+time.sleep(3)
+
 sensar()
