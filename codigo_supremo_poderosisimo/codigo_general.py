@@ -12,7 +12,7 @@ import adafruit_motor.servo
 kit = ServoKit(channels=16)
 
 #Inicializar pines
-gpio.setmode(gpio.BOARD)
+#gpio.setmode(gpio.BOARD)
 gpio.setup(7, gpio.OUT)
 gpio.setup(11, gpio.OUT)
 
