@@ -397,5 +397,7 @@ ang=0
 
 #arduino_env_info(4)
 
-servo(50)
+servo(80)
 time.sleep(3)
+
+sensar()
