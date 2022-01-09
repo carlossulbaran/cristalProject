@@ -400,10 +400,11 @@ ang=0
 
 #arduino_env_info(4)
 
-#servo(20)
-time.sleep(3)
+while True:
+    servo(20)
+    time.sleep(3)
 
-
-servo(50)
+    servo(50)
+    time.sleep(3)
 
 #sensar()
