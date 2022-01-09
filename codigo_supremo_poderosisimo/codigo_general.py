@@ -4,9 +4,14 @@ import serial,time
 import numpy as np
 import math as mt
 import RPi.GPIO as gpio
+import board
+import busio
+import adafruit_pca9685
+i2c = busio.I2C(board.SCL, board.SDA)
+pca = adafruit_pca9685.PCA9685(i2c)
 
-
-from adafruit_servokit import ServoKit
+pca.frequency = 60
+led_channel = pca.channels[14]
 
 
 #Inicializar pca
@@ -400,8 +405,11 @@ ang=0
 #mapa_trabajo(ang,ancho,largo,ubicacion)
 
 #arduino_env_info(4)
-servo(20)
+
+#servo(20)
 time.sleep(3)
 
+led_channel.duty_cycle = 200
 
-sensar()
+
+#sensar()
