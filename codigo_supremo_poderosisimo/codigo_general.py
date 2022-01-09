@@ -5,12 +5,14 @@ import numpy as np
 import math as mt
 import RPi.GPIO as gpio
 
-import adafruit_pca9685 as PCA
+
 from adafruit_servokit import ServoKit
-import adafruit_motor.servo
+
 
 #Inicializar pca
 kit = ServoKit(channels=16)
+kit.servo[15].actuation_range = 180
+kit.servo[15].set_pulse_width_range(125, 512)
 
 #Inicializar pines
 
