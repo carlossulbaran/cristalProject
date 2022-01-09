@@ -187,6 +187,7 @@ def arduino_rec_info():
             if arduino.isOpen():
                 print("{} connected!".format(arduino.port))
                 try:
+                    cont = 0
                     while True:
                         #cmd=input("Enter command : ")
                         #arduino.write(cmd.encode())
@@ -194,14 +195,14 @@ def arduino_rec_info():
                         while arduino.inWaiting()==0: pass
                         if  arduino.inWaiting()>0: 
                             #Leer 10 veces el sensor para esperar estabilizacion
-                            for a in np.arange(10):
-                                answer=arduino.readline()
-                                time.sleep(1)
+                            answer=arduino.readline()
+                            cont = cont + 1
+
 
                         valor = np.fromstring(answer, dtype=int, sep=',')
 
-
-                        return valor
+                        if cont == 10:
+                            return valor
                 #time.sleep(0.1)
                             #arduino.flushInput() #remove data after reading
                 except KeyboardInterrupt:
