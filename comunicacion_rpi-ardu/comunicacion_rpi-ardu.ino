@@ -59,6 +59,13 @@ pinMode(20, OUTPUT);
 
 void loop() {
   // put your main code here, to run repeatedly:
+digitalWrite(6,HIGH);
+digitalWrite(7,LOW);
+digitalWrite(8,HIGH);
+digitalWrite(9,LOW);
+
+
+
   
 x = digitalRead(13);
 y = digitalRead(1);
