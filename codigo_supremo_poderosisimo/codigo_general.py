@@ -30,6 +30,11 @@ gpio.setup(6, gpio.IN)
 
 #Inicializar el sistema
 def inicializar():
+    contd = 0
+    conti = 0
+    m_derv = 0
+    m_izv = 0
+    
     servo(120)
     time.sleep(3)
     desactivar()
@@ -441,8 +446,24 @@ def ultrasonidos():
 
 #Funcion para leer encoders
 def encoders():
-    print(gpio.input(12))
+    m_der = gpio.input(5)
+    m_iz =  gpio.input(6)
+
+    if m_der != m_derv:
+        if m_iz ==1:
+            contd = contd+1
+            m_derv = m_der
     
+    if m_iz != m_izv:
+        if m_iz ==1:
+            conti = conti+1
+            m_izv = m_iz
+    if contd == 20:
+        print("una vuelta derecha")
+        contd = 0
+    if conti == 20:
+        print("una vuelta izquierda")
+        conti = 0
 
 
 #Llamado a las funciones
