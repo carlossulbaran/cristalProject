@@ -219,7 +219,7 @@ def arduino_rec_info():
                             
                             answer=arduino.readline()
                             valor = np.fromstring(answer, dtype=int, sep=',')
-                            if calor.shape[0] == 3:
+                            if valor.shape[0] == 3:
                                 cont = cont + 1
 
 
@@ -438,6 +438,5 @@ def ultrasonidos():
 
 #ancho,largo,posicion_muestras,ubicacion = inicializar()
 #mapa_trabajo(ubicacion,posicion_muestras,ancho,largo)
-while True:
-    ul1 = ultrasonidos()
-    print(ul1)
+ul = ultrasonidos()
+print(ul)
