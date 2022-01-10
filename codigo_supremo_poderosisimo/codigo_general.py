@@ -13,10 +13,13 @@ kit = ServoKit(channels=16)
 #kit.servo[15].actuation_range = 180
 #kit.servo[15].set_pulse_width_range(125, 512)
 
-#Inicializar pines
-
+#Inicializar pines para sacar y meter el brazo del sensor
 gpio.setup(4, gpio.OUT)
 gpio.setup(17, gpio.OUT)
+
+#Inicializar los pines para poder controlar los modos del arduino
+gpio.setup(26, gpio.OUT)
+gpio.setup(19, gpio.OUT)
 
 
 

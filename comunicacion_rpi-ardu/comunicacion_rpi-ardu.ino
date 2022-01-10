@@ -1,3 +1,15 @@
+#include <SoftwareSerial.h>
+
+byte n, p, k;
+const byte nitro[] = {0x01, 0x03, 0x00,0x1e,0x00, 0x01, 0xe4, 0x0c};
+const byte fos[] = {0x01, 0x03, 0x00,0x1f,0x00, 0x01, 0xb5, 0xcc};
+const byte pota[] = {0x01, 0x03, 0x00,0x20,0x00, 0x01, 0x85, 0xc0};
+
+byte values[11];
+SoftwareSerial mod(50,51);
+
+int npk[3] = {0,0,0};
+
 // defines variables
 long duration; // variable for the duration of sound wave travel
 int distance; // variable for the distance measurement
@@ -6,6 +18,10 @@ int lectura[3]; //lectura de los sensores
 
 String msg; // mensaje recibido
 int msg1; // mensaje recibido int
+
+int x;
+int y;
+
 void setup() {
   
   //pines para sensores
@@ -28,21 +44,26 @@ void setup() {
   pinMode(3, OUTPUT);
   pinMode(2, OUTPUT);
 
+  //pin para ponerse modo muestreo, ultrasonidos o motores
+  pinMode(13, INPUT);
+  pinMode(1, INPUT);
 
-  
+
+  mod.begin(9600);
   Serial.begin(9600); // // Serial Communication is starting with 9600 of baudrate speed
 
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
+  
+x = digitalRead(13);
+y = digitalRead(1);
 
+
+//modo ultrasonico
+if (x == 1 && y == 0){
 msg1 = readSerialPort();
-
-  digitalWrite(9, LOW);
-  digitalWrite(6, LOW);
-  digitalWrite(5, LOW);
-  digitalWrite(2, LOW);
 
 
 for(int i = 10; i<13; i++){
@@ -50,6 +71,45 @@ lectura[i-10] = leersonido(i,i+4);
 }
 
 sendData(lectura[0],lectura[1],lectura[2]);
+}
+
+//modo muestreo
+else if (x == 0 && y == 1){
+  n = nitrogeno();
+  delay(250);
+  p = fosforo();
+  delay(250);
+  k = potasio();
+  
+  npk[0] = n;
+  npk[1] = p;
+  npk[2] = k;
+
+  Serial.flush();
+  
+  Serial.println((String)npk[0]+","+(String)npk[1]+","+(String)npk[2]);
+  delay(3000);
+
+}
+
+//modo conducir motores
+else if (x == 1 && y == 1){
+digitalWrite(2,LOW);
+digitalWrite(3,LOW);
+digitalWrite(4,LOW);
+digitalWrite(5,LOW);
+
+digitalWrite(6,LOW);
+digitalWrite(7,LOW);
+digitalWrite(8,LOW);
+digitalWrite(9,LOW);
+
+}
+
+else{
+
+}
+
 }
 
 void sendData(int msg0,int msg1,int msg2) {
@@ -86,4 +146,45 @@ int leersonido(int trigPin,int echoPin){
   distance = duration * 0.034 / 2; // Speed of sound wave divided by 2 (go and back)
 
   return distance;
+}
+byte nitrogeno(){
+ 
+  if (mod.write(nitro,sizeof(nitro))==8){
+    
+    for(byte i=0;i<7;i++){
+      values[i] = mod.read();
+      
+      }
+     
+    }
+  return values[4];
+  
+}
+
+byte fosforo(){
+ 
+  if (mod.write(fos,sizeof(fos))==8){
+    
+    for(byte i=0;i<7;i++){
+      values[i] = mod.read();
+      
+      }
+      
+    }
+  return values[4];
+  
+}
+
+byte potasio(){
+ 
+  if (mod.write(pota,sizeof(pota))==8){
+    
+    for(byte i=0;i<7;i++){
+      values[i] = mod.read();
+      
+      }
+      
+    }
+  return values[4];
+  
 }
