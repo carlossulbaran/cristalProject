@@ -464,7 +464,7 @@ def encoders(contd,conti,m_izv,m_derv):
         print("una vuelta derecha")
         contd = 0
     if conti == 20:
-        print("una vuelta izquierda")
+        #print("una vuelta izquierda")
         conti = 0
     return contd,conti,m_izv,m_derv
 
