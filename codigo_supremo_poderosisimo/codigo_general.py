@@ -223,8 +223,8 @@ def arduino_rec_info():
                                 cont = cont + 1
 
 
+                            print(valor)
                         
-                        print(valor)
 
                         #Leer 5 veces el sensor para esperar estabilizacion
                         if cont == 5:
