@@ -123,6 +123,7 @@ else{
 //enviar data a la RPI
 void sendData(int msg0,int msg1,int msg2) {
   //write data
+  Serial.flush();
   Serial.println((String)msg0+","+(String)msg1+","+(String)msg2);
 } 
 

@@ -218,10 +218,12 @@ def arduino_rec_info():
                         if  arduino.inWaiting()>0: 
                             
                             answer=arduino.readline()
-                            cont = cont + 1
+                            valor = np.fromstring(answer, dtype=int, sep=',')
+                            if calor.shape[0] == 3:
+                                cont = cont + 1
 
 
-                        valor = np.fromstring(answer, dtype=int, sep=',')
+                        
                         print(valor)
 
                         #Leer 5 veces el sensor para esperar estabilizacion
