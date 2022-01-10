@@ -492,4 +492,4 @@ def env_info_motores(vel_der,vel_iz):
 while True:
     x = int(input("x: "))
     y = int(input("y: "))
-    con_arduino(x,y)
+    env_info_motores(x,y)
