@@ -442,5 +442,5 @@ def ultrasonidos():
 
 #ancho,largo,posicion_muestras,ubicacion = inicializar()
 #mapa_trabajo(ubicacion,posicion_muestras,ancho,largo)
-ul = ultrasonidos()
+ul = sensar
 print(ul)
