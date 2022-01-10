@@ -23,7 +23,7 @@ gpio.setup(19, gpio.OUT)
 
 #Inicializar los pines del encoder
 #Motor derecho
-gpio.setup(12, gpio.IN)
+gpio.setup(5, gpio.IN)
 #motor izquierdo
 gpio.setup(6, gpio.IN)
 #Funciones
