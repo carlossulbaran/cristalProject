@@ -391,6 +391,9 @@ def desactivar():
 
 #tomar una medicion
 def sensar():
+    #poner arduino en modo sensar npk
+    con_arduino(0,1)
+
     servo(30)
     time.sleep(3)
     activar()
@@ -409,11 +412,30 @@ def sensar():
     servo(100)
     time.sleep(3)
 
-    print(npk)
+    return(npk)
+
+#Funcion para controlar el funcionamiento del arduino
+def con_arduino(x,y):
+    gpio.output(26, x)
+    gpio.output(19, y)
+
+#funcion para leer los ultrasonidos
+def ultrasonidos():
+
+    #ordenarle al arduino que lea los ultrasonidos
+    con_arduino(1,0)
+    
+    #leer la informacion que manda el arduino
+    info_ultrasonido = arduino_rec_info()
+
+    return info_ultrasonido
+
+
 
 #Llamado a las funciones
 
-
-ancho,largo,posicion_muestras,ubicacion = inicializar()
-
-mapa_trabajo(ubicacion,posicion_muestras,ancho,largo)
+#ancho,largo,posicion_muestras,ubicacion = inicializar()
+#mapa_trabajo(ubicacion,posicion_muestras,ancho,largo)
+while True:
+    ul = ultrasonidos()
+    print(ul)
