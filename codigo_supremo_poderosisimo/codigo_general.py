@@ -50,7 +50,7 @@ def inicializar():
 
     print("inicializacion completa")
 
-    return ancho,largo,posicion_muestras,ubicacion
+    return ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv
 
 #Funcion para el HMI inicialretorna el ancho y largo del mapa
 def HMI():
@@ -445,25 +445,28 @@ def ultrasonidos():
     return info_ultrasonido
 
 #Funcion para leer encoders
-def encoders():
+def encoders(contd,conti,m_izv,m_derv):
     m_der = gpio.input(5)
     m_iz =  gpio.input(6)
 
     if m_der != m_derv:
         if m_iz ==1:
             contd = contd+1
-            m_derv = m_der
+        m_derv = m_der
     
     if m_iz != m_izv:
         if m_iz ==1:
             conti = conti+1
-            m_izv = m_iz
+        m_izv = m_iz
+
+
     if contd == 20:
         print("una vuelta derecha")
         contd = 0
     if conti == 20:
         print("una vuelta izquierda")
         conti = 0
+    return contd,conti,m_izv,m_derv
 
 
 #Llamado a las funciones
@@ -471,6 +474,6 @@ def encoders():
 #ancho,largo,posicion_muestras,ubicacion = inicializar()
 #mapa_trabajo(ubicacion,posicion_muestras,ancho,largo)
 
-
+ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv = inicializar()
 while True:
-    encoders()
+    contd,conti,m_izv,m_derv = encoders(contd,conti,m_izv,m_derv)
