@@ -471,7 +471,7 @@ def encoders(contd,conti,m_izv,m_derv):
 #Funcion para enviar velocidades a los motores
 def env_info_motores(vel_der,vel_iz):
     #ordenarle al arduino setear velocidad a los motores
-    cont_arduino(1,1)
+    con_arduino(1,1)
 
     #crear mensaje
     msg = np.array([vel_der,vel_iz])
