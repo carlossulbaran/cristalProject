@@ -214,16 +214,20 @@ def arduino_rec_info():
                         #cmd=input("Enter command : ")
                         #arduino.write(cmd.encode())
                         #time.sleep(0.1) #wait for arduino to answer
-                        while arduino.inWaiting()==0: pass
+                        while arduino.inWaiting()==0: print("nada")
+                        
                         if  arduino.inWaiting()>0: 
                             
-                            answer=arduino.readline()
+                            answer = arduino.readline()
+
                             valor = np.fromstring(answer, dtype=int, sep=',')
+                            print(valor)
+
                             if valor.shape[0] == 3:
                                 cont = cont + 1
 
 
-                            print(valor)
+                            
                         
 
                         #Leer 5 veces el sensor para esperar estabilizacion
