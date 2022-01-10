@@ -112,12 +112,16 @@ else{
 
 }
 
+
+
+
+//enviar data a la RPI
 void sendData(int msg0,int msg1,int msg2) {
   //write data
   Serial.println((String)msg0+","+(String)msg1+","+(String)msg2);
 } 
 
-
+//Leer data de la RPI
 int readSerialPort() {
   msg = "";
   if (Serial.available()) {
@@ -131,6 +135,7 @@ int readSerialPort() {
   }
 }
 
+//Leer ultrasonido
 int leersonido(int trigPin,int echoPin){
 
     // Clears the trigPin condition
@@ -147,6 +152,8 @@ int leersonido(int trigPin,int echoPin){
 
   return distance;
 }
+
+//leer sensor de npk
 byte nitrogeno(){
  
   if (mod.write(nitro,sizeof(nitro))==8){
