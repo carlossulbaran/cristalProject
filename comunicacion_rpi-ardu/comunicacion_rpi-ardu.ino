@@ -48,6 +48,9 @@ void setup() {
   pinMode(13, INPUT);
   pinMode(1, INPUT);
 
+  
+  pinMode(21, OUTPUT);
+pinMode(20, OUTPUT);
 
   mod.begin(9600);
   Serial.begin(9600); // // Serial Communication is starting with 9600 of baudrate speed
@@ -60,11 +63,13 @@ void loop() {
 x = digitalRead(13);
 y = digitalRead(1);
 
+Serial.println(x);
+Serial.println(y);
+
 
 //modo ultrasonico
-if (x == 1 && y == 0){
+if (x == true && y == false){
 msg1 = readSerialPort();
-
 
 for(int i = 10; i<13; i++){
 lectura[i-10] = leersonido(i,i+4);

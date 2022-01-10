@@ -20,9 +20,16 @@ void loop() {
 for(int i = 10; i<13; i++){
 lectura[i-10] = leersonido(i,i+4);
 }
- 
+
+sendData(lectura[0],lectura[1],lectura[2]);
 }
 
+
+//enviar data a la RPI
+void sendData(int msg0,int msg1,int msg2) {
+  //write data
+  Serial.println((String)msg0+","+(String)msg1+","+(String)msg2);
+} 
 int leersonido(int trigPin,int echoPin){
 
     // Clears the trigPin condition

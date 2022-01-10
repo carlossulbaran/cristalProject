@@ -437,5 +437,5 @@ def ultrasonidos():
 #ancho,largo,posicion_muestras,ubicacion = inicializar()
 #mapa_trabajo(ubicacion,posicion_muestras,ancho,largo)
 while True:
-    ul = ultrasonidos()
-    print(ul)
+    ul1 = ultrasonidos()
+    print(ul1)
