@@ -468,12 +468,28 @@ def encoders(contd,conti,m_izv,m_derv):
         conti = 0
     return contd,conti,m_izv,m_derv
 
+#Funcion para enviar velocidades a los motores
+def env_info_motores(vel_der,vel_iz):
+    #ordenarle al arduino setear velocidad a los motores
+    cont_arduino(1,1)
+
+    #crear mensaje
+    msg = np.array([vel_der,vel_iz])
+
+    #enviarle el mensaje al arduino
+    arduino_env_info(msg)
+
+
 
 #Llamado a las funciones
 
 #ancho,largo,posicion_muestras,ubicacion = inicializar()
 #mapa_trabajo(ubicacion,posicion_muestras,ancho,largo)
 
-ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv = inicializar()
+#ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv = inicializar()
+
+
 while True:
-    contd,conti,m_izv,m_derv = encoders(contd,conti,m_izv,m_derv)
+    x = int(input("x: "))
+    y = int(input("y: "))
+    env_info_motores(x,y)

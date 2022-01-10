@@ -19,8 +19,13 @@ int lectura[3]; //lectura de los sensores
 String msg; // mensaje recibido
 int msg1; // mensaje recibido int
 
+//controlar arduino
 int x;
 int y;
+
+//velocidad motores
+int vel_der;
+int vel_iz;
 
 void setup() {
   
@@ -59,11 +64,6 @@ pinMode(20, OUTPUT);
 
 void loop() {
   // put your main code here, to run repeatedly:
-digitalWrite(6,HIGH);
-digitalWrite(7,LOW);
-digitalWrite(8,HIGH);
-digitalWrite(9,LOW);
-
 
 
   
@@ -106,15 +106,18 @@ else if (x == 0 && y == 1){
 
 //modo conducir motores
 else if (x == 1 && y == 1){
-digitalWrite(2,LOW);
-digitalWrite(3,LOW);
-digitalWrite(4,LOW);
-digitalWrite(5,LOW);
+  
+x = readSerialPort();
 
-digitalWrite(6,LOW);
-digitalWrite(7,LOW);
-digitalWrite(8,LOW);
-digitalWrite(9,LOW);
+analogWrite(2,x);
+analogWrite(3,LOW);
+analogWrite(4,x);
+analogWrite(5,LOW);
+
+analogWrite(6,x);
+analogWrite(7,LOW);
+analogWrite(8,x);
+analogWrite(9,LOW);
 
 }
 
@@ -141,7 +144,7 @@ int readSerialPort() {
     delay(10);
     while (Serial.available() > 0) {
       msg += (char)Serial.read();
-      msg1 = msg.toFloat();
+      msg1 = msg.toInt();
       return msg1;
     }
     Serial.flush();
