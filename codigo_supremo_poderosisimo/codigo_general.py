@@ -441,7 +441,7 @@ def ultrasonidos():
 
 #Funcion para leer encoders
 def encoders():
-    print(GPIO.input(12))
+    print(gpio.input(12))
     
 
 
