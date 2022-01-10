@@ -21,8 +21,11 @@ gpio.setup(17, gpio.OUT)
 gpio.setup(26, gpio.OUT)
 gpio.setup(19, gpio.OUT)
 
-
-
+#Inicializar los pines del encoder
+#Motor derecho
+gpio.setup(12, gpio.IN)
+#motor izquierdo
+gpio.setup(6, gpio.IN)
 #Funciones
 
 #Inicializar el sistema
@@ -436,11 +439,17 @@ def ultrasonidos():
 
     return info_ultrasonido
 
+#Funcion para leer encoders
+def encoders():
+    print(GPIO.input(12))
+    
 
 
 #Llamado a las funciones
 
 #ancho,largo,posicion_muestras,ubicacion = inicializar()
 #mapa_trabajo(ubicacion,posicion_muestras,ancho,largo)
-ul = sensar()
-print(ul)
+
+
+while True:
+    encoders()
