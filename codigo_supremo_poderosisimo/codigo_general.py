@@ -26,6 +26,11 @@ gpio.setup(19, gpio.OUT)
 gpio.setup(5, gpio.IN)
 #motor izquierdo
 gpio.setup(6, gpio.IN)
+
+#controlar el envio de datos
+gpio.setup(18, gpio.OUT)
+
+
 #Funciones
 
 #Inicializar el sistema
@@ -473,8 +478,17 @@ def env_info_motores(vel_der,vel_iz):
     #ordenarle al arduino setear velocidad a los motores
     con_arduino(1,1)
 
+    gpio.output(18, False)
+
     #crear mensaje
-    msg = np.array([vel_der,vel_iz])
+    msg = vel_der
+
+    #enviarle el mensaje al arduino
+    arduino_env_info(msg)
+
+    gpio.output(18, True)
+    #crear mensaje
+    msg = vel_iz
 
     #enviarle el mensaje al arduino
     arduino_env_info(msg)
