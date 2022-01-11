@@ -224,9 +224,7 @@ def arduino_rec_info():
                 try:
                     cont = 0
                     while True:
-                        #cmd=input("Enter command : ")
-                        #arduino.write(cmd.encode())
-                        #time.sleep(0.1) #wait for arduino to answer
+                       
                         while arduino.inWaiting()==0: pass
                         
                         if  arduino.inWaiting()>0: 
@@ -255,7 +253,7 @@ def arduino_rec_info():
 def arduino_env_info(msg):
     if __name__ == '__main__':
         
-
+        msg = str(msg)
         print('Running. Press CTRL-C to exit.')
         with serial.Serial("/dev/ttyACM0", 9600, timeout=1) as arduino:
             time.sleep(0.1) #wait for serial to open
@@ -266,7 +264,7 @@ def arduino_env_info(msg):
                         #cmd=input("Enter command : ")
                         for a in np.arange(5):
                             
-                            arduino.write(msg)
+                            arduino.write(msg.encode())
                             time.sleep(0.1) #wait for arduino to answer
                         break
 
