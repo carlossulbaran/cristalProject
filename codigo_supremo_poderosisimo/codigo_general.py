@@ -447,7 +447,7 @@ def ultrasonidos():
     return info_ultrasonido
 
 #Funcion para leer encoders
-def encoders(contd,conti,m_derv,m_izv):
+def encoders(contd,conti,m_izv,m_derv):
     m_der = gpio.input(5)
     m_iz =  gpio.input(6)
 
