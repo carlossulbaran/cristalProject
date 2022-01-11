@@ -482,6 +482,7 @@ def env_info_motores(vel_der,vel_iz):
 
     #enviarle el mensaje al arduino
     arduino_env_info(msg)
+    time.sleep(0.2)
 
     gpio.output(27, True)
     time.sleep(0.2)
@@ -490,6 +491,7 @@ def env_info_motores(vel_der,vel_iz):
 
     #enviarle el mensaje al arduino
     arduino_env_info(msg)
+    time.sleep(0.2)
 
 
 
