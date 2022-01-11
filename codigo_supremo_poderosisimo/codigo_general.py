@@ -504,6 +504,5 @@ def env_info_motores(vel_der,vel_iz):
 
 #ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv = inicializar()
 
+env_info_motores(500,500)
 
-
-gpio.output(27, True)
