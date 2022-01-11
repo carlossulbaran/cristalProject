@@ -476,7 +476,7 @@ def env_info_motores(vel_der,vel_iz):
     con_arduino(1,1)
 
     gpio.output(27, False)
-
+    time.sleep(0.2)
     #crear mensaje
     msg = vel_der
 
