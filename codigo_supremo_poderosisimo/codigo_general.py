@@ -481,9 +481,8 @@ def env_info_motores(vel_der,vel_iz):
     msg = vel_iz
 
     #enviarle el mensaje al arduino
-    for a in np.arange(3):
-        arduino_env_info(msg)
-        time.sleep(0.1)
+    arduino_env_info(msg)
+    time.sleep(0.1)
 
     gpio.output(27, True)
     time.sleep(0.2)
@@ -491,9 +490,8 @@ def env_info_motores(vel_der,vel_iz):
     msg = vel_der
 
     #enviarle el mensaje al arduino
-    for b in np.arange(3):
-        arduino_env_info(msg)
-        time.sleep(0.2)
+    arduino_env_info(msg)
+    time.sleep(0.2)
 
 
 
