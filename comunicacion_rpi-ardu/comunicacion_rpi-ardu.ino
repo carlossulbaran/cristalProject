@@ -19,9 +19,17 @@ int lectura[3]; //lectura de los sensores
 String msg; // mensaje recibido
 int msg1; // mensaje recibido int
 
+
+int cont;
+
 //controlar arduino
 int x;
 int y;
+int v;
+
+//valores velocidad motores
+int z[2] = {0,0};
+int msgv;
 
 //velocidad motores
 int vel_der;
@@ -51,11 +59,10 @@ void setup() {
 
   //pin para ponerse modo muestreo, ultrasonidos o motores
   pinMode(13, INPUT);
-  pinMode(1, INPUT);
+  pinMode(17, INPUT);
 
-  
-  pinMode(21, OUTPUT);
-pinMode(20, OUTPUT);
+  //controlar el recibimiento de data
+  pinMode(18, INPUT);
 
   mod.begin(9600);
   Serial.begin(9600); // // Serial Communication is starting with 9600 of baudrate speed
@@ -65,19 +72,16 @@ pinMode(20, OUTPUT);
 void loop() {
   // put your main code here, to run repeatedly:
 
-
-  
 x = digitalRead(13);
-y = digitalRead(1);
+y = digitalRead(17);
 
 Serial.println(x);
 Serial.println(y);
 
 
 //modo ultrasonico
-if (x == true && y == false){
-msg1 = readSerialPort();
-
+if (x == 1 && y == 0){
+  
 for(int i = 10; i<13; i++){
 lectura[i-10] = leersonido(i,i+4);
 }
@@ -106,17 +110,35 @@ else if (x == 0 && y == 1){
 
 //modo conducir motores
 else if (x == 1 && y == 1){
-  
-x = readSerialPort();
 
-analogWrite(2,x);
+cont = 0;
+
+while (cont <= 2){
+  
+v = digitalRead(18);
+Serial.println(v);
+Serial.flush();
+
+if (v == 0 && cont == 0){
+z[0] = readSerialPort();
+cont = cont+1;
+}
+
+else if (v == 1 && cont == 1){
+z[1] = readSerialPort();
+cont = cont+1;
+}
+
+}
+
+analogWrite(2,z[0]);
 analogWrite(3,LOW);
-analogWrite(4,x);
+analogWrite(4,z[1]);
 analogWrite(5,LOW);
 
-analogWrite(6,x);
+analogWrite(6,z[0]);
 analogWrite(7,LOW);
-analogWrite(8,x);
+analogWrite(8,z[1]);
 analogWrite(9,LOW);
 
 }
@@ -144,10 +166,10 @@ int readSerialPort() {
     delay(10);
     while (Serial.available() > 0) {
       msg += (char)Serial.read();
-      msg1 = msg.toInt();
-      return msg1;
+      msgv = msg.toInt();
     }
     Serial.flush();
+    return msgv;
   }
 }
 
