@@ -505,4 +505,3 @@ while True:
     x = input("x: ")
     #y = int(input("y: "))
     arduino_env_info(x)
-    time.sleep(5)
