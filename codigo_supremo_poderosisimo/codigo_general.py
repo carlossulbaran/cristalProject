@@ -510,4 +510,5 @@ def env_info_motores(vel_der,vel_iz):
 while True:
     x = input("x: ")
     y = input("y: ")
-    env_info_motores(x,y)
+    for a in np.arange(3):
+        env_info_motores(x,y)
