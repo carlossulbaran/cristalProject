@@ -28,7 +28,7 @@ gpio.setup(5, gpio.IN)
 gpio.setup(6, gpio.IN)
 
 #controlar el envio de datos
-gpio.setup(18, gpio.OUT)
+gpio.setup(27, gpio.OUT)
 
 
 #Funciones
@@ -480,7 +480,7 @@ def env_info_motores(vel_der,vel_iz):
     #ordenarle al arduino setear velocidad a los motores
     con_arduino(1,1)
 
-    gpio.output(18, False)
+    gpio.output(27, False)
 
     #crear mensaje
     msg = vel_der
@@ -488,7 +488,7 @@ def env_info_motores(vel_der,vel_iz):
     #enviarle el mensaje al arduino
     arduino_env_info(msg)
 
-    gpio.output(18, True)
+    gpio.output(27, True)
     #crear mensaje
     msg = vel_iz
 
@@ -506,4 +506,4 @@ def env_info_motores(vel_der,vel_iz):
 
 
 
-gpio.output(18, True)
+gpio.output(27, True)
