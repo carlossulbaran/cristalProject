@@ -506,4 +506,4 @@ def env_info_motores(vel_der,vel_iz):
 
 
 
-env_info_motores(500,500)
+gpio.output(18, True)
