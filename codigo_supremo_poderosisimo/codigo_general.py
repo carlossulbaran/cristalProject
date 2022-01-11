@@ -481,6 +481,7 @@ def env_info_motores(vel_der,vel_iz):
     msg = vel_iz
 
     #enviarle el mensaje al arduino
+    time.sleep(0.2)
     arduino_env_info(msg)
     
 
@@ -490,6 +491,7 @@ def env_info_motores(vel_der,vel_iz):
     msg = vel_der
 
     #enviarle el mensaje al arduino
+    time.sleep(0.2)
     arduino_env_info(msg)
     
 
