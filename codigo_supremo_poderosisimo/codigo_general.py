@@ -265,6 +265,7 @@ def arduino_env_info(msg):
                         for a in np.arange(5):
                             
                             arduino.write(msg.encode())
+                            print(msg.encode())
                             time.sleep(0.1) #wait for arduino to answer
                         break
 
