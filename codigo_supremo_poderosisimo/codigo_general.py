@@ -473,6 +473,7 @@ def encoders(contd,conti,m_izv,m_derv):
 #Funcion para enviar velocidades a los motores
 def env_info_motores(vel_der,vel_iz):
     #mapear los valores para enviarselos al arduino
+
     #ordenarle al arduino setear velocidad a los motores
     con_arduino(1,1)
 
@@ -501,15 +502,15 @@ def env_info_motores(vel_der,vel_iz):
 
 #Llamado a las funciones
 
-#ancho,largo,posicion_muestras,ubicacion = inicializar()
-#mapa_trabajo(ubicacion,posicion_muestras,ancho,largo)
 
-#ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv = inicializar()
+ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv = inicializar()
+mapa_trabajo(ubicacion,posicion_muestras,ancho,largo)
 
 #env_info_motores(500,500)
 
-while True:
-    x = input("x: ")
-    y = input("y: ")
-    for a in np.arange(2):
-        env_info_motores(x,y)
+#while True:
+#    x = input("x: ")
+#    y = input("y: ")
+#    for a in np.arange(2):
+#        env_info_motores(x,y)
+
