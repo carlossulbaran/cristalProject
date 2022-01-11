@@ -265,8 +265,8 @@ def arduino_env_info(msg):
                     while True:
                         #cmd=input("Enter command : ")
                         for a in np.arange(5):
-                            print(msg.encode)
-                            arduino.write(msg.encode())
+                            
+                            arduino.write(msg)
                             time.sleep(0.1) #wait for arduino to answer
                         break
 
