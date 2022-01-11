@@ -266,7 +266,7 @@ def arduino_env_info(msg):
                             
                             arduino.write(msg.encode())
                             print(msg)
-                            time.sleep(0.1) #wait for arduino to answer
+                            time.sleep(1) #wait for arduino to answer
                         break
 
                 except KeyboardInterrupt:
