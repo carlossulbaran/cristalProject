@@ -254,11 +254,11 @@ def arduino_env_info(msg):
     if __name__ == '__main__':
         
         
-        print('Running. Press CTRL-C to exit.')
+        #print('Running. Press CTRL-C to exit.')
         with serial.Serial("/dev/ttyACM0", 9600, timeout=1) as arduino:
             time.sleep(0.1) #wait for serial to open
             if arduino.isOpen():
-                print("{} connected!".format(arduino.port))
+                #print("{} connected!".format(arduino.port))
                 try:
                     while True:
                         #cmd=input("Enter command : ")
