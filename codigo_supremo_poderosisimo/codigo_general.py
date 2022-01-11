@@ -262,11 +262,8 @@ def arduino_env_info(msg):
                 try:
                     while True:
                         #cmd=input("Enter command : ")
-                        for a in np.arange(5):
-                            
                             arduino.write(msg.encode())
                             print(msg.encode())
-                        break
 
                 except KeyboardInterrupt:
                     print("KeyboardInterrupt has been caught.")
