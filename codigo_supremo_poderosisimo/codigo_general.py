@@ -265,8 +265,7 @@ def arduino_env_info(msg):
                         for a in np.arange(5):
                             
                             arduino.write(msg.encode())
-                            print(msg)
-                            time.sleep(1) #wait for arduino to answer
+                            print(msg.encode())
                         break
 
                 except KeyboardInterrupt:
