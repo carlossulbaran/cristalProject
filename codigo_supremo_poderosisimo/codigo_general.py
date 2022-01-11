@@ -216,11 +216,11 @@ def arduino_rec_info():
 
     if __name__ == '__main__':
         
-        print('Running. Press CTRL-C to exit.')
+        #print('Running. Press CTRL-C to exit.')
         with serial.Serial("/dev/ttyACM0", 9600, timeout=1) as arduino:
             time.sleep(0.1) #wait for serial to open
             if arduino.isOpen():
-                print("{} connected!".format(arduino.port))
+                #print("{} connected!".format(arduino.port))
                 try:
                     cont = 0
                     while True:
@@ -472,6 +472,7 @@ def encoders(contd,conti,m_izv,m_derv):
 
 #Funcion para enviar velocidades a los motores
 def env_info_motores(vel_der,vel_iz):
+    #mapear los valores para enviarselos al arduino
     #ordenarle al arduino setear velocidad a los motores
     con_arduino(1,1)
 

@@ -62,7 +62,7 @@ void setup() {
   pinMode(17, INPUT);
 
   //controlar el recibimiento de data
-  pinMode(18, INPUT);
+  pinMode(21, INPUT);
 
   mod.begin(9600);
   Serial.begin(9600); // // Serial Communication is starting with 9600 of baudrate speed
@@ -113,20 +113,22 @@ else if (x == 1 && y == 1){
 
 cont = 0;
 
-while (cont <= 2){
+while (cont < 2){
   
-v = digitalRead(18);
-Serial.println(v);
+v = digitalRead(21);
+
 Serial.flush();
 
 if (v == 0 && cont == 0){
 z[0] = readSerialPort();
 cont = cont+1;
+
 }
 
 else if (v == 1 && cont == 1){
 z[1] = readSerialPort();
 cont = cont+1;
+
 }
 
 }
