@@ -503,5 +503,5 @@ def env_info_motores(vel_der,vel_iz):
 
 while True:
     x = input("x: ")
-    #y = int(input("y: "))
-    arduino_env_info(x)
+    y = int(input("y: "))
+    env_info_motores(x,y)
