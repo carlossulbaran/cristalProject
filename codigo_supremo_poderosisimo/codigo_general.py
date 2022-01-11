@@ -254,7 +254,7 @@ def arduino_rec_info():
 #Funcion para enviarla informacion al arduino
 def arduino_env_info(msg):
     if __name__ == '__main__':
-        msg = str(msg)
+        
 
         print('Running. Press CTRL-C to exit.')
         with serial.Serial("/dev/ttyACM0", 9600, timeout=1) as arduino:
