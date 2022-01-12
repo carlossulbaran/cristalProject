@@ -293,9 +293,11 @@ def map(x, in_min, in_max, out_min, out_max):
 
 #Funcion para actualizar la posicion de cristal en el HMI
 def actualizar_pos(ubicacion,posicion_muestras,ancho,largo,screen1):
+    print(ancho)
+    print(largo)
     ubicacion[0] = map(ubicacion[0],0,ancho,10,ancho*30)
     ubicacion[1] = map(ubicacion[1],0,largo,largo*30,20)
-    a = 0
+    
     #print(ubicacion)
     screen1.fill((0, 0, 0))
 
@@ -317,7 +319,6 @@ def actualizar_pos(ubicacion,posicion_muestras,ancho,largo,screen1):
 #Funcion para crear los puntos de muestras
 def muestras(cantidad,ancho,largo):
     posicion_muestras = np.zeros((cantidad*ancho, 2))
-    print("ok")
     x=ancho/cantidad 
     valorx=x
 
