@@ -542,3 +542,4 @@ while True:
     time.sleep(4)
     servo(120)
     time.sleep(4)
+    print("ok")
