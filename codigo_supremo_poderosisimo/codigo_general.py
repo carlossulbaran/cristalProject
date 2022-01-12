@@ -533,8 +533,12 @@ def env_info_motores(vel_der,vel_iz):
 #Llamado a las funciones
 
 
-ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang = inicializar()
+#ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang = inicializar()
 
-mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang)
+#mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang)
 
-
+while True:
+    servo(0)
+    time.sleep(4)
+    servo(120)
+    time.sleep(4)
