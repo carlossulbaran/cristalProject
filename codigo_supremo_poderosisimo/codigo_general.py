@@ -293,8 +293,7 @@ def map(x, in_min, in_max, out_min, out_max):
 
 #Funcion para actualizar la posicion de cristal en el HMI
 def actualizar_pos(ubicacion,posicion_muestras,ancho,largo,screen1):
-    print(ancho)
-    print(largo)
+    print(posicion_muestras)
     ubicacion[0] = map(ubicacion[0],0,ancho,10,ancho*30)
     ubicacion[1] = map(ubicacion[1],0,largo,largo*30,20)
     
@@ -311,7 +310,7 @@ def actualizar_pos(ubicacion,posicion_muestras,ancho,largo,screen1):
     for a in posicion_muestras:
         a[0] = map(a[0],0,ancho,10,ancho*30)
         a[1] = map(a[1],0,largo,largo*30,20)
-        print(a)
+        
         pg.draw.rect(screen1,(0,0,128),(a[0],a[1],2,2))
 
     pg.display.flip()
