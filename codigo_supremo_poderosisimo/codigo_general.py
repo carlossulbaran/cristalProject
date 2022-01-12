@@ -35,27 +35,46 @@ gpio.setup(27, gpio.OUT)
 
 #Inicializar el sistema
 def inicializar():
+    #contador encoder motor derecho
     contd = 0
+    #contador encoder motor izquierda
     conti = 0
+    #contador motor derecha cambio de estados
     m_derv = 0
+    #contador motor izquierda cambio de estados
     m_izv = 0
+
+    #posicion a la que hay que viajar
+    pos_obj = 0
     
+    #orientacion del robot
+    ang = 0
+    
+    # Parar el robot en caso de que este en movimiento
+    env_info_motores(0,0)
+
+    #poner el servo modo movimiento
     servo(120)
     time.sleep(3)
+
+    #retraer el actuador lineal
     desactivar()
     time.sleep(3)
 
+    # Poner la ubicacion actual del robot como x:0, y:0
     ubicacion = np.array([0,0])
 
+    #Hacer un HMI para capturar el ancho y el largo del campo
     ancho, largo = HMI()
 
+    #Distribuir las muestras a lo largo del campo
     posicion_muestras = muestras(10,ancho,largo)
 
     
 
     print("inicializacion completa")
 
-    return ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv
+    return ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv, pos_obj, ang
 
 #Funcion para el HMI inicialretorna el ancho y largo del mapa
 def HMI():
@@ -321,18 +340,27 @@ def muestras(cantidad,ancho,largo):
     return posicion_muestras
 
 #Funcion para ir creando el mapa de trabajo
-def mapa_trabajo(ubicacion,posicion_muestras,ancho,largo):
+def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang):
     
     # initialize the pygame module
     pg.init()
-    
-    actualizar_pos(ubicacion,posicion_muestras,ancho,largo)
 
     running = True
      
     # main loop
     while running:
         # event handling, gets all event from the event queue
+
+        #Crear el mapa y mostrar actualizacion
+        actualizar_pos(ubicacion,posicion_muestras,ancho,largo)
+
+        pos_obj = int(input("pos_obj = "))
+
+        #calcular el angulo de giro del robot
+        ang_gi_rad = angulo(ang,ubicacion, posicion_muestras,pos_obj)
+        print(ang_gi_rad)
+
+        
         for event in pg.event.get():
             # only do something if the event is of type QUIT
             if event.type == pg.QUIT:
@@ -356,7 +384,7 @@ def twistToVel(vel_li,vel_angu):
         ##!!!!!
 
 #Funcion para calcular el angulo de error
-def angulo(ang,ubicacion, posicion_muestras):
+def angulo(ang,ubicacion, posicion_muestras,pos_obj):
     #ang debe ser la orientacion del robot leida por los nodos de la IMU
 
     #obj es la matriz homogenea para 2 dimenciones (x,y) teniendo el giro en Z 
@@ -365,7 +393,7 @@ def angulo(ang,ubicacion, posicion_muestras):
     obj = np.linalg.inv(obj)
 
     #Target (seria bueno que se le pregunte al usuario el target de manera manual)
-    tar = np.array([[posicion_muestras[0,0]],[posicion_muestras[0,1]],[1]])
+    tar = np.array([[posicion_muestras[pos_obj,0]],[posicion_muestras[pos_obj,1]],[1]])
 
 
     #Calcular la posicion del target con respecto al robot
@@ -473,29 +501,29 @@ def encoders(contd,conti,m_izv,m_derv):
 #Funcion para enviar velocidades a los motores
 def env_info_motores(vel_der,vel_iz):
     #mapear los valores para enviarselos al arduino
+    for a in np.arange(2):
+        #ordenarle al arduino setear velocidad a los motores
+        con_arduino(1,1)
 
-    #ordenarle al arduino setear velocidad a los motores
-    con_arduino(1,1)
+        gpio.output(27, False)
+        time.sleep(0.2)
+        #crear mensaje
+        msg = vel_iz
 
-    gpio.output(27, False)
-    time.sleep(0.2)
-    #crear mensaje
-    msg = vel_iz
+        #enviarle el mensaje al arduino
+        arduino_env_info(msg)
+        time.sleep(0.2)
+        
 
-    #enviarle el mensaje al arduino
-    arduino_env_info(msg)
-    time.sleep(0.2)
-    
+        gpio.output(27, True)
+        time.sleep(0.2)
+        #crear mensaje
+        msg = vel_der
 
-    gpio.output(27, True)
-    time.sleep(0.2)
-    #crear mensaje
-    msg = vel_der
-
-    #enviarle el mensaje al arduino
-    
-    arduino_env_info(msg)
-    time.sleep(0.2)
+        #enviarle el mensaje al arduino
+        
+        arduino_env_info(msg)
+        time.sleep(0.2)
     
 
 
@@ -503,14 +531,8 @@ def env_info_motores(vel_der,vel_iz):
 #Llamado a las funciones
 
 
-ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv = inicializar()
-mapa_trabajo(ubicacion,posicion_muestras,ancho,largo)
+ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang = inicializar()
 
-#env_info_motores(500,500)
+mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang)
 
-#while True:
-#    x = input("x: ")
-#    y = input("y: ")
-#    for a in np.arange(2):
-#        env_info_motores(x,y)
 
