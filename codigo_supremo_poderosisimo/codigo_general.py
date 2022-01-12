@@ -360,7 +360,7 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         ang_gi_rad = angulo(ang,ubicacion, posicion_muestras,pos_obj)
         print(ang_gi_rad)
 
-        
+
         for event in pg.event.get():
             # only do something if the event is of type QUIT
             if event.type == pg.QUIT:
@@ -501,6 +501,8 @@ def encoders(contd,conti,m_izv,m_derv):
 #Funcion para enviar velocidades a los motores
 def env_info_motores(vel_der,vel_iz):
     #mapear los valores para enviarselos al arduino
+    vel_der = str(vel_der)
+    vel_iz = str(vel_iz)
     for a in np.arange(2):
         #ordenarle al arduino setear velocidad a los motores
         con_arduino(1,1)
