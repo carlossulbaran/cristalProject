@@ -292,14 +292,11 @@ def map(x, in_min, in_max, out_min, out_max):
 		return mapped  
 
 #Funcion para actualizar la posicion de cristal en el HMI
-def actualizar_pos(ubicacion,posicion_muestras,ancho,largo):
+def actualizar_pos(ubicacion,posicion_muestras,ancho,largo,screen1):
     ubicacion[0] = map(ubicacion[0],0,ancho,10,ancho*30)
     ubicacion[1] = map(ubicacion[1],0,largo,largo*30,20)
 
     #print(ubicacion)
-    # create a surface on screen that has the size of 240 x 180
-    screen1 = pg.display.set_mode((500,500))
-
     screen1.fill((0, 0, 0))
 
     #dibujar el contorno del mapa
@@ -345,6 +342,9 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
     # initialize the pygame module
     pg.init()
 
+    # create a surface on screen that has the size of 240 x 180
+    screen1 = pg.display.set_mode((500,500))
+
     running = True
      
     # main loop
@@ -352,7 +352,7 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         # event handling, gets all event from the event queue
 
         #Crear el mapa y mostrar actualizacion
-        actualizar_pos(ubicacion,posicion_muestras,ancho,largo)
+        actualizar_pos(ubicacion,posicion_muestras,ancho,largo,screen1)
         x = int(input("x = "))
         y = int(input("y = "))
         ubicacion = np.array([x,y])
