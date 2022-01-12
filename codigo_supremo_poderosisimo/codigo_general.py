@@ -295,7 +295,7 @@ def map(x, in_min, in_max, out_min, out_max):
 def actualizar_pos(ubicacion,posicion_muestras,ancho,largo,screen1):
     ubicacion[0] = map(ubicacion[0],0,ancho,10,ancho*30)
     ubicacion[1] = map(ubicacion[1],0,largo,largo*30,20)
-
+    a = 0
     #print(ubicacion)
     screen1.fill((0, 0, 0))
 
