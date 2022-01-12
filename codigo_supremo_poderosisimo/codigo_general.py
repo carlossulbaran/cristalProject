@@ -353,12 +353,9 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
 
         #Crear el mapa y mostrar actualizacion
         actualizar_pos(ubicacion,posicion_muestras,ancho,largo)
-
-        pos_obj = int(input("pos_obj = "))
-        print(pos_obj)
-        #calcular el angulo de giro del robot
-        ang_gi_rad = angulo(ang,ubicacion, posicion_muestras,pos_obj)
-        print(ang_gi_rad)
+        x = int(input("x = "))
+        y = int(input("y = "))
+        ubicacion = np.array([x,y])
 
 
         for event in pg.event.get():
