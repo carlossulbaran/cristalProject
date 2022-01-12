@@ -354,8 +354,10 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         actualizar_pos(ubicacion,posicion_muestras,ancho,largo,screen1)
         
         #calcular el angulo de error
-        ubicacion = int(input("ubicacion = "))
+        x = int(input("x = "))
+        y = int(input("y = "))
 
+        ubicacion = np.array([x,y])
         ang_gi_rad = angulo(ang,ubicacion, posicion_muestras,pos_obj)
         
 
