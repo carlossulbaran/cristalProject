@@ -355,8 +355,8 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         
         #calcular el angulo de error
         pos_obj = int(input("pos_obj = "))
-        angulo(ang,ubicacion, posicion_muestras,pos_obj)
-
+        ang_gi_rad = angulo(ang,ubicacion, posicion_muestras,pos_obj)
+        print(ang_gi_rad)
 
         for event in pg.event.get():
             # only do something if the event is of type QUIT
