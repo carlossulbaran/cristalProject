@@ -538,6 +538,6 @@ def env_info_motores(vel_der,vel_iz):
 #mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang)
 
 while True:
-    x = int(input("x = "))
-    y = int(input("y = "))
-    env_info_motores(x,y)
+    x = int(input("servo = "))
+    #y = int(input("y = "))
+    servo(x)
