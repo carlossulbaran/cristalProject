@@ -277,7 +277,7 @@ def arduino_env_info(msg):
         with serial.Serial("/dev/ttyACM0", 9600, timeout=1) as arduino:
             time.sleep(0.1) #wait for serial to open
             if arduino.isOpen():
-                #print("{} connected!".format(arduino.port))
+                print("{} connected!".format(arduino.port))
                 try:
                     while True:
                         #cmd=input("Enter command : ")
@@ -421,7 +421,7 @@ def calculo_velocidades(angulo_gi_rad,ubicacion,posicion_muestras):
 
 #Manda el angulo de movimiento al servo usando PCA al servo 15 especificamente
 def servo(ang_servo):
-    print(kit.servo[13].angle)
+    #print(kit.servo[13].angle)
     if kit.servo[13].angle <= 70:
         angn = 40
         for a in np.arange(8):
