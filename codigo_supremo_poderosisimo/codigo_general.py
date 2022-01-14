@@ -350,14 +350,12 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
     while running:
         # event handling, gets all event from the event queue
 
+        # Leer los encoders para actualizar la posicion
+        contd,conti,m_izv,m_derv = encoders()
         #Crear el mapa y mostrar actualizacion
         actualizar_pos(ubicacion,posicion_muestras,ancho,largo,screen1)
         
         #calcular el angulo de error
-        x = int(input("x = "))
-        y = int(input("y = "))
-
-        ubicacion = np.array([x,y])
         ang_gi_rad = angulo(ang,ubicacion, posicion_muestras,pos_obj)
         
 
@@ -533,6 +531,9 @@ def env_info_motores(vel_der,vel_iz):
 #Llamado a las funciones
 
 
-ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang = inicializar()
+#ncho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang = inicializar()
 
-mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang)
+#mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang)
+
+while True:
+    print(time.time())
