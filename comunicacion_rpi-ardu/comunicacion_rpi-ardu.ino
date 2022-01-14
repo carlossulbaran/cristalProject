@@ -117,6 +117,9 @@ while (cont < 2){
   
 v = digitalRead(21);
 
+Serial.println(v);
+Serial.println(cont);
+
 Serial.flush();
 
 if (v == 0 && cont == 0){
