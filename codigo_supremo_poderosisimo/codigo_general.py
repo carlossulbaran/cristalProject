@@ -453,7 +453,7 @@ def sensar():
     #poner arduino en modo sensar npk
     con_arduino(0,1)
 
-    servo(30)
+    servo(40)
     time.sleep(3)
     activar()
     time.sleep(3)
@@ -468,7 +468,7 @@ def sensar():
 
     desactivar()
     time.sleep(3)
-    servo(100)
+    servo(120)
     time.sleep(3)
 
     return(npk)
@@ -553,11 +553,6 @@ def env_info_motores(vel_der,vel_iz):
 #mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang)
 
 while True:
-    x = int(input("servo = "))
-    #y = int(input("y = "))
-    if x ==0:
-        activar()
-        time.sleep(5)
-    else:
-        desactivar()
-        time.sleep(5)
+    x = int(input("x = "))
+    y = int(input("y = "))
+    env_info_motores(x,y)
