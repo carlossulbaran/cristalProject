@@ -536,5 +536,5 @@ def env_info_motores(vel_der,vel_iz):
 #mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang)
 x = time.process_time()
 while True:
-    print(x)
+    print(time.process_time()-x)
     
