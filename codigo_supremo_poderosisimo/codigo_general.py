@@ -422,7 +422,7 @@ def calculo_velocidades(angulo_gi_rad,ubicacion,posicion_muestras):
 #Manda el angulo de movimiento al servo usando PCA al servo 15 especificamente
 def servo(ang_servo):
     print(kit.servo[13].angle)
-    if kit.servo[13].angle <= 40:
+    if kit.servo[13].angle <= 70:
         angn = 40
         for a in np.arange(8):
             kit.servo[13].angle = angn
@@ -430,7 +430,7 @@ def servo(ang_servo):
             time.sleep(0.1)
         return
 
-    if kit.servo[13].angle >= 60:
+    if kit.servo[13].angle >= 710:
         angn = 120
         for a in np.arange(8):
             kit.servo[13].angle = angn
