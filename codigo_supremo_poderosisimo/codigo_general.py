@@ -557,7 +557,7 @@ while True:
     #y = int(input("y = "))
     if x ==0:
         activar()
-        sleep(5)
+        time.sleep(5)
     else:
         desactivar()
         time.sleep(5)
