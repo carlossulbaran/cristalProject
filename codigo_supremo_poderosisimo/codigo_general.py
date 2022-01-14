@@ -428,7 +428,7 @@ def servo(ang_servo):
             kit.servo[13].angle = angn
             angn = angn + 10
             time.sleep(0.1)
-        break
+        return
 
     if kit.servo[13].angle >= 60:
         angn = 120
@@ -436,7 +436,7 @@ def servo(ang_servo):
             kit.servo[13].angle = angn
             angn = angn - 10
             time.sleep(0.1)
-        break
+        return
 
 #extender el brazo del sensor
 def activar():
