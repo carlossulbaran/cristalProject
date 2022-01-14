@@ -555,4 +555,9 @@ def env_info_motores(vel_der,vel_iz):
 while True:
     x = int(input("servo = "))
     #y = int(input("y = "))
-    servo(x)
+    if x ==0:
+        activar()
+        sleep(5)
+    else:
+        desactivar()
+        time.sleep(5)
