@@ -430,7 +430,7 @@ def servo(ang_servo):
             time.sleep(0.1)
         return
 
-    if kit.servo[13].angle >= 710:
+    if kit.servo[13].angle >= 70:
         angn = 120
         for a in np.arange(8):
             kit.servo[13].angle = angn
