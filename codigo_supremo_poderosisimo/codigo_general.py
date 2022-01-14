@@ -421,7 +421,20 @@ def calculo_velocidades(angulo_gi_rad,ubicacion,posicion_muestras):
 
 #Manda el angulo de movimiento al servo usando PCA al servo 15 especificamente
 def servo(ang_servo):
-    kit.servo[13].angle = ang_servo
+    
+    if kit.servo[13].angle == 40:
+        angn = 40
+        for a in np.arange(8):
+            kit.servo[13].angle = angn
+            angn = angn + 10
+            time.sleep(0.1)
+
+    if kit.servo[13].angle == 120:
+        angn = 120
+        for a in np.arange(8):
+            kit.servo[13].angle = angn
+            angn = angn - 10
+            time.sleep(0.1)
 
 #extender el brazo del sensor
 def activar():
