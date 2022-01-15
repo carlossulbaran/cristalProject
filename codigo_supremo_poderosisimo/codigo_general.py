@@ -549,8 +549,8 @@ def calcular_posicion(ubicacion,ang,vel_li):
 
     #calculos de orientacion
     orientacion = ang + w*(t-tv)
-    x = ubicacion[0] + v*cos(orientacion))*(t-tv)
-    y = ubicacion[1] + v*sen(orientacion)*(t-tv)
+    x = ubicacion[0] + ((v*cos(orientacion)*(t-tv))
+    y = ubicacion[1] + (v*sen(orientacion)*(t-tv))
 
     tv=t
 
