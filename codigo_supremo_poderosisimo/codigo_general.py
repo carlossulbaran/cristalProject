@@ -358,7 +358,7 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         ok = int(input("der = "))
         ok1 = int(input("iz = "))
         env_info_motores(ok,ok1)
-        
+
         # Leer los encoders para actualizar las velocidades de las ruedas
         vel_der,vel_iz = encoders()
 
@@ -490,8 +490,8 @@ def ultrasonidos():
 def encoders():
     r = 7.5 #cm radio
     #inicializar los contadores
-    contr = 0
-    contl = 0
+    contd = 0
+    conti = 0
     #tiempo
     t = time.process_time()
 
