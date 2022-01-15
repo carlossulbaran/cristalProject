@@ -59,7 +59,7 @@ def inicializar():
     env_info_motores(0,0)
 
     #poner el servo modo movimiento
-    servo(120)
+    servo(180)
     time.sleep(3)
 
     #retraer el actuador lineal
@@ -355,6 +355,10 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
     while running:
         # event handling, gets all event from the event queue
 
+        ok = int(input("der = "))
+        ok1 = int(input("iz = "))
+        env_info_motores(ok,ok1)
+        
         # Leer los encoders para actualizar las velocidades de las ruedas
         vel_der,vel_iz = encoders()
 
@@ -364,9 +368,6 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         #Crear el mapa y mostrar actualizacion
         actualizar_pos(ubicacion,posicion_muestras,ancho,largo,screen1)
         
-        ok = int(input("der = "))
-        ok1 = int(input("iz = "))
-        env_info_motores(ok,ok1)
 
         #calcular el angulo de error
         #ang_gi_rad = angulo(ang,ubicacion, posicion_muestras,pos_obj)
@@ -449,7 +450,7 @@ def sensar():
     #poner arduino en modo sensar npk
     con_arduino(0,1)
 
-    servo(40)
+    servo(120)
     time.sleep(3)
     activar()
     time.sleep(3)
@@ -464,7 +465,7 @@ def sensar():
 
     desactivar()
     time.sleep(3)
-    servo(120)
+    servo(180)
     time.sleep(3)
 
     return(npk)
@@ -559,11 +560,7 @@ def calcular_posicion(ubicacion,ang,vel_li):
 #Llamado a las funciones
 
 
-#ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu = inicializar()
+ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu = inicializar()
 
-#mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu )
+mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu )
 
-while True:
-    ok = int(input("der = "))
-    servo(ok)
-    
