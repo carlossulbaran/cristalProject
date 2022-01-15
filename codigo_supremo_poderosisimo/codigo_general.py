@@ -363,7 +363,7 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         vel_der,vel_iz = encoders()
 
         #calculas la postura del dispositivo
-        ubicacion,ang,tv = calcular_posicion(vel_der,vel_iz,tv)
+        ubicacion,ang,tv = calcular_posicion(ubicacion,ang,vr,vl)
         
         #Crear el mapa y mostrar actualizacion
         actualizar_pos(ubicacion,posicion_muestras,ancho,largo,screen1)
@@ -543,7 +543,7 @@ def env_info_motores(vel_der,vel_iz):
         time.sleep(0.2)
     
 #Funcion para calcular la posicion del robot
-def calcular_posicion(ubicacion,ang,vel_li):    
+def calcular_posicion(ubicacion,ang,vr,vl):    
     #Distancia entre rueda y rueda
     base = 12
     #Calculos de odometria con el tiempo
