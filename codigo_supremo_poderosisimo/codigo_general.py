@@ -565,6 +565,5 @@ def calcular_posicion(ubicacion,ang,vel_li):
 
 while True:
     ok = int(input("der = "))
-        ok1 = int(input("iz = "))
-        servo(ok,ok1)
+    servo(ok)
     
