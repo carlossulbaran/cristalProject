@@ -495,7 +495,7 @@ def encoders():
     #tiempo
     t = time.process_time()
 
-    while (contd != 20) and (conti != 20):
+    while (contd < 20) and (conti < 20):
         m_der = gpio.input(5)
         m_iz =  gpio.input(6)
 
