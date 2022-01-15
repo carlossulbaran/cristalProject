@@ -35,6 +35,11 @@ gpio.setup(27, gpio.OUT)
 
 #Inicializar el sistema
 def inicializar():
+    vel_angu = 0
+    vel_li = 0
+    #Tiempos para odometria
+    t = 0
+    tv = 0
     #contador encoder motor derecho
     contd = 0
     #contador encoder motor izquierda
@@ -74,7 +79,7 @@ def inicializar():
 
     print("inicializacion completa")
 
-    return ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv, pos_obj, ang
+    return ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv, pos_obj, ang,t,tv,vel_li,vel_angu
 
 #Funcion para el HMI inicialretorna el ancho y largo del mapa
 def HMI():
@@ -336,7 +341,7 @@ def muestras(cantidad,ancho,largo):
     return posicion_muestras
 
 #Funcion para ir creando el mapa de trabajo
-def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang):
+def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu ):
     
     # initialize the pygame module
     pg.init()
@@ -350,13 +355,21 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
     while running:
         # event handling, gets all event from the event queue
 
-        # Leer los encoders para actualizar la posicion
-        contd,conti,m_izv,m_derv = encoders()
+        # Leer los encoders para actualizar las velocidades de las ruedas
+        vel_der,vel_iz = encoders()
+
+        #calculas la postura del dispositivo
+        ubicacion,ang,tv = calcular_posicion(vel_der,vel_iz,tv)
+        
         #Crear el mapa y mostrar actualizacion
         actualizar_pos(ubicacion,posicion_muestras,ancho,largo,screen1)
         
+        ok = int(input("der = "))
+        ok1 = int(input("iz = "))
+        env_info_motores(ok,ok1)
+
         #calcular el angulo de error
-        ang_gi_rad = angulo(ang,ubicacion, posicion_muestras,pos_obj)
+        #ang_gi_rad = angulo(ang,ubicacion, posicion_muestras,pos_obj)
         
 
         for event in pg.event.get():
@@ -473,28 +486,28 @@ def ultrasonidos():
     return info_ultrasonido
 
 #Funcion para leer encoders
-def encoders(contd,conti,m_izv,m_derv):
-    m_der = gpio.input(5)
-    m_iz =  gpio.input(6)
+def encoders():
+    r = 7.5 #cm radio
+    #inicializar los contadores
+    contr = 0
+    contl = 0
+    #tiempo
+    t = time.process_time()
 
-    if m_der != m_derv:
-        if m_iz ==1:
-            contd = contd+1
-        m_derv = m_der
-    
-    if m_iz != m_izv:
-        if m_iz ==1:
-            conti = conti+1
-        m_izv = m_iz
+    while (contl != 20) and (contr != 20):
+        m_der = gpio.input(5)
+        m_iz =  gpio.input(6)
 
+        if m_der == 1 and m_derv == 0:
+            contd=contd+1
+        if m_iz == 1 and m_izv == 0:
+            conti=conti+1   
 
-    if contd == 20:
-        print("una vuelta derecha")
-        contd = 0
-    if conti == 20:
-        #print("una vuelta izquierda")
-        conti = 0
-    return contd,conti,m_izv,m_derv
+    #calcular la velocidad rotacional de las ruedas
+    vr = (((360/contd)/(time.process_time()-t)) * r)/100 #m/s
+    vl = (((360/contl)/(time.process_time()-t)) * r)/100 #m/s
+
+    return vr, vl
 
 #Funcion para enviar velocidades a los motores
 def env_info_motores(vel_der,vel_iz):
@@ -525,16 +538,29 @@ def env_info_motores(vel_der,vel_iz):
         arduino_env_info(msg)
         time.sleep(0.2)
     
+#Funcion para calcular la posicion del robot
+def calcular_posicion(ubicacion,ang,vel_li):    
+    #Distancia entre rueda y rueda
+    base = 12
+    #Calculos de odometria con el tiempo
+    t = time.process_time()
+    w = (vr-vl)/b
+    v = (vr+vl)/2
 
+    #calculos de orientacion
+    orientacion = ang + w*(t-tv)
+    x = ubicacion[0] + v*cos(orientacion))*(t-tv)
+    y = ubicacion[1] + v*sen(orientacion)*(t-tv)
 
+    tv=t
 
+    ubicacion = np.array([x,y])
+    return ubicacion,orientacion,tv
 #Llamado a las funciones
 
 
-#ncho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang = inicializar()
+ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu = inicializar()
 
-#mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang)
-x = time.process_time()
-while True:
-    print(time.process_time()-x)
+mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu )
+
     
