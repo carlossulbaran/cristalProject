@@ -505,6 +505,9 @@ def encoders():
             conti=conti+1   
 
     #calcular la velocidad rotacional de las ruedas
+    print(time.process_time()-t)
+    print(contd)
+    print(conti)
     vr = (((360/contd)/(time.process_time()-t)) * r)/100 #m/s
     vl = (((360/conti)/(time.process_time()-t)) * r)/100 #m/s
 
