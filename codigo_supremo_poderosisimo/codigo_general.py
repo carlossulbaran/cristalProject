@@ -563,7 +563,7 @@ def env_info_motores(vel_der,vel_iz):
 #Funcion para calcular la posicion del robot
 def calcular_posicion(ubicacion,ang,vr,vl):    
     #Distancia entre rueda y rueda
-    base = 12
+    b = 10.635
     #Calculos de odometria con el tiempo
     t = time.process_time()
     w = (vr-vl)/b
