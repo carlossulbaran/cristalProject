@@ -567,6 +567,8 @@ def calcular_posicion(ubicacion,ang,vr,vl):
     b = 0.635 #m
     #Calculos de odometria con el tiempo
     t = time.process_time()
+    print("vr = "+str(vr))
+    print("vl = "+str(vl))
     w = (vr-vl)/b
     v = (vr+vl)/2
 
