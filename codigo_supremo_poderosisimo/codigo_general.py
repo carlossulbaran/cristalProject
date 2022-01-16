@@ -501,7 +501,6 @@ def encoders():
 
     while (contd < 40) and (conti < 40):
         m_der = gpio.input(5)
-        m_iz =  gpio.input(6)
 
         print(m_der)
         print(m_derv)
@@ -509,6 +508,8 @@ def encoders():
             contd = contd + 1
             m_derv = m_der
             print("ok1")
+            
+        m_iz =  gpio.input(6)
         print(m_iz)
         print(m_izv)
         if (m_iz == 1 and m_izv == 0):
