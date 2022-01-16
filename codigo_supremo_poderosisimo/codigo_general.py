@@ -576,6 +576,11 @@ def calcular_posicion(ubicacion,ang,vr,vl):
 #Llamado a las funciones
 
 
-ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu = inicializar()
+#ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu = inicializar()
 
-mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu )
+#mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu )
+while True:
+    m_der = gpio.input(5)
+    m_iz =  gpio.input(6)
+
+    print(m_der)
