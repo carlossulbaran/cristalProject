@@ -368,6 +368,7 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         #Crear el mapa y mostrar actualizacion
         actualizar_pos(ubicacion,posicion_muestras,ancho,largo,screen1)
         
+        print(ubicacion)
 
         #calcular el angulo de error
         #ang_gi_rad = angulo(ang,ubicacion, posicion_muestras,pos_obj)
