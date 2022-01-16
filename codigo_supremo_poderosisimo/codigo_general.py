@@ -519,7 +519,8 @@ def encoders():
     print(conti)
     vr = (((360/contd)/(time.process_time()-t)) * r)/100 #m/s
     vl = (((360/conti)/(time.process_time()-t)) * r)/100 #m/s
-
+    print(vr)
+    print(vl)
     return vr, vl
 
 #Funcion para enviar velocidades a los motores
