@@ -508,10 +508,10 @@ def encoders():
             contd = contd + 1
             m_derv = m_der
             print("ok1")
-            
+
         m_iz =  gpio.input(6)
-        print(m_iz)
-        print(m_izv)
+        #print(m_iz)
+        #print(m_izv)
         if (m_iz == 1 and m_izv == 0):
             conti = conti + 1   
             m_derv = m_der
