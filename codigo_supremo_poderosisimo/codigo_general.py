@@ -363,7 +363,7 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         vel_der,vel_iz = encoders()
 
         #calculas la postura del dispositivo
-        ubicacion,ang,tv = calcular_posicion(ubicacion,ang,vr,vl)
+        ubicacion,ang,tv = calcular_posicion(ubicacion,ang,vel_der,vel_iz)
         
         #Crear el mapa y mostrar actualizacion
         actualizar_pos(ubicacion,posicion_muestras,ancho,largo,screen1)
@@ -502,8 +502,6 @@ def encoders():
     while (contd < 40) and (conti < 40):
         m_der = gpio.input(5)
 
-        print(m_der)
-        print(m_derv)
         if (m_der == 1 and m_derv == 0):
             contd = contd + 1
             m_derv = m_der
@@ -515,8 +513,8 @@ def encoders():
             pass
 
         m_iz =  gpio.input(6)
-        #print(m_iz)
-        #print(m_izv)
+
+
         if (m_iz == 1 and m_izv == 0):
             conti = conti + 1
             m_izv = m_iz
@@ -528,13 +526,9 @@ def encoders():
             pass
 
     #calcular la velocidad rotacional de las ruedas
-    print(time.process_time()-t)
-    print(contd)
-    print(conti)
     vr = (((360/contd)/(time.process_time()-t)) * r)/100 #m/s
     vl = (((360/conti)/(time.process_time()-t)) * r)/100 #m/s
-    print(vr)
-    print(vl)
+
     return vr, vl
 
 #Funcion para enviar velocidades a los motores
