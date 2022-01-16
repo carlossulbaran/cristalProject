@@ -503,13 +503,18 @@ def encoders():
         m_der = gpio.input(5)
         m_iz =  gpio.input(6)
 
+        print(m_der)
+        print(m_derv)
         if (m_der == 1 and m_derv == 0):
             contd = contd + 1
             m_derv = m_der
-
+            print("ok1")
+        print(m_iz)
+        print(m_izv)
         if (m_iz == 1 and m_izv == 0):
             conti = conti + 1   
             m_derv = m_der
+            print("ok2")
 
     #calcular la velocidad rotacional de las ruedas
     print(time.process_time()-t)
