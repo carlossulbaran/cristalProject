@@ -490,6 +490,9 @@ def ultrasonidos():
 def encoders():
     r = 7.5 #cm radio
     #inicializar los contadores
+    m_derv = 0
+    m_izv = 0
+
     contd = 0
     conti = 0
     #tiempo
