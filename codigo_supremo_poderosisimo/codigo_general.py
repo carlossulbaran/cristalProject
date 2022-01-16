@@ -570,12 +570,15 @@ def calcular_posicion(ubicacion,ang,vr,vl):
     w = (vr-vl)/b
     v = (vr+vl)/2
 
+    print("w = "+str(w))
+    print("v = "+str(w))
     #calculos de orientacion
     orientacion = ang + w*(t-time.process_time())
     x = ubicacion[0] + (v*mt.cos(orientacion)*(t - time.process_time()))
     y = ubicacion[1] + (v*mt.sin(orientacion)*(t - time.process_time()))
 
     ubicacion = np.array([x,y])
+    print(ubicacion)
     return ubicacion,orientacion
 
 
