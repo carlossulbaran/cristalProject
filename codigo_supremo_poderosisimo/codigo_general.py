@@ -488,6 +488,7 @@ def ultrasonidos():
 
 #Funcion para leer encoders
 def encoders():
+    time.sleep(1)
     r = 7.5 #cm radio
     #inicializar los contadores
     m_derv = 0
