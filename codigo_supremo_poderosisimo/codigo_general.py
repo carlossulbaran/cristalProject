@@ -501,8 +501,10 @@ def encoders():
 
         if m_der == 1 and m_derv == 0:
             contd=contd+1
+            m_derv = m_der
         if m_iz == 1 and m_izv == 0:
             conti=conti+1   
+            m_derv = m_der
 
     #calcular la velocidad rotacional de las ruedas
     print(time.process_time()-t)
