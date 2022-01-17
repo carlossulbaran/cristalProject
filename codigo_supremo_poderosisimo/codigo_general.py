@@ -350,7 +350,7 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
     screen1 = pg.display.set_mode((500,500))
 
     running = True
-     
+     tv = time.process_time()
     # main loop
     while running:
         # event handling, gets all event from the event queue
