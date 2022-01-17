@@ -359,14 +359,14 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         ang_gi_rad = angulo(ang,ubicacion, posicion_muestras,pos_obj)
 
         #Calcular la velocidad lineal y angular del dispositivo para llegar al target
-        vel_li, vel_gi = calculo_velocidades(angulo_gi_rad,ubicacion,posicion_muestras)
+        vel_li, vel_gi = calculo_velocidades(ang_gi_rad,ubicacion,posicion_muestras)
 
         #Calcular la velocidad de las ruedas
         vr, vl = twistToVel(vel_li,vel_gi)
 
         #setear la velocidad de los motores
         env_info_motores(vr,vl)
-        
+
         # Leer los encoders para actualizar las velocidades de las ruedas
         vel_der,vel_iz = encoders()
 
