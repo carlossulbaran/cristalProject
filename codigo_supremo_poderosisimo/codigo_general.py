@@ -256,7 +256,7 @@ def arduino_rec_info():
                             answer = arduino.readline()
 
                             valor = np.fromstring(answer, dtype=int, sep=',')
-                            print(valor)
+                            #print(valor)
 
                             if valor.shape[0] == 3:
                                 cont = cont + 1
@@ -364,6 +364,8 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         #Calcular la velocidad de las ruedas
         vr, vl = twistToVel(vel_li,vel_gi)
 
+        print("Vr = "+str(vr))
+        print("Vl = "+str(vl))
         #setear la velocidad de los motores
         env_info_motores(vr,vl)
 
@@ -425,7 +427,7 @@ def angulo(ang,ubicacion, posicion_muestras,pos_obj):
     #Calcular la posicion del target con respecto al robot
     pos = obj @ tar
 
-    print(pos)
+    #print(pos)
     #print("La posicion del target con respecto al robot es: (x: %s , y: %s) " %(pos[0,0],pos[1,0]))
 
     #Se calcula el angulo de error (angulo que necesitamos rotar)
@@ -539,15 +541,15 @@ def encoders():
         else:
             pass
 
-    print(t)
-    print(time.process_time())
+    #print(t)
+    #print(time.process_time())
     
     #calcular la velocidad rotacional de las ruedas
     vr = (((18*contd)/(time.process_time()-t)) / r)/100 #m/s
     vl = (((18*conti)/(time.process_time()-t)) / r)/100 #m/s
 
-    print("vr = "+str(vr))
-    print("vl = "+str(vl))
+    #print("vr = "+str(vr))
+    #print("vl = "+str(vl))
     return vr, vl
 
 #Funcion para enviar velocidades a los motores
@@ -603,8 +605,8 @@ def calcular_posicion(ubicacion,ang,vr,vl,t,tv):
     y = ubicacion[1] + (v*mt.cos(orientacion)*(t - tv))
 
     ubicacion = np.array([x,y])
-    print(orientacion)
-    print(ubicacion)
+    #print(orientacion)
+    #print(ubicacion)
 
     tv = time.process_time()
     return ubicacion,orientacion,tv
