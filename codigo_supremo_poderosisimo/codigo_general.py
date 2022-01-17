@@ -408,7 +408,7 @@ def angulo(ang,ubicacion, posicion_muestras,pos_obj):
     #Calcular la posicion del target con respecto al robot
     pos = obj @ tar
 
-    print(obj)
+    print(pos)
     #print("La posicion del target con respecto al robot es: (x: %s , y: %s) " %(pos[0,0],pos[1,0]))
 
     #Se calcula el angulo de error (angulo que necesitamos rotar)
