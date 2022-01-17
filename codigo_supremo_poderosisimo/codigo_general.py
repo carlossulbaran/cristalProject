@@ -521,10 +521,15 @@ def encoders():
         else:
             pass
 
+    print(t)
+    print(time.process_time())
+    
     #calcular la velocidad rotacional de las ruedas
     vr = (((18*contd)/(time.process_time()-t)) * r)/100 #m/s
     vl = (((18*conti)/(time.process_time()-t)) * r)/100 #m/s
 
+    print("vr = "+str(vr))
+    print("vl = "+str(vl))
     return vr, vl
 
 #Funcion para enviar velocidades a los motores
@@ -563,17 +568,17 @@ def calcular_posicion(ubicacion,ang,vr,vl,t,tv):
     #Calculos de odometria con el tiempo
     t = time.process_time()
 
-    print("vr = "+str(vr))
-    print("vl = "+str(vl))
+    #print("vr = "+str(vr))
+    #print("vl = "+str(vl))
 
     w = (vl-vr)/b   #rad/s
     v = (vr+vl)/2   #m/s
 
-    print("w = "+str(w))
-    print("v = "+str(v))
-    print("sdelta t = "+str(t - tv))
-    print("t = "+str(t))
-    print("tv = "+str(tv))
+    #print("w = "+str(w))
+    #print("v = "+str(v))
+    #print("sdelta t = "+str(t - tv))
+    #print("t = "+str(t))
+    #print("tv = "+str(tv))
     #calculos de orientacion
     orientacion = ang + w*(t-tv)
     x = ubicacion[0] + (v*mt.sin(orientacion)*(t - tv))
