@@ -563,6 +563,7 @@ def calcular_posicion(ubicacion,ang,vr,vl):
     b = 0.635 #m
     #Calculos de odometria con el tiempo
     t = time.process_time()
+
     print("vr = "+str(vr))
     print("vl = "+str(vl))
     w = (vr-vl)/b
@@ -571,14 +572,16 @@ def calcular_posicion(ubicacion,ang,vr,vl):
     print("w = "+str(w))
     print("v = "+str(v))
     #calculos de orientacion
-    orientacion = ang + w*(t-time.process_time())
-    x = ubicacion[0] + (v*mt.cos(-orientacion)*(t - time.process_time()))
-    y = ubicacion[1] + (v*mt.sin(-orientacion)*(t - time.process_time()))
+    orientacion = ang + w*(t-tv)
+    x = ubicacion[0] + (v*mt.cos(-orientacion)*(t - tv))
+    y = ubicacion[1] + (v*mt.sin(-orientacion)*(t - tv))
 
     ubicacion = np.array([x,y])
     print(orientacion)
     print(ubicacion)
-    return ubicacion,orientacion
+
+    tv = time.process_time()
+    return ubicacion,orientacion,tv
 
 
 #Llamado a las funciones
