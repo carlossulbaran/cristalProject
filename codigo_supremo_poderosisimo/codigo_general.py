@@ -596,3 +596,7 @@ ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,t
 #mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu )
 
 print(posicion_muestras)
+
+x = angulo(ang,ubicacion, posicion_muestras,0)
+
+print(x)
