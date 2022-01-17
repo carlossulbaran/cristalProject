@@ -639,6 +639,6 @@ def calcular_posicion(ubicacion,ang,vr,vl,t,tv):
 
 while True:
     servo(0)
-    time.sleep(5)
+    time.sleep(3)
     servo(160)
-    time.sleep(5)
+    time.sleep(3)
