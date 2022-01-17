@@ -359,7 +359,7 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         vel_der,vel_iz = encoders()
 
         #calculas la postura del dispositivo
-        ubicacion,ang = calcular_posicion(ubicacion,ang,vel_der,vel_iz)
+        ubicacion,ang,tv = calcular_posicion(ubicacion,ang,vel_der,vel_iz,t,tv)
         
         #Crear el mapa y mostrar actualizacion
         actualizar_pos(ubicacion,posicion_muestras,ancho,largo,screen1)
