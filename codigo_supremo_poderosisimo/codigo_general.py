@@ -374,6 +374,8 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         # Leer los encoders para actualizar las velocidades de las ruedas
         vel_der,vel_iz = encoders()
 
+        print("vel_der = "+str(vel_der))
+        print("vel_iz = "+str(vel_iz))
         #calculas la postura del dispositivo
         ubicacion,ang,tv = calcular_posicion(ubicacion,ang,vel_der,vel_iz,t,tv)
         
@@ -399,26 +401,26 @@ def twistToVel(vel_li,vel_angu):
 		
         dx = vel_li     #dx = v lineal
         dr = -vel_angu   #dr = v angular
-        print("v_li = "+str(dx))
-        print("v_gi = "+str(dr))
+        #print("v_li = "+str(dx))
+        #print("v_gi = "+str(dr))
 
         right = ((2.0 * dx) + (dr * w)) / (2*r) #calculo rueda derecha
         left = ((2.0 * dx) - (dr * w)) / (2*r)  #calculo rueda izquierda
 
-        print("vr = "+str(right))
-        print("vl = "+str(left))
+        #print("vr = "+str(right))
+        #print("vl = "+str(left))
 		#Se debe mapear las velocidades para enviar la info al arduino
         
         right = map(right, 0, 10, 0, 255)
         left = map(left, 0, 10, 0, 255)
-        print("vr = "+str(right))
-        print("vl = "+str(left))
+        #print("vr = "+str(right))
+        #print("vl = "+str(left))
         #Filtrar para evitar valores excesivos
         right = min(max(0,right),255)
         left = min(max(0,left),255)
 
-        print("vr = "+str(right))
-        print("vl = "+str(left))
+        #print("vr = "+str(right))
+        #print("vl = "+str(left))
         return right, left
 
 #Funcion para calcular el angulo de error
