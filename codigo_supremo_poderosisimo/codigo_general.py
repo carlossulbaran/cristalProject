@@ -408,11 +408,11 @@ def angulo(ang,ubicacion, posicion_muestras,pos_obj):
     #Calcular la posicion del target con respecto al robot
     pos = obj @ tar
 
-    #print(obj)
+    print(obj)
     #print("La posicion del target con respecto al robot es: (x: %s , y: %s) " %(pos[0,0],pos[1,0]))
 
     #Se calcula el angulo de error (angulo que necesitamos rotar)
-    ang_gi_rad = mt.atan2(pos[1,0],pos[0,0])
+    ang_gi_rad = mt.atan2(pos[0,0],pos[1,0])
     ang_gi = ang_gi_rad* (180/3.14)
 
     return ang_gi_rad
