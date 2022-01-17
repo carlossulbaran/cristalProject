@@ -571,6 +571,7 @@ def calcular_posicion(ubicacion,ang,vr,vl,t,tv):
 
     print("w = "+str(w))
     print("v = "+str(v))
+    print("sdelta t = "+str(t - tv))
     #calculos de orientacion
     orientacion = ang + w*(t-tv)
     x = ubicacion[0] + (v*mt.sin(orientacion)*(t - tv))
