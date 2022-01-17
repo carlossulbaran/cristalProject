@@ -597,6 +597,6 @@ ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,t
 
 print(posicion_muestras)
 
-x = angulo(ang,ubicacion, posicion_muestras,1)
+x = angulo(ang,ubicacion, posicion_muestras,2)
 print(ubicacion)
 print(x)
