@@ -280,9 +280,9 @@ def arduino_env_info(msg):
         
         #print('Running. Press CTRL-C to exit.')
         with serial.Serial("/dev/ttyACM0", 9600, timeout=1) as arduino:
-            time.sleep(0.1) #wait for serial to open
+            #time.sleep(0.1) #wait for serial to open
             if arduino.isOpen():
-                print("{} connected!".format(arduino.port))
+                #print("{} connected!".format(arduino.port))
                 try:
                     while True:
                         #cmd=input("Enter command : ")
@@ -485,7 +485,7 @@ def ultrasonidos():
 
 #Funcion para leer encoders
 def encoders():
-    time.sleep(1)
+    #time.sleep(1)
     r = 7.5 #cm radio
     #inicializar los contadores
     m_derv = 0
