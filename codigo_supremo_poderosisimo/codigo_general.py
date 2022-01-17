@@ -638,7 +638,6 @@ def calcular_posicion(ubicacion,ang,vr,vl,t,tv):
 #mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu )
 
 while True:
-    servo(0)
-    time.sleep(3)
-    servo(160)
-    time.sleep(3)
+    x = int(input("servo = "))
+
+    servo(x)
