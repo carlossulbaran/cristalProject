@@ -358,7 +358,7 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         #calcular el angulo de error
         ang_gi_rad = angulo(ang,ubicacion, posicion_muestras,pos_obj)
 
-        #print("and = "+str(ang_gi_rad))
+        print("ang = "+str(ang_gi_rad))
         #Calcular la velocidad lineal y angular del dispositivo para llegar al target
         vel_li, vel_gi = calculo_velocidades(ang_gi_rad,ubicacion,posicion_muestras)
         #print("vel_li = "+str(vel_li))
