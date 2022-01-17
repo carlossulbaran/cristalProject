@@ -355,10 +355,6 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
     while running:
         # event handling, gets all event from the event queue
 
-        ok = int(input("der = "))
-        ok1 = int(input("iz = "))
-        env_info_motores(ok,ok1)
-
         # Leer los encoders para actualizar las velocidades de las ruedas
         vel_der,vel_iz = encoders()
 
@@ -589,5 +585,9 @@ def calcular_posicion(ubicacion,ang,vr,vl):
 
 
 ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu = inicializar()
+
+ok = int(input("der = "))
+ok1 = int(input("iz = "))
+env_info_motores(ok,ok1)
 
 mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu )
