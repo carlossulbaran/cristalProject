@@ -355,6 +355,18 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
     while running:
         # event handling, gets all event from the event queue
 
+        #calcular el angulo de error
+        ang_gi_rad = angulo(ang,ubicacion, posicion_muestras,pos_obj)
+
+        #Calcular la velocidad lineal y angular del dispositivo para llegar al target
+        vel_li, vel_gi = calculo_velocidades(angulo_gi_rad,ubicacion,posicion_muestras)
+
+        #Calcular la velocidad de las ruedas
+        vr, vl = twistToVel(vel_li,vel_gi)
+
+        #setear la velocidad de los motores
+        env_info_motores(vr,vl)
+        
         # Leer los encoders para actualizar las velocidades de las ruedas
         vel_der,vel_iz = encoders()
 
@@ -365,8 +377,6 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         actualizar_pos(ubicacion,posicion_muestras,ancho,largo,screen1)
         
 
-        #calcular el angulo de error
-        #ang_gi_rad = angulo(ang,ubicacion, posicion_muestras,pos_obj)
         
 
         for event in pg.event.get():
@@ -385,11 +395,19 @@ def twistToVel(vel_li,vel_angu):
 		
         dx = vel_li     #dx = v lineal
         dr = vel_angu   #dr = v angular
-        right = (2.0 * dx + dr * w) / (2*r)
-        left = (2.0 * dx - dr * w) / (2*r)
-		##!!!!!
+        right = (2.0 * dx + dr * w) / (2*r) #calculo rueda derecha
+        left = (2.0 * dx - dr * w) / (2*r)  #calculo rueda izquierda
+
 		#Se debe mapear las velocidades para enviar la info al arduino
-        ##!!!!!
+
+        right = map(right, 0, 0.9, 0, 200)
+        left = map(left, 0, 0.9, 0, 200)
+
+        #Filtrar para evitar valores excesivos
+        right = min(max(0,right),200)
+        left = min(max(0,left),200)
+
+        return right, left
 
 #Funcion para calcular el angulo de error
 def angulo(ang,ubicacion, posicion_muestras,pos_obj):
@@ -597,9 +615,6 @@ def calcular_posicion(ubicacion,ang,vr,vl,t,tv):
 
 ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu = inicializar()
 
-ok = int(input("der = "))
-ok1 = int(input("iz = "))
-env_info_motores(ok,ok1)
 
 mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu )
 
