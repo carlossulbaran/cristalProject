@@ -522,8 +522,8 @@ def encoders():
             pass
 
     #calcular la velocidad rotacional de las ruedas
-    vr = (((360/contd)/(time.process_time()-t)) * r)/100 #m/s
-    vl = (((360/conti)/(time.process_time()-t)) * r)/100 #m/s
+    vr = (((18*contd)/(time.process_time()-t)) * r)/100 #m/s
+    vl = (((18*conti)/(time.process_time()-t)) * r)/100 #m/s
 
     return vr, vl
 
