@@ -402,7 +402,7 @@ def angulo(ang,ubicacion, posicion_muestras,pos_obj):
     obj = np.linalg.inv(obj)
 
     #Target (seria bueno que se le pregunte al usuario el target de manera manual)
-    tar = np.array([[posicion_muestras[pos_obj,0]],[posicion_muestras[pos_obj,1]],[1]])
+    tar = np.array([[posicion_muestras[pos_obj,1]],[posicion_muestras[pos_obj,0]],[1]])
 
 
     #Calcular la posicion del target con respecto al robot
