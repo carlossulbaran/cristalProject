@@ -341,7 +341,7 @@ def muestras(cantidad,ancho,largo):
     return posicion_muestras
 
 #Funcion para ir creando el mapa de trabajo
-def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu,t,tv):
+def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,vel_li,vel_angu,t,tv):
     
     # initialize the pygame module
     pg.init()
@@ -593,4 +593,4 @@ ok = int(input("der = "))
 ok1 = int(input("iz = "))
 env_info_motores(ok,ok1)
 
-mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu,t,tv)
+mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,vel_li,vel_angu,t,tv)
