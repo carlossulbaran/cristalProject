@@ -399,6 +399,8 @@ def twistToVel(vel_li,vel_angu):
 		
         dx = vel_li     #dx = v lineal
         dr = -vel_angu   #dr = v angular
+        print("v_li = "+str(dx))
+        print("v_gi = "+str(dr))
 
         right = ((2.0 * dx) + (dr * w)) / (2*r) #calculo rueda derecha
         left = ((2.0 * dx) - (dr * w)) / (2*r)  #calculo rueda izquierda
