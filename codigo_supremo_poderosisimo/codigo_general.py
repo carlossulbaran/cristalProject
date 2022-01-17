@@ -398,10 +398,10 @@ def twistToVel(vel_li,vel_angu):
         r = 0.075       #Radio de las ruedas
 		
         dx = vel_li     #dx = v lineal
-        dr = vel_angu   #dr = v angular
+        dr = -vel_angu   #dr = v angular
 
-        right = (2.0 * dx + dr * w) / (2*r) #calculo rueda derecha
-        left = (2.0 * dx - dr * w) / (2*r)  #calculo rueda izquierda
+        right = ((2.0 * dx) + (dr * w)) / (2*r) #calculo rueda derecha
+        left = ((2.0 * dx) - (dr * w)) / (2*r)  #calculo rueda izquierda
 
         print("vr = "+str(right))
         print("vl = "+str(left))
