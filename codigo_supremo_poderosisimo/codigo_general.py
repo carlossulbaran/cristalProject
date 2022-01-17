@@ -409,13 +409,13 @@ def twistToVel(vel_li,vel_angu):
         print("vl = "+str(left))
 		#Se debe mapear las velocidades para enviar la info al arduino
         
-        right = map(right, 0, 0.9, 0, 200)
-        left = map(left, 0, 0.9, 0, 200)
+        right = map(right, 0, 10, 0, 255)
+        left = map(left, 0, 10, 0, 255)
         print("vr = "+str(right))
         print("vl = "+str(left))
         #Filtrar para evitar valores excesivos
-        right = min(max(0,right),200)
-        left = min(max(0,left),200)
+        right = min(max(0,right),255)
+        left = min(max(0,left),255)
 
         print("vr = "+str(right))
         print("vl = "+str(left))
