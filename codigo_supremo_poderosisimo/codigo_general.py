@@ -563,11 +563,14 @@ def calcular_posicion(ubicacion,ang,vr,vl,t,tv):
     #Calculos de odometria con el tiempo
     t = time.process_time()
 
+    print("vr = "+str(vr))
+    print("vl = "+str(vl))
+
     w = (vl-vr)/b   #rad/s
     v = (vr+vl)/2   #m/s
 
-    #print("w = "+str(w))
-    #print("v = "+str(v))
+    print("w = "+str(w))
+    print("v = "+str(v))
     print("sdelta t = "+str(t - tv))
     print("t = "+str(t))
     print("tv = "+str(tv))
