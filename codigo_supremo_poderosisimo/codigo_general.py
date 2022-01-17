@@ -394,11 +394,12 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
 
 #Funcion para convertir la velocidad y la velocidad angular en velocidad de las ruedas
 def twistToVel(vel_li,vel_angu):
-        w = 0.33        #Distancia entre ruedas
-        r = 0.038       #Radio de las ruedas
+        w = 0.635       #Distancia entre ruedas
+        r = 0.075       #Radio de las ruedas
 		
         dx = vel_li     #dx = v lineal
         dr = vel_angu   #dr = v angular
+
         right = (2.0 * dx + dr * w) / (2*r) #calculo rueda derecha
         left = (2.0 * dx - dr * w) / (2*r)  #calculo rueda izquierda
 
@@ -444,12 +445,12 @@ def calculo_velocidades(angulo_gi_rad,ubicacion,posicion_muestras):
     #print(angulo_gi_rad)
 
     #k es una constante para calibrar las ecuaciones
-    k=0.5
+    k=0.4
     #calculo de distancias entre el robot y el target
     d = mt.sqrt(((posicion_muestras[0,0]-ubicacion[0])**2)+((posicion_muestras[0,1]-ubicacion[1])**2))
 
-    vel_gi = angulo_gi_rad/2
-    vel_li = k * d
+    vel_gi = angulo_gi_rad/2 #rad/s
+    vel_li = k * d           #m/s
     
     return vel_li, vel_gi
 
