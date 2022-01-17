@@ -79,7 +79,7 @@ def inicializar():
 
     print("inicializacion completa")
 
-    return ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv, pos_obj, ang,t,tv,vel_li,vel_angu,t,tv
+    return ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv, pos_obj, ang,t,tv,vel_li,vel_angu
 
 #Funcion para el HMI inicialretorna el ancho y largo del mapa
 def HMI():
@@ -341,7 +341,7 @@ def muestras(cantidad,ancho,largo):
     return posicion_muestras
 
 #Funcion para ir creando el mapa de trabajo
-def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,vel_li,vel_angu,t,tv):
+def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu ):
     
     # initialize the pygame module
     pg.init()
@@ -359,7 +359,7 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         vel_der,vel_iz = encoders()
 
         #calculas la postura del dispositivo
-        ubicacion,ang,tv = calcular_posicion(ubicacion,ang,vel_der,vel_iz,t,tv)
+        ubicacion,ang = calcular_posicion(ubicacion,ang,vel_der,vel_iz)
         
         #Crear el mapa y mostrar actualizacion
         actualizar_pos(ubicacion,posicion_muestras,ancho,largo,screen1)
@@ -593,4 +593,4 @@ ok = int(input("der = "))
 ok1 = int(input("iz = "))
 env_info_motores(ok,ok1)
 
-mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,vel_li,vel_angu,t,tv)
+mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu )
