@@ -358,16 +358,16 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         #calcular el angulo de error
         ang_gi_rad = angulo(ang,ubicacion, posicion_muestras,pos_obj)
 
-        print("and = "+str(ang_gi_rad))
+        #print("and = "+str(ang_gi_rad))
         #Calcular la velocidad lineal y angular del dispositivo para llegar al target
         vel_li, vel_gi = calculo_velocidades(ang_gi_rad,ubicacion,posicion_muestras)
-        print("vel_li = "+str(vel_li))
-        print("vel_gi = "+str(vel_gi))
+        #print("vel_li = "+str(vel_li))
+        #print("vel_gi = "+str(vel_gi))
         #Calcular la velocidad de las ruedas
         vr, vl = twistToVel(vel_li,vel_gi)
 
-        print("Vr = "+str(vr))
-        print("Vl = "+str(vl))
+        #print("Vr = "+str(vr))
+        #print("Vl = "+str(vl))
         #setear la velocidad de los motores
         env_info_motores(vr,vl)
 
@@ -403,15 +403,20 @@ def twistToVel(vel_li,vel_angu):
         right = (2.0 * dx + dr * w) / (2*r) #calculo rueda derecha
         left = (2.0 * dx - dr * w) / (2*r)  #calculo rueda izquierda
 
+        print("vr = "+str(right))
+        print("vl = "+str(left))
 		#Se debe mapear las velocidades para enviar la info al arduino
-
+        
         right = map(right, 0, 0.9, 0, 200)
         left = map(left, 0, 0.9, 0, 200)
-
+        print("vr = "+str(right))
+        print("vl = "+str(left))
         #Filtrar para evitar valores excesivos
         right = min(max(0,right),200)
         left = min(max(0,left),200)
 
+        print("vr = "+str(right))
+        print("vl = "+str(left))
         return right, left
 
 #Funcion para calcular el angulo de error
