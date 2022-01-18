@@ -58,9 +58,11 @@ def inicializar():
     # Parar el robot en caso de que este en movimiento
     env_info_motores(0,0)
 
-    #poner el servo modo movimiento
-    servo(180)
+    #mover el servo para tenerlo localizado
+    servo(0)
     time.sleep(3)
+
+    mov_servo(70)
 
     #retraer el actuador lineal
     desactivar()
@@ -81,6 +83,20 @@ def inicializar():
 
     return ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv, pos_obj, ang,t,tv,vel_li,vel_angu
 
+def mov_servo(ang_servo):
+    x = kit.servo[13].angle
+
+    if x < ang_servo:
+        while kit.servo[13].angle < ang_servo:
+            kit.servo[13].angle = kit.servo[13].angle + 5
+            time.sleep(2)
+
+    elif x > ang_servo:
+        while kit.servo[13].angle < ang_servo:
+            kit.servo[13].angle = kit.servo[13].angle - 5
+            time.sleep(2)
+    else:
+        pass
 #Funcion para el HMI inicialretorna el ancho y largo del mapa
 def HMI():
     # initialize the pygame module
@@ -640,4 +656,4 @@ def calcular_posicion(ubicacion,ang,vr,vl,t,tv):
 while True:
     x = int(input("servo = "))
 
-    servo(x)
+    mov_servo(x)
