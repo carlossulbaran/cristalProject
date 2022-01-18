@@ -75,7 +75,7 @@ def inicializar():
     ancho, largo = HMI()
 
     #Distribuir las muestras a lo largo del campo
-    posicion_muestras = muestras(10,ancho,largo)
+    posicion_muestras = muestras(3,ancho,largo)
 
     
 
@@ -654,9 +654,4 @@ def calcular_posicion(ubicacion,ang,vr,vl,t,tv):
 ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu = inicializar()
 
 
-#mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu )
-
-while True:
-    x = int(input("servo = "))
-
-    mov_servo(x)
+mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu )
