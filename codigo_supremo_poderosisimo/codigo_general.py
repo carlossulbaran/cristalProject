@@ -62,7 +62,7 @@ def inicializar():
     servo(0)
     time.sleep(3)
 
-    #mov_servo(70)
+    mov_servo(70)
 
     #retraer el actuador lineal
     desactivar()
@@ -85,21 +85,22 @@ def inicializar():
 
 def mov_servo(ang_servo):
     x = kit.servo[13].angle
-    print(x)
-    print(ang_servo)
+    #print(x)
+    #print(ang_servo)
     if x < ang_servo:
         while kit.servo[13].angle < ang_servo:
             kit.servo[13].angle = kit.servo[13].angle + 5
             time.sleep(0.08)
-        print("ok1")
+        #print("ok1")
 
     elif x > ang_servo:
         while kit.servo[13].angle > ang_servo:
             kit.servo[13].angle = kit.servo[13].angle - 5
             time.sleep(0.08)
-        print("ok2")
+        #print("ok2")
     else:
-        print("ok3")
+        #print("ok3")
+        pass
 #Funcion para el HMI inicialretorna el ancho y largo del mapa
 def HMI():
     # initialize the pygame module
@@ -502,8 +503,8 @@ def sensar():
     #poner arduino en modo sensar npk
     con_arduino(0,1)
 
-    servo(120)
-    time.sleep(3)
+    mov_servo(10)
+    
     activar()
     time.sleep(3)
 
@@ -517,10 +518,9 @@ def sensar():
 
     desactivar()
     time.sleep(3)
-    servo(180)
-    time.sleep(3)
+    servo(70)
 
-    return(npk)
+    return npk
 
 #Funcion para controlar el funcionamiento del arduino
 def con_arduino(x,y):
