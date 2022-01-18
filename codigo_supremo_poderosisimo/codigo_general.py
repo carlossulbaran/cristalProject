@@ -653,5 +653,5 @@ def calcular_posicion(ubicacion,ang,vr,vl,t,tv):
 
 ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu = inicializar()
 
-
+print(posicion_muestras)
 mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu )
