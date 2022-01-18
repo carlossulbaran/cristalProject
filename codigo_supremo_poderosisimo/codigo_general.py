@@ -75,7 +75,7 @@ def inicializar():
     ancho, largo = HMI()
 
     #Distribuir las muestras a lo largo del campo
-    posicion_muestras = muestras(3,ancho,largo)
+    posicion_muestras = muestras(2,ancho,largo)
 
     
 
