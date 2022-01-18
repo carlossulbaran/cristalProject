@@ -50,7 +50,7 @@ def inicializar():
     m_izv = 0
 
     #posicion a la que hay que viajar
-    pos_obj = 0
+    pos_obj = 2
     
     #orientacion del robot
     ang = 0
@@ -484,7 +484,7 @@ def calculo_velocidades(angulo_gi_rad,ubicacion,posicion_muestras):
     #print(angulo_gi_rad)
 
     #k es una constante para calibrar las ecuaciones
-    k=0.2
+    k=0.3
     #calculo de distancias entre el robot y el target
     d = mt.sqrt(((posicion_muestras[pos_obj,0]-ubicacion[0])**2)+((posicion_muestras[pos_obj,1]-ubicacion[1])**2))
 
