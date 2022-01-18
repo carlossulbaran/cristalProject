@@ -90,13 +90,13 @@ def mov_servo(ang_servo):
     if x < ang_servo:
         while kit.servo[13].angle < ang_servo:
             kit.servo[13].angle = kit.servo[13].angle + 5
-            time.sleep(0.05)
+            time.sleep(0.08)
         print("ok1")
 
     elif x > ang_servo:
         while kit.servo[13].angle > ang_servo:
             kit.servo[13].angle = kit.servo[13].angle - 5
-            time.sleep(0.05)
+            time.sleep(0.08)
         print("ok2")
     else:
         print("ok3")
