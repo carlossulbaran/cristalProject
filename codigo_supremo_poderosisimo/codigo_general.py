@@ -85,18 +85,20 @@ def inicializar():
 
 def mov_servo(ang_servo):
     x = kit.servo[13].angle
-
+    print(x)
     if x < ang_servo:
         while kit.servo[13].angle < ang_servo:
             kit.servo[13].angle = kit.servo[13].angle + 5
             time.sleep(2)
+        print(ok1)
 
     elif x > ang_servo:
         while kit.servo[13].angle < ang_servo:
             kit.servo[13].angle = kit.servo[13].angle - 5
             time.sleep(2)
+        print(ok2)
     else:
-        pass
+        print(ok3)
 #Funcion para el HMI inicialretorna el ancho y largo del mapa
 def HMI():
     # initialize the pygame module
