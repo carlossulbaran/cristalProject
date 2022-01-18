@@ -75,7 +75,10 @@ def inicializar():
     ancho, largo = HMI()
 
     #Distribuir las muestras a lo largo del campo
-    posicion_muestras = muestras(2,ancho,largo)
+    posicion_muestras = muestras(3,ancho,largo)
+
+    #crear la matriz de los resultados
+    resultado = np.zeros([3,3,3])
 
     
 
@@ -361,13 +364,16 @@ def muestras(cantidad,ancho,largo):
     return posicion_muestras
 
 #Funcion para ir creando el mapa de trabajo
-def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu ):
+def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu):
     
     # initialize the pygame module
     pg.init()
 
     # create a surface on screen that has the size of 240 x 180
     screen1 = pg.display.set_mode((500,500))
+
+    #inicializar distancia
+    d = 1000
 
     running = True
     tv = time.process_time()
@@ -378,9 +384,9 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         #calcular el angulo de error
         ang_gi_rad = angulo(ang,ubicacion, posicion_muestras,pos_obj)
 
-        print("ang = "+str(ang_gi_rad))
+        #print("ang = "+str(ang_gi_rad))
         #Calcular la velocidad lineal y angular del dispositivo para llegar al target
-        vel_li, vel_gi = calculo_velocidades(ang_gi_rad,ubicacion,posicion_muestras)
+        vel_li, vel_gi,d = calculo_velocidades(ang_gi_rad,ubicacion,posicion_muestras)
         #print("vel_li = "+str(vel_li))
         #print("vel_gi = "+str(vel_gi))
         #Calcular la velocidad de las ruedas
@@ -394,14 +400,18 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         # Leer los encoders para actualizar las velocidades de las ruedas
         vel_der,vel_iz = encoders()
 
-        print("vel_der = "+str(vel_der))
-        print("vel_iz = "+str(vel_iz))
+        #print("vel_der = "+str(vel_der))
+        #print("vel_iz = "+str(vel_iz))
         #calculas la postura del dispositivo
         ubicacion,ang,tv = calcular_posicion(ubicacion,ang,vel_der,vel_iz,t,tv)
         
         #Crear el mapa y mostrar actualizacion
         actualizar_pos(ubicacion,posicion_muestras,ancho,largo,screen1)
         
+        #Si estamos cerca del obj sensar y cambiar el obj 20cm de tolerancia
+        if d <= 0.2:
+            npk, pos_obj = sensar()
+
 
         
 
@@ -482,7 +492,7 @@ def calculo_velocidades(angulo_gi_rad,ubicacion,posicion_muestras):
     vel_gi = angulo_gi_rad #rad/s
     vel_li = k * d           #m/s
     
-    return vel_li, vel_gi
+    return vel_li, vel_gi, d 
 
 #Manda el angulo de movimiento al servo usando PCA al servo 15 especificamente
 def servo(ang_servo):
@@ -500,6 +510,9 @@ def desactivar():
 
 #tomar una medicion
 def sensar():
+    # Parar el robot en caso de que este en movimiento
+    env_info_motores(0,0)
+
     #poner arduino en modo sensar npk
     con_arduino(0,1)
 
@@ -520,7 +533,10 @@ def sensar():
     time.sleep(3)
     servo(70)
 
-    return npk
+    #cambiar a la siguiente posicion
+    pos_obj = pos_obj + 1
+
+    return npk, pos_obj
 
 #Funcion para controlar el funcionamiento del arduino
 def con_arduino(x,y):
