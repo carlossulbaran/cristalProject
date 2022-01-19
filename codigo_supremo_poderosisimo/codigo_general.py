@@ -318,7 +318,7 @@ def arduino_env_info(msg):
 
 #Funcion para mapear los valores
 def map(x, in_min, in_max, out_min, out_max):
-		mapped =  int((x-in_min) * (out_max-out_min) / (in_max-in_min) + out_min)
+		mapped =  float((x-in_min) * (out_max-out_min) / (in_max-in_min) + out_min)
 		return mapped  
 
 #Funcion para actualizar la posicion de cristal en el HMI
