@@ -665,7 +665,7 @@ def calcular_posicion(ubicacion,ang,vr,vl,t,tv):
     
     #calculos de orientacion
     orientacion = ang + w*(t-tv)
-    orientacion = map(orientacion,-0.5,0.5,-1,1)
+    
     x = ubicacion[0] + (v*mt.sin(orientacion)*(t - tv))
     y = ubicacion[1] + (v*mt.cos(orientacion)*(t - tv))
 
