@@ -136,47 +136,6 @@ else{
 }
 // z[0]=der,z[1]=iz
 }
-if ((z[0] == 0) and (z[1] == 0)){
-
-Serial.println("parar");
-analogWrite(2,LOW);
-analogWrite(3,LOW);
-analogWrite(4,LOW);
-analogWrite(5,LOW);
-
-analogWrite(6,LOW);
-analogWrite(7,LOW);
-analogWrite(8,LOW);
-analogWrite(9,LOW);
-}
-else if (z[0] <= 20){
-
-Serial.println("derecha");
-
-analogWrite(2,LOW);
-analogWrite(3,255);
-analogWrite(4,z[1]);
-analogWrite(5,LOW);
-
-analogWrite(6,LOW);
-analogWrite(7,255);
-analogWrite(8,z[1]);
-analogWrite(9,LOW);
-}
-else if (z[1] <= 20){
-
-Serial.println("izquierda");
-analogWrite(2,z[0]);
-analogWrite(3,LOW);
-analogWrite(4,LOW);
-analogWrite(5,255);
-
-analogWrite(6,z[0]);
-analogWrite(7,LOW);
-analogWrite(8,LOW);
-analogWrite(9,255);
-}
-else{
 
 Serial.println("normal");
  analogWrite(2,z[0]);
@@ -188,12 +147,11 @@ analogWrite(6,z[0]);
 analogWrite(7,LOW);
 analogWrite(8,z[1]);
 analogWrite(9,LOW);
+
+
 }
 
 }
-}
-
-
 
 //enviar data a la RPI
 void sendData(int msg0,int msg1,int msg2) {
