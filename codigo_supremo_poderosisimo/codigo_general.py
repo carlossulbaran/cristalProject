@@ -441,7 +441,7 @@ def twistToVel(vel_li,vel_angu):
         r = 0.075       #Radio de las ruedas
 		
         dx = vel_li     #dx = v lineal
-        dr = -vel_angu   #dr = v angular
+        dr = vel_angu   #dr = v angular
         #print("v_li = "+str(dx))
         #print("v_gi = "+str(dr))
 
@@ -654,7 +654,7 @@ def calcular_posicion(ubicacion,ang,vr,vl,t,tv):
     #print("vr = "+str(vr))
     #print("vl = "+str(vl))
 
-    w = ((vl-vr)/b)   #rad/s
+    w = ((vr-vl)/b)   #rad/s
     v = (vr+vl)/2   #m/s
 
     print("w = "+str(w))
