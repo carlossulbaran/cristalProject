@@ -424,6 +424,7 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
 
 
         print(ubicacion)
+        print("orientacion = "+str(ang))
         print(posicion_muestras[pos_obj,:])
         
 
