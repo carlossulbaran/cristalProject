@@ -653,7 +653,7 @@ def calcular_posicion(ubicacion,ang,vr,vl,t,tv):
     #print("vr = "+str(vr))
     #print("vl = "+str(vl))
 
-    w = ((vl-vr)/b)/2   #rad/s
+    w = ((vl-vr)/b)/4   #rad/s
     v = (vr+vl)/2   #m/s
 
     #print("w = "+str(w))
