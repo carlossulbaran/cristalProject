@@ -419,7 +419,7 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         actualizar_pos(ubicacion,posicion_muestras,ancho,largo,screen1)
         
         #Si estamos cerca del obj sensar y cambiar el obj 20cm de tolerancia
-        if d <= 0.3:
+        if d <= 0.5:
             npk, pos_obj = sensar()
 
 
