@@ -374,6 +374,8 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
     # create a surface on screen that has the size of 240 x 180
     screen1 = pg.display.set_mode((500,500))
 
+    screen1.fill((0, 0, 0))
+    pg.display.flip()
     #inicializar distancia
     d = 1000
 
