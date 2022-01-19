@@ -419,7 +419,7 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         actualizar_pos(ubicacion,posicion_muestras,ancho,largo,screen1)
         
         #Si estamos cerca del obj sensar y cambiar el obj 20cm de tolerancia
-        if d <= 0.5:
+        if d <= 0.3:
             npk, pos_obj = sensar()
 
 
@@ -501,7 +501,7 @@ def calculo_velocidades(angulo_gi_rad,ubicacion,posicion_muestras):
 
     print("d = "+str(d))
     vel_gi = angulo_gi_rad #rad/s
-    vel_li = k * (d/2)           #m/s
+    vel_li = k * (d)           #m/s
     
     return vel_li, vel_gi, d 
 
