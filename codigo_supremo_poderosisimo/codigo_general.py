@@ -402,13 +402,8 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         #time.sleep(1)
 
 
-        if (vr <= 10 or vl <= 10):
-            #se usa esto para ganarle a la inercia
-            vel_der = vr
-            vel_iz = vl
-        else:
-            # Leer los encoders para actualizar las velocidades de las ruedas
-            vel_der,vel_iz = encoders()
+        # Leer los encoders para actualizar las velocidades de las ruedas
+        vel_der,vel_iz = encoders()
 
         print("vel_der = "+str(vel_der))
         print("vel_iz = "+str(vel_iz))
