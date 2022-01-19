@@ -52,7 +52,7 @@ def inicializar():
     m_izv = 0
 
     #posicion a la que hay que viajar
-    pos_obj = 2
+    pos_obj = 1
     
     #orientacion del robot
     ang = 0
