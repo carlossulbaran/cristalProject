@@ -31,6 +31,8 @@ gpio.setup(6, gpio.IN)
 gpio.setup(27, gpio.OUT)
 
 
+
+
 #Funciones
 
 #Inicializar el sistema
@@ -399,8 +401,14 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         #tiempo para romper la inercia
         #time.sleep(1)
 
-        # Leer los encoders para actualizar las velocidades de las ruedas
-        vel_der,vel_iz = encoders()
+
+        if (vr <= 10 or vl <= 10):
+            #se usa esto para ganarle a la inercia
+            vel_der = map(vr,0,255,0,10)
+            vel_iz = map(vl,0,255,0,10)
+        else:
+            # Leer los encoders para actualizar las velocidades de las ruedas
+            vel_der,vel_iz = encoders()
 
         print("vel_der = "+str(vel_der))
         print("vel_iz = "+str(vel_iz))

@@ -131,10 +131,36 @@ z[1] = readSerialPort();
 cont = cont+1;
 
 }
+else{
 
 }
+// z[0]=der,z[1]=iz
+}
 
+if (z[0] <= 20){
+analogWrite(2,LOW);
+analogWrite(3,100);
+analogWrite(4,z[1]);
+analogWrite(5,LOW);
+
+analogWrite(6,LOW);
+analogWrite(7,100);
+analogWrite(8,z[1]);
+analogWrite(9,LOW);
+}
+else if (z[1] <= 20){
 analogWrite(2,z[0]);
+analogWrite(3,LOW);
+analogWrite(4,LOW);
+analogWrite(5,100);
+
+analogWrite(6,z[0]);
+analogWrite(7,LOW);
+analogWrite(8,LOW);
+analogWrite(9,100);
+}
+else{
+  analogWrite(2,z[0]);
 analogWrite(3,LOW);
 analogWrite(4,z[1]);
 analogWrite(5,LOW);
@@ -143,15 +169,10 @@ analogWrite(6,z[0]);
 analogWrite(7,LOW);
 analogWrite(8,z[1]);
 analogWrite(9,LOW);
-
-}
-
-else{
-
 }
 
 }
-
+}
 
 
 
