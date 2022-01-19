@@ -500,8 +500,8 @@ def calculo_velocidades(angulo_gi_rad,ubicacion,posicion_muestras):
     d = mt.sqrt(((posicion_muestras[pos_obj,0]-ubicacion[0])**2)+((posicion_muestras[pos_obj,1]-ubicacion[1])**2))
 
     #print("d = "+str(d))
-    vel_gi = angulo_gi_rad*4 #rad/s
-    vel_li = k * d           #m/s
+    vel_gi = angulo_gi_rad #rad/s
+    vel_li = k * (d/2)           #m/s
     
     return vel_li, vel_gi, d 
 
