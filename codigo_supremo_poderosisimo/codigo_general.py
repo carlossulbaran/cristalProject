@@ -377,7 +377,7 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
     #inicializar distancia
     d = 1000
 
-    print(posicion_muestras(pos_obj,:))
+    print(posicion_muestras)
 
     running = True
     tv = time.process_time()
