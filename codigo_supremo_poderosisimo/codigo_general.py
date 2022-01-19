@@ -377,6 +377,8 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
     #inicializar distancia
     d = 1000
 
+    print(posicion_muestras(pos_obj,:))
+
     running = True
     tv = time.process_time()
     # main loop
@@ -405,8 +407,8 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         # Leer los encoders para actualizar las velocidades de las ruedas
         vel_der,vel_iz = encoders()
 
-        print("vel_der = "+str(vel_der))
-        print("vel_iz = "+str(vel_iz))
+        #print("vel_der = "+str(vel_der))
+        #print("vel_iz = "+str(vel_iz))
         #calculas la postura del dispositivo
         ubicacion,ang,tv = calcular_posicion(ubicacion,ang,vel_der,vel_iz,t,tv)
         
@@ -418,7 +420,7 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
             npk, pos_obj = sensar()
 
 
-        print(ubicacion)
+        #print(ubicacion)
         
 
         for event in pg.event.get():
