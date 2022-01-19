@@ -382,6 +382,7 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
     print(posicion_muestras)
 
     running = True
+    time.sleep(5)
     tv = time.process_time()
     # main loop
     while running:
