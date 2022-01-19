@@ -389,13 +389,13 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         print("ang = "+str(ang_gi_rad))
         #Calcular la velocidad lineal y angular del dispositivo para llegar al target
         vel_li, vel_gi,d = calculo_velocidades(ang_gi_rad,ubicacion,posicion_muestras)
-        print("vel_li = "+str(vel_li))
-        print("vel_gi = "+str(vel_gi))
+        #print("vel_li = "+str(vel_li))
+        #print("vel_gi = "+str(vel_gi))
         #Calcular la velocidad de las ruedas
         vr, vl = twistToVel(vel_li,vel_gi)
 
-        print("Vr = "+str(vr))
-        print("Vl = "+str(vl))
+        #print("Vr = "+str(vr))
+        #print("Vl = "+str(vl))
         #setear la velocidad de los motores
         env_info_motores(vr,vl)
         #tiempo para romper la inercia
@@ -494,7 +494,7 @@ def calculo_velocidades(angulo_gi_rad,ubicacion,posicion_muestras):
     #calculo de distancias entre el robot y el target
     d = mt.sqrt(((posicion_muestras[pos_obj,0]-ubicacion[0])**2)+((posicion_muestras[pos_obj,1]-ubicacion[1])**2))
 
-    print("d = "+str(d))
+    #print("d = "+str(d))
     vel_gi = angulo_gi_rad*4 #rad/s
     vel_li = k * d           #m/s
     
