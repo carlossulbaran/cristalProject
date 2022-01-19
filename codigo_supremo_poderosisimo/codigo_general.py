@@ -492,7 +492,7 @@ def calculo_velocidades(angulo_gi_rad,ubicacion,posicion_muestras):
     #print(angulo_gi_rad)
 
     #k es una constante para calibrar las ecuaciones
-    k=0.05
+    k=0.1
     #calculo de distancias entre el robot y el target
     d = mt.sqrt(((posicion_muestras[pos_obj,0]-ubicacion[0])**2)+((posicion_muestras[pos_obj,1]-ubicacion[1])**2))
 
@@ -661,8 +661,8 @@ def calcular_posicion(ubicacion,ang,vr,vl,t,tv):
     #print("tv = "+str(tv))
     #calculos de orientacion
     orientacion = ang + w*(t-tv)
-    x = ubicacion[0] + (v*mt.cos(orientacion)*(t - tv))
-    y = ubicacion[1] + (v*mt.sin(orientacion)*(t - tv))
+    x = ubicacion[0] + (v*mt.sin(orientacion)*(t - tv))
+    y = ubicacion[1] + (v*mt.cos(orientacion)*(t - tv))
 
     ubicacion = np.array([x,y])
     #print(orientacion)
