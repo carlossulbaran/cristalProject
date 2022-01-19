@@ -404,7 +404,7 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
 
         if (vr <= 10 or vl <= 10):
             #se usa esto para ganarle a la inercia
-            vel_der =vr
+            vel_der = vr
             vel_iz = vl
         else:
             # Leer los encoders para actualizar las velocidades de las ruedas
@@ -423,6 +423,7 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
             npk, pos_obj = sensar()
 
 
+        print(ubicacion)
         
 
         for event in pg.event.get():
