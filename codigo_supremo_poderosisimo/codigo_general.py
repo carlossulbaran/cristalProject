@@ -499,7 +499,7 @@ def calculo_velocidades(angulo_gi_rad,ubicacion,posicion_muestras):
     #calculo de distancias entre el robot y el target
     d = mt.sqrt(((posicion_muestras[pos_obj,0]-ubicacion[0])**2)+((posicion_muestras[pos_obj,1]-ubicacion[1])**2))
 
-    #print("d = "+str(d))
+    print("d = "+str(d))
     vel_gi = angulo_gi_rad #rad/s
     vel_li = k * (d/3)           #m/s
     
@@ -657,11 +657,11 @@ def calcular_posicion(ubicacion,ang,vr,vl,t,tv):
     w = ((vl-vr)/b)   #rad/s
     v = (vr+vl)/2   #m/s
 
-    print("w = "+str(w))
-    print("v = "+str(v))
-    print("sdelta t = "+str(t - tv))
-    print("t = "+str(t))
-    print("tv = "+str(tv))
+    #print("w = "+str(w))
+    #print("v = "+str(v))
+    #print("sdelta t = "+str(t - tv))
+    #print("t = "+str(t))
+    #print("tv = "+str(tv))
     
     #calculos de orientacion
     
