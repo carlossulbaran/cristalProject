@@ -404,8 +404,8 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
 
         if (vr <= 10 or vl <= 10):
             #se usa esto para ganarle a la inercia
-            vel_der = map(vr,0,255,0,10)
-            vel_iz = map(vl,0,255,0,10)
+            vel_der = map(vr,0,255,0,1.3)
+            vel_iz = map(vl,0,255,0,1.3)
         else:
             # Leer los encoders para actualizar las velocidades de las ruedas
             vel_der,vel_iz = encoders()

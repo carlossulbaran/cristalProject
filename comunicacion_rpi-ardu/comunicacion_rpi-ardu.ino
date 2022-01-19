@@ -136,8 +136,18 @@ else{
 }
 // z[0]=der,z[1]=iz
 }
+if ((z[0] == 0) and (z[1] == 0)){
+analogWrite(2,LOW);
+analogWrite(3,LOW);
+analogWrite(4,LOW);
+analogWrite(5,LOW);
 
-if (z[0] <= 20){
+analogWrite(6,LOW);
+analogWrite(7,LOW);
+analogWrite(8,LOW);
+analogWrite(9,LOW);
+}
+else if (z[0] <= 20){
 analogWrite(2,LOW);
 analogWrite(3,100);
 analogWrite(4,z[1]);
