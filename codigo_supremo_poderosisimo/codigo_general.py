@@ -391,13 +391,13 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         print("ang = "+str(ang_gi_rad))
         #Calcular la velocidad lineal y angular del dispositivo para llegar al target
         vel_li, vel_gi,d = calculo_velocidades(ang_gi_rad,ubicacion,posicion_muestras)
-        #print("vel_li = "+str(vel_li))
-        #print("vel_gi = "+str(vel_gi))
+        print("vel_li = "+str(vel_li))
+        print("vel_gi = "+str(vel_gi))
         #Calcular la velocidad de las ruedas
         vr, vl = twistToVel(vel_li,vel_gi)
 
-        #print("Vr = "+str(vr))
-        #print("Vl = "+str(vl))
+        print("Vr = "+str(vr))
+        print("Vl = "+str(vl))
         #setear la velocidad de los motores
         env_info_motores(vr,vl)
         #tiempo para romper la inercia
@@ -407,8 +407,8 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         # Leer los encoders para actualizar las velocidades de las ruedas
         vel_der,vel_iz = encoders()
 
-        #print("vel_der = "+str(vel_der))
-        #print("vel_iz = "+str(vel_iz))
+        print("vel_der = "+str(vel_der))
+        print("vel_iz = "+str(vel_iz))
         #calculas la postura del dispositivo
         ubicacion,ang,tv = calcular_posicion(ubicacion,ang,vel_der,vel_iz,t,tv)
         
@@ -420,7 +420,7 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
             npk, pos_obj = sensar()
 
 
-        #print(ubicacion)
+        print(ubicacion)
         
 
         for event in pg.event.get():
@@ -492,7 +492,7 @@ def calculo_velocidades(angulo_gi_rad,ubicacion,posicion_muestras):
     #print(angulo_gi_rad)
 
     #k es una constante para calibrar las ecuaciones
-    k=0.2
+    k=0.1
     #calculo de distancias entre el robot y el target
     d = mt.sqrt(((posicion_muestras[pos_obj,0]-ubicacion[0])**2)+((posicion_muestras[pos_obj,1]-ubicacion[1])**2))
 
