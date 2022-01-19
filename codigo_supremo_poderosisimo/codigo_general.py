@@ -501,7 +501,7 @@ def calculo_velocidades(angulo_gi_rad,ubicacion,posicion_muestras):
 
     #print("d = "+str(d))
     vel_gi = angulo_gi_rad #rad/s
-    vel_li = k * (d/2)           #m/s
+    vel_li = k * (d/3)           #m/s
     
     return vel_li, vel_gi, d 
 
