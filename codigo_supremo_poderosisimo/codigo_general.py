@@ -668,7 +668,7 @@ def calcular_posicion(ubicacion,ang,vr,vl,t,tv):
     y = ubicacion[1] + (v*mt.cos(orientacion)*(t - tv))
 
     ubicacion = np.array([x,y])
-    #print(orientacion)
+    print("orientacion = "+str(orientacion))
     #print(ubicacion)
 
     tv = time.process_time()
