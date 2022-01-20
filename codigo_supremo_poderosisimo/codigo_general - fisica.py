@@ -441,7 +441,7 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
             contg, resultados, pos_obj = sensar(contg,resultados,pos_obj)
             pos_obj = pos_obj + 1
             time.sleep(3)
-        elif d<=0.4:
+        elif d<=0.2:
             contg, resultados, pos_obj = sensar(contg,resultados,pos_obj)
             pos_obj = pos_obj + 1
             time.sleep(3)
@@ -717,7 +717,7 @@ def calcular_posicion(ubicacion,ang,vr,vl,t,tv):
 
 #actualizar resultados
 def ac_resultados(resultados,npk,pos_obj,contg):
-
+    print(npk.shape)
     resultados[contg,pos_obj,0] = npk[0]
     resultados[contg,pos_obj,1] = npk[1]
     resultados[contg,pos_obj,2] = npk[2]
