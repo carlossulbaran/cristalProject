@@ -572,7 +572,7 @@ def sensar(contg,resultados):
     servo(70)
 
     gpio.output(16, False)
-    
+
     contg, resultados = ac_resultados(contg,resultados)
 
     print(resultados)
@@ -687,7 +687,7 @@ def calcular_posicion(ubicacion,ang,vr,vl,t,tv):
     #print("vl = "+str(vl))
 
     w = ((vl-vr)/b)   #rad/s
-    v = ((vr+vl)/2)*3   #m/s
+    v = ((vr+vl)/2)*3.5   #m/s
 
     #print("w = "+str(w))
     #print("v = "+str(v))
