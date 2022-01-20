@@ -354,7 +354,7 @@ def muestras(cantidad,ancho,largo):
     y = largo/cantidad 
     valory = y
     for a in np.arange(posicion_muestras.shape[0]):
-        if a%2==0:
+        if cont%2==0:
             posicion_muestras[a,0] = valorx
             posicion_muestras[a,1] = valory
 
@@ -362,11 +362,21 @@ def muestras(cantidad,ancho,largo):
 
             if valory > largo:
 
+                cont=cont+1
+                valorx = valorx + x
+
+        else:
+            posicion_muestras[a,0] = valorx
+            posicion_muestras[a,1] = valory
+
+            valory = valory - y
+
+            if valory < largo:
+
+                cont=cont+1
+
                 valorx = valorx + x
                 valory = y
-        else:
-            posicion_muestras[a,0] = 0
-            posicion_muestras[a,1] = 0
 
     return posicion_muestras
 
