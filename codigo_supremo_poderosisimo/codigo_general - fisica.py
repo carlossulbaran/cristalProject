@@ -417,10 +417,6 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         #Calcular la velocidad de las ruedas
         vr, vl = twistToVel(vel_li,vel_gi)
 
-        y = ultrasonidos()
-
-        vr = vr/(y[0]*0.1)
-        vl = vl/(y[0]*0.1)
         #print("Vr = "+str(vr))
         #print("Vl = "+str(vl))
         #setear la velocidad de los motores
@@ -445,7 +441,7 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
             contg, resultados, pos_obj = sensar(contg,resultados,pos_obj)
             pos_obj = pos_obj + 1
             time.sleep(3)
-        elif d<=0.3:
+        elif d<=0.s:
             contg, resultados, pos_obj = sensar(contg,resultados,pos_obj)
             pos_obj = pos_obj + 1
             time.sleep(3)
@@ -470,10 +466,9 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
 def twistToVel(vel_li,vel_angu):
         w = 0.635       #Distancia entre ruedas
         r = 0.075       #Radio de las ruedas
-
-
+		
         dx = vel_li    #dx = v lineal
-        dr = -vel_angu    #dr = v angular
+        dr = -vel_angu   #dr = v angular
         #print("v_li = "+str(dx))
         #print("v_gi = "+str(dr))
 
