@@ -742,7 +742,7 @@ resultados[0,0,2] = 150*np.random,normal(0,1,1)
 resultados[0,1,2] = 150*np.random,normal(0,1,1)
 resultados[0,2,2] = 150*np.random,normal(0,1,1)
 
-ax = sns.heatmap(resultados, linewidth=0.5)
+plt.imshow(x, cmap='hot', interpolation='nearest')
 plt.show()
 
 mov_servo(10)
