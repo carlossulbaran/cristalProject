@@ -422,17 +422,21 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
 
         y = ultrasonidos()
         print(y)
+
         if y[0]<20 or y[1]<20 or y[2]<20:
             env_info_motores(0,0)
+            vel_der = 0
+            vel_iz = 0
         #setear la velocidad de los motores
         else:
             env_info_motores(vr,vl)
+            # Leer los encoders para actualizar las velocidades de las ruedas
+            vel_der,vel_iz = encoders()
         #tiempo para romper la inercia
         #time.sleep(1)
 
 
-        # Leer los encoders para actualizar las velocidades de las ruedas
-        vel_der,vel_iz = encoders()
+        
 
         #print("vel_der = "+str(vel_der))
         #print("vel_iz = "+str(vel_iz))
