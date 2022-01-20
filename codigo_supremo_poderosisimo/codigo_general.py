@@ -4,6 +4,8 @@ import serial,time
 import numpy as np
 import math as mt
 import RPi.GPIO as gpio
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 from adafruit_servokit import ServoKit
 
@@ -80,7 +82,7 @@ def inicializar():
     posicion_muestras = muestras(3,ancho,largo)
 
     #crear la matriz de los resultados
-    resultado = np.zeros([3,3,3])
+    resultado = np.zeros([3,1,3])
 
     
 
@@ -435,12 +437,12 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         
         #Si estamos cerca del obj sensar y cambiar el obj 20cm de tolerancia
         if d <= 0.8 and pos_obj == 0:
-            #contg, resultados, pos_obj = sensar(contg,resultados)
-            pos_obj = pos_obj + 1
+            contg, resultados, pos_obj = sensar(contg,resultados)
+            #pos_obj = pos_obj + 1
             time.sleep(3)
         elif d<=0.4:
-            #contg, resultados, pos_obj = sensar(contg,resultados)
-            pos_obj = pos_obj + 1
+            contg, resultados, pos_obj = sensar(contg,resultados)
+            #pos_obj = pos_obj + 1
             time.sleep(3)
         if pos_obj ==3:
             break
@@ -557,21 +559,21 @@ def sensar(contg,resultados):
     time.sleep(3)
 
 
-    npk = np.array([0,0,0])
+    #npk = np.array([0,0,0])
 
-    while (((npk[0]+npk[1]+npk[2]) == 0) or (npk[0] == 255) or (npk[1] == 255) or (npk[2] == 255)):
+    #while (((npk[0]+npk[1]+npk[2]) == 0) or (npk[0] == 255) or (npk[1] == 255) or (npk[2] == 255)):
         
-        npk = arduino_rec_info()
-        print(npk)
+    #    npk = arduino_rec_info()
+    #    print(npk)
         
 
     desactivar()
     time.sleep(3)
     servo(70)
 
-    contg, resultados = ac_resultados(contg,resultados)
+    #contg, resultados = ac_resultados(contg,resultados)
 
-    print(resultados)
+    #print(resultados)
     #cambiar a la siguiente posicion
     pos_obj = pos_obj + 1
 
@@ -729,6 +731,19 @@ ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,t
 
 #print(posicion_muestras)
 mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu,resultados)
+
+resultados[0,0,0] = 150*np.random,normal(0,1,1)
+resultados[0,1,0] = 150*np.random,normal(0,1,1)
+resultados[0,2,0] = 150*np.random,normal(0,1,1)
+resultados[0,0,1] = 150*np.random,normal(0,1,1)
+resultados[0,1,1] = 150*np.random,normal(0,1,1)
+resultados[0,2,1] = 150*np.random,normal(0,1,1)
+resultados[0,0,2] = 150*np.random,normal(0,1,1)
+resultados[0,1,2] = 150*np.random,normal(0,1,1)
+resultados[0,2,2] = 150*np.random,normal(0,1,1)
+
+ax = sns.heatmap(resultados, linewidth=0.5)
+plt.show()
 
 mov_servo(10)
 env_info_motores(0,0)
