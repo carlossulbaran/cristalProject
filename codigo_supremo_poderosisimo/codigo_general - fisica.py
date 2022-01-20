@@ -421,7 +421,7 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         #print("Vl = "+str(vl))
 
         y = ultrasonidos()
-
+        print(y)
         if y[0]<20 or y[1]<20 or y[2]<20:
             env_info_motores(0,0)
         #setear la velocidad de los motores
