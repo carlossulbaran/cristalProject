@@ -546,7 +546,7 @@ def desactivar():
     gpio.output(17, False)
 
 #tomar una medicion
-def sensar(contg,resultados):
+def sensar(contg,resultados,pos_obj):
     # Parar el robot en caso de que este en movimiento
     env_info_motores(0,0)
 
@@ -569,7 +569,7 @@ def sensar(contg,resultados):
 
     desactivar()
     time.sleep(3)
-    servo(70)
+    mov_servo(70)
 
     #contg, resultados = ac_resultados(contg,resultados)
 
