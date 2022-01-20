@@ -472,8 +472,8 @@ def twistToVel(vel_li,vel_angu):
         r = 0.075       #Radio de las ruedas
 
 
-        dx = vel_li/((y[0])*0.1)    #dx = v lineal
-        dr = -vel_angu/((y[0])*0.1)    #dr = v angular
+        dx = vel_li    #dx = v lineal
+        dr = -vel_angu    #dr = v angular
         #print("v_li = "+str(dx))
         #print("v_gi = "+str(dr))
 
