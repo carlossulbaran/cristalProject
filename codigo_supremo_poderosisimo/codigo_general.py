@@ -406,16 +406,16 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         #calcular el angulo de error
         ang_gi_rad = angulo(ang,ubicacion, posicion_muestras,pos_obj)
 
-        print("ang = "+str(ang_gi_rad))
+        #print("ang = "+str(ang_gi_rad))
         #Calcular la velocidad lineal y angular del dispositivo para llegar al target
         vel_li, vel_gi,d = calculo_velocidades(ang_gi_rad,ubicacion,posicion_muestras,pos_obj)
-        print("vel_li = "+str(vel_li))
-        print("vel_gi = "+str(vel_gi))
+        #print("vel_li = "+str(vel_li))
+        #print("vel_gi = "+str(vel_gi))
         #Calcular la velocidad de las ruedas
         vr, vl = twistToVel(vel_li,vel_gi)
 
-        print("Vr = "+str(vr))
-        print("Vl = "+str(vl))
+        #print("Vr = "+str(vr))
+        #print("Vl = "+str(vl))
         #setear la velocidad de los motores
         env_info_motores(vr,vl)
         #tiempo para romper la inercia
@@ -425,8 +425,8 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         # Leer los encoders para actualizar las velocidades de las ruedas
         vel_der,vel_iz = encoders()
 
-        print("vel_der = "+str(vel_der))
-        print("vel_iz = "+str(vel_iz))
+        #print("vel_der = "+str(vel_der))
+        #print("vel_iz = "+str(vel_iz))
         #calculas la postura del dispositivo
         ubicacion,ang,tv = calcular_posicion(ubicacion,ang,vel_der,vel_iz,t,tv)
         
@@ -441,7 +441,7 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
             #contg, resultados, pos_obj = sensar(contg,resultados)
             pos_obj = pos_obj + 1
         elif pos_obj ==3:
-            ang = 0
+            break
 
         print(ubicacion)
         #print("orientacion = "+str(ang))
@@ -727,3 +727,6 @@ ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,t
 
 #print(posicion_muestras)
 mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu,resultados)
+
+mov_servo(0)
+print("Finalizado")
