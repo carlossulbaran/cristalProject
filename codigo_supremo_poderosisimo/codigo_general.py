@@ -370,7 +370,7 @@ def muestras(cantidad,ancho,largo):
             posicion_muestras[a,1] = valory
 
 
-            if valory <= 1.7:
+            if valory <= x:
 
                 cont=cont+1
 
@@ -691,7 +691,7 @@ def calcular_posicion(ubicacion,ang,vr,vl,t,tv):
     y = ubicacion[1] + (v*mt.cos(orientacion1)*(t - tv))
 
     ubicacion = np.array([x,y])
-    #print("orientacion = "+str(orientacion))
+    print("orientacion = "+str(orientacion))
     #print(ubicacion)
 
     tv = time.process_time()
