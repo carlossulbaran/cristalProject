@@ -393,7 +393,7 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
 
         print("ang = "+str(ang_gi_rad))
         #Calcular la velocidad lineal y angular del dispositivo para llegar al target
-        vel_li, vel_gi,d = calculo_velocidades(ang_gi_rad,ubicacion,posicion_muestras)
+        vel_li, vel_gi,d = calculo_velocidades(ang_gi_rad,ubicacion,posicion_muestras,pos_obj)
         #print("vel_li = "+str(vel_li))
         #print("vel_gi = "+str(vel_gi))
         #Calcular la velocidad de las ruedas
@@ -494,7 +494,7 @@ def angulo(ang,ubicacion, posicion_muestras,pos_obj):
     return ang_gi_rad
 
 #calcula la velocidad lineal y angular del robot
-def calculo_velocidades(angulo_gi_rad,ubicacion,posicion_muestras):
+def calculo_velocidades(angulo_gi_rad,ubicacion,posicion_muestras,pos_obj):
     #calcular distancia para la velocidad 
     #print(angulo_gi_rad)
 
@@ -502,9 +502,7 @@ def calculo_velocidades(angulo_gi_rad,ubicacion,posicion_muestras):
     k=0.6
     #calculo de distancias entre el robot y el target
     d = mt.sqrt(((posicion_muestras[pos_obj,0]-ubicacion[0])**2)+((posicion_muestras[pos_obj,1]-ubicacion[1])**2))
-    print(posicion_muestras[pos_obj,0])
-    print(posicion_muestras[pos_obj,1])
-    print(pos_obj)
+
     print("d = "+str(d))
     vel_gi = angulo_gi_rad*2 #rad/s
     vel_li = k * (d)           #m/s
