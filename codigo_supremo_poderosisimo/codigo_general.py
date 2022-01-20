@@ -86,7 +86,7 @@ def inicializar():
 
     print("inicializacion completa")
 
-    return ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv, pos_obj, ang,t,tv,vel_li,vel_angu
+    return ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv, pos_obj, ang,t,tv,vel_li,vel_angu,resultado
 
 def mov_servo(ang_servo):
     x = kit.servo[13].angle
@@ -380,7 +380,7 @@ def muestras(cantidad,ancho,largo):
     return posicion_muestras
 
 #Funcion para ir creando el mapa de trabajo y donde se maneja gran parte de la logica del codigo
-def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu):
+def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu,resultados):
     
     # initialize the pygame module
     pg.init()
@@ -393,6 +393,7 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
     #inicializar distancia
     d = 1000
 
+    contg = 0
     print(posicion_muestras)
 
     running = True
@@ -434,9 +435,10 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         
         #Si estamos cerca del obj sensar y cambiar el obj 20cm de tolerancia
         if d <= 0.7 and pos_obj == 0:
-            #npk, pos_obj = sensar()
+            contg, resultados, pos_obj = sensar()
             pos_obj = pos_obj + 1
         elif d<=0.4:
+            contg, resultados, pos_obj = sensar()
             pos_obj = pos_obj + 1
         elif pos_obj ==3:
             ang = 0
@@ -540,7 +542,7 @@ def desactivar():
     gpio.output(17, False)
 
 #tomar una medicion
-def sensar():
+def sensar(contg,resultados):
     # Parar el robot en caso de que este en movimiento
     env_info_motores(0,0)
 
@@ -564,10 +566,13 @@ def sensar():
     time.sleep(3)
     servo(70)
 
+    contg, resultados = ac_resultados(contg,resultados)
+
+    print(resultados)
     #cambiar a la siguiente posicion
     pos_obj = pos_obj + 1
 
-    return npk, pos_obj
+    return contg, resultados, pos_obj
 
 #Funcion para controlar el funcionamiento del arduino
 def con_arduino(x,y):
@@ -699,11 +704,25 @@ def calcular_posicion(ubicacion,ang,vr,vl,t,tv):
     tv = time.process_time()
     return ubicacion,orientacion,tv
 
+#actualizar resultados
+def ac_resultados(resultados,npk,pos_obj):
+
+    resultados[contg,pos_obj,0] = npk[0]
+    resultados[contg,pos_obj,1] = npk[1]
+    resultados[contg,pos_obj,2] = npk[2]
+
+    if pos_obj == 2:
+        contg=contg+1
+    elif pos_obj == 5:
+        contg=contg+1
+    
+    return contg,resultados
+    
 
 #Llamado a las funciones
 
 
-ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu = inicializar()
+ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu,resultados = inicializar()
 
 #print(posicion_muestras)
-mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu )
+mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu,resultados)
