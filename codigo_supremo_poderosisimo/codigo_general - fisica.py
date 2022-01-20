@@ -441,7 +441,7 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
             contg, resultados, pos_obj = sensar(contg,resultados,pos_obj)
             pos_obj = pos_obj + 1
             time.sleep(3)
-        elif d<=0.s:
+        elif d<=0.3:
             contg, resultados, pos_obj = sensar(contg,resultados,pos_obj)
             pos_obj = pos_obj + 1
             time.sleep(3)
