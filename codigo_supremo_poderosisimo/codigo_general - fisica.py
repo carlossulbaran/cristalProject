@@ -574,7 +574,7 @@ def sensar(contg,resultados,pos_obj):
 
     gpio.output(16, False)
 
-    contg, resultados = ac_resultados(contg,resultados,pos_obj)
+    contg, resultados = ac_resultados(resultados,npk,pos_obj,contg)
 
     print(resultados)
     #cambiar a la siguiente posicion
