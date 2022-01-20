@@ -365,12 +365,12 @@ def muestras(cantidad,ancho,largo):
                 valorx = valorx + x
 
         else:
+            valory = valory - y
             posicion_muestras[a,0] = valorx
             posicion_muestras[a,1] = valory
 
-            valory = valory - y
 
-            if valory < largo:
+            if valory <= largo:
 
                 cont=cont+1
 
