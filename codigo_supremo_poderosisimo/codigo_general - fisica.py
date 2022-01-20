@@ -20,6 +20,7 @@ gpio.setup(17, gpio.OUT)
 #Inicializar los pines para poder controlar los modos del arduino
 gpio.setup(26, gpio.OUT)
 gpio.setup(19, gpio.OUT)
+gpio.setup(16, gpio.OUT)
 
 #Inicializar los pines del encoder
 #Motor derecho
@@ -549,6 +550,7 @@ def sensar(contg,resultados):
     env_info_motores(0,0)
 
     #poner arduino en modo sensar npk
+    gpio.output(16, True)
     con_arduino(0,1)
 
     mov_servo(10)
@@ -569,6 +571,8 @@ def sensar(contg,resultados):
     time.sleep(3)
     servo(70)
 
+    gpio.output(16, False)
+    
     contg, resultados = ac_resultados(contg,resultados)
 
     print(resultados)
