@@ -436,11 +436,11 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         
         #Si estamos cerca del obj sensar y cambiar el obj 20cm de tolerancia
         if d <= 0.3 and pos_obj == 0:
-            contg, resultados, pos_obj = sensar(contg,resultados)
+            contg, resultados, pos_obj = sensar(contg,resultados,pos_obj)
             pos_obj = pos_obj + 1
             time.sleep(3)
         elif d<=0.4:
-            contg, resultados, pos_obj = sensar(contg,resultados)
+            contg, resultados, pos_obj = sensar(contg,resultados,pos_obj)
             pos_obj = pos_obj + 1
             time.sleep(3)
         if pos_obj ==3:
@@ -545,7 +545,7 @@ def desactivar():
     gpio.output(17, False)
 
 #tomar una medicion
-def sensar(contg,resultados):
+def sensar(contg,resultados,pos_obj):
     # Parar el robot en caso de que este en movimiento
     env_info_motores(0,0)
 
@@ -570,11 +570,11 @@ def sensar(contg,resultados):
 
     desactivar()
     time.sleep(3)
-    servo(70)
+    mov_servo(70)
 
     gpio.output(16, False)
 
-    contg, resultados = ac_resultados(contg,resultados)
+    contg, resultados = ac_resultados(contg,resultados,pos_obj)
 
     print(resultados)
     #cambiar a la siguiente posicion
