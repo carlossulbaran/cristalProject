@@ -35,6 +35,7 @@ int msgv;
 int vel_der;
 int vel_iz;
 
+int j;
 void setup() {
   
   //pines para sensores
@@ -60,6 +61,7 @@ void setup() {
   //pin para ponerse modo muestreo, ultrasonidos o motores
   pinMode(13, INPUT);
   pinMode(17, INPUT);
+  pinMode(18, INPUT);
 
   //controlar el recibimiento de data
   pinMode(21, INPUT);
@@ -112,11 +114,14 @@ else if (x == 0 && y == 1){
 else if (x == 1 && y == 1){
 
 cont = 0;
+v = digitalRead(21);
+j = digitalRead(18);
+Serial.println(j);
 
-while (cont < 2){
+while (cont < 2 && j == 0){
   
 v = digitalRead(21);
-
+j = digitalRead(18);
 
 Serial.flush();
 
