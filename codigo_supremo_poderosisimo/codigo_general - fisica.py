@@ -293,6 +293,7 @@ def arduino_rec_info():
 
                         #Leer 5 veces el sensor para esperar estabilizacion
                         if cont == 3:
+                            arduino.close()
                             return valor
                 #time.sleep(0.1)
                             #arduino.flushInput() #remove data after reading
@@ -313,6 +314,7 @@ def arduino_env_info(msg):
                     while True:
                         #cmd=input("Enter command : ")
                             arduino.write(msg.encode())
+                            arduino.close()
                             break
                 except KeyboardInterrupt:
                     print("KeyboardInterrupt has been caught.")
