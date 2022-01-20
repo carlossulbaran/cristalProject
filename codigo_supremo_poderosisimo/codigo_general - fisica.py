@@ -601,13 +601,13 @@ def con_arduino(x,y):
 
 #funcion para leer los ultrasonidos
 def ultrasonidos():
-
+    gpio.output(16, True)
     #ordenarle al arduino que lea los ultrasonidos
     con_arduino(1,0)
     
     #leer la informacion que manda el arduino
     info_ultrasonido = arduino_rec_info()
-
+    gpio.output(16, False)
     return info_ultrasonido
 
 #Funcion para leer encoders
