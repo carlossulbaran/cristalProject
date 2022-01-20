@@ -132,10 +132,10 @@ cont = cont+1;
 
 }
 else{
-
+}
 }
 // z[0]=der,z[1]=iz
-}
+
 
 Serial.println("normal");
  analogWrite(2,z[0]);
