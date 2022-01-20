@@ -437,11 +437,11 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         
         #Si estamos cerca del obj sensar y cambiar el obj 20cm de tolerancia
         if d <= 0.8 and pos_obj == 0:
-            contg, resultados, pos_obj = sensar(contg,resultados)
+            contg, resultados, pos_obj = sensar(contg,resultados,pos_obj)
             #pos_obj = pos_obj + 1
             time.sleep(3)
         elif d<=0.4:
-            contg, resultados, pos_obj = sensar(contg,resultados)
+            contg, resultados, pos_obj = sensar(contg,resultados,pos_obj)
             #pos_obj = pos_obj + 1
             time.sleep(3)
         if pos_obj ==3:
