@@ -423,7 +423,7 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         y = ultrasonidos()
         print(y)
 
-        if y[0]<20 or y[1]<20 or y[2]<20:
+        if y[0]<20 or y[1]<100 or y[2]<100:
             env_info_motores(0,0)
             vel_der = 0
             vel_iz = 0
