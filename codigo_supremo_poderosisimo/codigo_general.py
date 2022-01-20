@@ -731,17 +731,22 @@ ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,t
 
 #print(posicion_muestras)
 mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu,resultados)
+resultado = np.zeros([3,1,3])
 
-resultados[0,0,0] = 150*np.random,normal(0,1,1)
-resultados[0,1,0] = 150*np.random,normal(0,1,1)
-resultados[0,2,0] = 150*np.random,normal(0,1,1)
-resultados[0,0,1] = 150*np.random,normal(0,1,1)
-resultados[0,1,1] = 150*np.random,normal(0,1,1)
-resultados[0,2,1] = 150*np.random,normal(0,1,1)
-resultados[0,0,2] = 150*np.random,normal(0,1,1)
-resultados[0,1,2] = 150*np.random,normal(0,1,1)
-resultados[0,2,2] = 150*np.random,normal(0,1,1)
-
+resultado[0,0,0] = 1*np.random.normal(0,1,1)[0]
+resultado[1,0,0] = 1*np.random.normal(0,1,1)[0]
+resultado[2,0,0] = 1*np.random.normal(0,1,1)[0]
+resultado[0,0,1] = 1*np.random.normal(0,1,1)[0]
+resultado[1,0,1] = 1*np.random.normal(0,1,1)[0]
+resultado[2,0,1] = 1*np.random.normal(0,1,1)[0]
+resultado[0,0,2] = 1*np.random.normal(0,1,1)[0]
+resultado[1,0,2] = 1*np.random.normal(0,1,1)[0]
+resultado[2,0,2] = 1*np.random.normal(0,1,1)[0]
+fig, (ax1, ax2,ax3) = plt.subplots(1, 3)
+    
+ax1.plot(resultado[:,:,0])
+ax2.plot(resultado[:,:,1])
+ax3.plot(resultado[:,:,2])
 plt.imshow(resultados, cmap='hot', interpolation='nearest')
 plt.show()
 
