@@ -292,7 +292,7 @@ def arduino_rec_info():
                         
 
                         #Leer 5 veces el sensor para esperar estabilizacion
-                        if cont == 5:
+                        if cont == 10:
                             return valor
                 #time.sleep(0.1)
                             #arduino.flushInput() #remove data after reading
