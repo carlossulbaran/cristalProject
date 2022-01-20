@@ -422,6 +422,8 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         if d <= 0.7 and pos_obj == 0:
             #npk, pos_obj = sensar()
             pos_obj = pos_obj + 1
+        elif d<=0.4:
+            pos_obj = pos_obj + 1
 
         #print(ubicacion)
         #print("orientacion = "+str(ang))
