@@ -551,6 +551,7 @@ def sensar(contg,resultados):
 
     #poner arduino en modo sensar npk
     gpio.output(16, True)
+    time.sleep(1)
     con_arduino(0,1)
 
     mov_servo(10)
