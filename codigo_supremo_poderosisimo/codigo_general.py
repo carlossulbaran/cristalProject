@@ -346,11 +346,11 @@ def actualizar_pos(ubicacion,posicion_muestras,ancho,largo,screen1):
 
 #Funcion para crear los puntos de muestras
 def muestras(cantidad,ancho,largo):
-    posicion_muestras = np.zeros((cantidad*ancho, 2))
-    x=ancho/cantidad 
+    posicion_muestras = np.zeros((int(ancho/cantidad), 2))
+    x=int(ancho/cantidad)
     valorx=x
 
-    y = largo/cantidad 
+    y = int(largo/cantidad) 
     valory = y
     for a in np.arange(posicion_muestras.shape[0]):
         posicion_muestras[a,0] = valorx
