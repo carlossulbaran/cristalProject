@@ -397,7 +397,7 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
     print(posicion_muestras)
 
     running = True
-    time.sleep(5)
+    time.sleep(1)
     tv = time.process_time()
     # main loop
     while running:
@@ -409,13 +409,13 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         print("ang = "+str(ang_gi_rad))
         #Calcular la velocidad lineal y angular del dispositivo para llegar al target
         vel_li, vel_gi,d = calculo_velocidades(ang_gi_rad,ubicacion,posicion_muestras,pos_obj)
-        #print("vel_li = "+str(vel_li))
-        #print("vel_gi = "+str(vel_gi))
+        print("vel_li = "+str(vel_li))
+        print("vel_gi = "+str(vel_gi))
         #Calcular la velocidad de las ruedas
         vr, vl = twistToVel(vel_li,vel_gi)
 
-        #print("Vr = "+str(vr))
-        #print("Vl = "+str(vl))
+        print("Vr = "+str(vr))
+        print("Vl = "+str(vl))
         #setear la velocidad de los motores
         env_info_motores(vr,vl)
         #tiempo para romper la inercia
@@ -425,8 +425,8 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         # Leer los encoders para actualizar las velocidades de las ruedas
         vel_der,vel_iz = encoders()
 
-        #print("vel_der = "+str(vel_der))
-        #print("vel_iz = "+str(vel_iz))
+        print("vel_der = "+str(vel_der))
+        print("vel_iz = "+str(vel_iz))
         #calculas la postura del dispositivo
         ubicacion,ang,tv = calcular_posicion(ubicacion,ang,vel_der,vel_iz,t,tv)
         
