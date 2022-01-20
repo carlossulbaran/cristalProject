@@ -729,4 +729,5 @@ ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,t
 mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu,resultados)
 
 mov_servo(0)
+env_info_motores(0,0)
 print("Finalizado")
