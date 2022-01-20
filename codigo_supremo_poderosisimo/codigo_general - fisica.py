@@ -650,6 +650,7 @@ def encoders():
 
 #Funcion para enviar velocidades a los motores
 def env_info_motores(vel_der,vel_iz):
+    gpio.output(16, False)
     #mapear los valores para enviarselos al arduino
     vel_der = str(vel_der)
     vel_iz = str(vel_iz)
