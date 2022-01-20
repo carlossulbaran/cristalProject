@@ -727,7 +727,7 @@ def ac_resultados(resultados,npk,pos_obj):
 
 #print(posicion_muestras)
 #mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu,resultados)
-
+con_arduino(0,0)
 while True:
     x = int(input("x = "))
     y = int(input("y = "))
