@@ -420,9 +420,6 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         #print("Vr = "+str(vr))
         #print("Vl = "+str(vl))
 
-        y = ultrasonidos()
-        print(y)
-
 
         env_info_motores(vr,vl)
         # Leer los encoders para actualizar las velocidades de las ruedas
