@@ -438,6 +438,8 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
             pos_obj = pos_obj + 1
         elif d<=0.4:
             pos_obj = pos_obj + 1
+        elif pos_obj ==3:
+            ang = 0
 
         print(ubicacion)
         #print("orientacion = "+str(ang))
