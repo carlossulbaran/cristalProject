@@ -282,7 +282,7 @@ def arduino_rec_info():
                             answer = arduino.readline()
 
                             valor = np.fromstring(answer, dtype=int, sep=',')
-                            #print(valor)
+                            print(valor)
 
                             if valor.shape[0] == 3:
                                 cont = cont + 1
