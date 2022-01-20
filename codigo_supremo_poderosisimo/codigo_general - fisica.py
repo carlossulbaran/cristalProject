@@ -464,35 +464,36 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
 
 #Funcion para convertir la velocidad y la velocidad angular en velocidad de las ruedas
 def twistToVel(vel_li,vel_angu):
-        w = 0.635       #Distancia entre ruedas
-        r = 0.075       #Radio de las ruedas
+    w = 0.635       #Distancia entre ruedas
+    r = 0.075       #Radio de las ruedas
 
-		y = ultrasonidos()
+    y = ultrasonidos()
 
-        print(y.shape)
-        dx = vel_li/((y[0])*0.1)    #dx = v lineal
-        dr = -vel_angu/((y[0])*0.1)    #dr = v angular
+    print(y.shape)
+
+    dx = vel_li/((y[0])*0.1)    #dx = v lineal
+    dr = -vel_angu/((y[0])*0.1)    #dr = v angular
         #print("v_li = "+str(dx))
         #print("v_gi = "+str(dr))
 
-        right = ((2.0 * dx) + (dr * w)) / (2*r) #calculo rueda derecha
-        left = ((2.0 * dx) - (dr * w)) / (2*r)  #calculo rueda izquierda
+    right = ((2.0 * dx) + (dr * w)) / (2*r) #calculo rueda derecha
+    left = ((2.0 * dx) - (dr * w)) / (2*r)  #calculo rueda izquierda
 
         #print("vr = "+str(right))
         #print("vl = "+str(left))
 		#Se debe mapear las velocidades para enviar la info al arduino
         
-        right = map(right, 0, 10, 0, 255)
-        left = map(left, 0, 10, 0, 255)
+    right = map(right, 0, 10, 0, 255)
+    left = map(left, 0, 10, 0, 255)
         #print("vr = "+str(right))
         #print("vl = "+str(left))
         #Filtrar para evitar valores excesivos
-        right = min(max(0,right),255)
-        left = min(max(0,left),255)
+    right = min(max(0,right),255)
+    left = min(max(0,left),255)
 
         #print("vr = "+str(right))
         #print("vl = "+str(left))
-        return right, left
+    return right, left
 
 #Funcion para calcular el angulo de error
 def angulo(ang,ubicacion, posicion_muestras,pos_obj):
