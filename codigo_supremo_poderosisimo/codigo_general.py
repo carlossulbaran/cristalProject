@@ -5,7 +5,7 @@ import numpy as np
 import math as mt
 import RPi.GPIO as gpio
 import matplotlib.pyplot as plt
-import seaborn as sns
+#import seaborn as sns
 
 from adafruit_servokit import ServoKit
 
