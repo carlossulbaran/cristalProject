@@ -420,8 +420,8 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         
         #Si estamos cerca del obj sensar y cambiar el obj 20cm de tolerancia
         if d <= 0.55:
-            npk, pos_obj = sensar()
-
+            #npk, pos_obj = sensar()
+            pos_obj = pos_obj + 1
 
         print(ubicacion)
         print("orientacion = "+str(ang))
