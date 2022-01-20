@@ -419,8 +419,14 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
 
         #print("Vr = "+str(vr))
         #print("Vl = "+str(vl))
+
+        y = ultrasonidos()
+
+        if y[0]<20 or y[1]<20 or y[2]<20:
+            env_info_motores(0,0)
         #setear la velocidad de los motores
-        env_info_motores(vr,vl)
+        else:
+            env_info_motores(vr,vl)
         #tiempo para romper la inercia
         #time.sleep(1)
 
