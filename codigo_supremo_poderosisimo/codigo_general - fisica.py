@@ -714,7 +714,7 @@ def calcular_posicion(ubicacion,ang,vr,vl,t,tv):
     return ubicacion,orientacion,tv
 
 #actualizar resultados
-def ac_resultados(resultados,npk,pos_obj):
+def ac_resultados(resultados,npk,pos_obj,contg):
 
     resultados[contg,pos_obj,0] = npk[0]
     resultados[contg,pos_obj,1] = npk[1]
