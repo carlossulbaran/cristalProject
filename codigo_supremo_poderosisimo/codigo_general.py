@@ -463,7 +463,7 @@ def twistToVel(vel_li,vel_angu):
         r = 0.075       #Radio de las ruedas
 		
         dx = vel_li     #dx = v lineal
-        dr = -vel_angu   #dr = v angular
+        dr = vel_angu   #dr = v angular
         #print("v_li = "+str(dx))
         #print("v_gi = "+str(dr))
 
@@ -522,7 +522,7 @@ def calculo_velocidades(angulo_gi_rad,ubicacion,posicion_muestras,pos_obj):
     d = mt.sqrt(((posicion_muestras[pos_obj,0]-ubicacion[0])**2)+((posicion_muestras[pos_obj,1]-ubicacion[1])**2))
 
     print("d = "+str(d))
-    vel_gi = -angulo_gi_rad*2 #rad/s
+    vel_gi = angulo_gi_rad*2 #rad/s
     vel_li = k * (d)           #m/s
     
     return vel_li, vel_gi, d 
