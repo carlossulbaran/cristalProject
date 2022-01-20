@@ -437,9 +437,11 @@ def mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_der
         if d <= 0.7 and pos_obj == 0:
             #contg, resultados, pos_obj = sensar(contg,resultados)
             pos_obj = pos_obj + 1
+            time.sleep(3)
         elif d<=0.4:
             #contg, resultados, pos_obj = sensar(contg,resultados)
             pos_obj = pos_obj + 1
+            time.sleep(3)
         if pos_obj ==3:
             break
 
@@ -728,6 +730,6 @@ ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,t
 #print(posicion_muestras)
 mapa_trabajo(ancho,largo,posicion_muestras,ubicacion,contd,conti,m_izv,m_derv,pos_obj,ang,t,tv,vel_li,vel_angu,resultados)
 
-mov_servo(0)
+mov_servo(10)
 env_info_motores(0,0)
 print("Finalizado")
