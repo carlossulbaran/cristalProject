@@ -370,7 +370,7 @@ def muestras(cantidad,ancho,largo):
             posicion_muestras[a,1] = valory
 
 
-            if valory <= largo:
+            if valory <= 0:
 
                 cont=cont+1
 
