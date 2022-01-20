@@ -81,7 +81,7 @@ def inicializar():
     posicion_muestras = muestras(3,ancho,largo)
 
     #crear la matriz de los resultados
-    resultado = np.zeros([3,3,3])
+    resultado = np.zeros([3,1,3])
 
     
 
