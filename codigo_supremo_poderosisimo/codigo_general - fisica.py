@@ -468,7 +468,8 @@ def twistToVel(vel_li,vel_angu):
         r = 0.075       #Radio de las ruedas
 
 		y = ultrasonidos()
-        ptiny(y.shape)
+
+        print(y.shape)
         dx = vel_li/((y[0])*0.1)    #dx = v lineal
         dr = -vel_angu/((y[0])*0.1)    #dr = v angular
         #print("v_li = "+str(dx))
